@@ -8,6 +8,9 @@ module.exports = {
     path: path.join(__dirname, 'dist/client'),
     filename: 'static/js/bundle.js',
   },
+  resolve: {
+    modules: [path.resolve(__dirname, 'client'), 'node_modules'],
+  },
   module: {
     loaders: [
       {
