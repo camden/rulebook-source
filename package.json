@@ -5,9 +5,10 @@
   "scripts": {
     "precommit": "lint-staged",
     "build-client": "webpack --config webpack.config.js",
+    "watch-client": "webpack --config webpack.config.js --watch",
     "build-server": "babel server/main.js --out-dir dist",
-    "build": "yarn run build-server && yarn run build-client",
-    "start": "yarn run build && node dist/server/main.js"
+    "start-server": "yarn run build-server && node dist/server/main.js",
+    "watch-server": "yarn run build-server && nodemon dist/server/main.js"
   },
   "lint-staged": {
     "*.jsx?": [
@@ -30,6 +31,7 @@
     "html-webpack-plugin": "^2.30.1",
     "husky": "^0.14.3",
     "lint-staged": "^4.0.3",
+    "nodemon": "^1.11.0",
     "prettier": "^1.5.3",
     "style-loader": "^0.16.1",
     "webpack": "^2.4.1",
