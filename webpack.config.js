@@ -1,23 +1,27 @@
 var path = require('path');
-var webpack = require('webpack');
+var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   devtool: 'eval',
-  entry: [
-    './src/index.jsx'
-  ],
+  entry: ['./client/index.jsx'],
   output: {
-    path: path.join(__dirname, 'dist'),
-    filename: 'bundle.js',
-    publicPath: '/build/'
+    path: path.join(__dirname, 'dist/client'),
+    filename: 'static/js/bundle.js',
   },
   module: {
     loaders: [
       {
         test: /\.jsx?$/,
-        loaders: ['babel-loader'],
-        include: path.join(__dirname, 'src')
-      }
-    ]
-  }
-}
+        include: path.join(__dirname, 'client'),
+        use: {
+          loader: 'babel-loader',
+        },
+      },
+    ],
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: 'client/index.html',
+    }),
+  ],
+};
