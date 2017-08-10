@@ -1,7 +1,6 @@
 // @flow
-import fetch from 'node-fetch';
 
-const SITE_ROOT = 'http://localhost:8080/api';
+const SITE_ROOT = '/api';
 
 export const fetchRulebookData = ({
   rulebookName,

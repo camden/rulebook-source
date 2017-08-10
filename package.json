@@ -11,7 +11,8 @@
     "build-server": "babel server/ --out-dir dist/server",
     "start-server": "yarn run build-server && node dist/server/main.js rulebook-server",
     "stop-server": "killall -SIGINT rulebook-server",
-    "watch-server": "chokidar 'server/**.js' -c 'yarn run stop-server; yarn run start-server' --initial"
+    "watch-server": "chokidar 'server/**.js' -c 'yarn run stop-server; yarn run start-server' --initial",
+    "start": "yarn run build-client && yarn run start-server"
   },
   "lint-staged": {
     "*.jsx?": [
@@ -56,6 +57,7 @@
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
     "react-router": "^4.1.2",
-    "react-router-dom": "^4.1.2"
+    "react-router-dom": "^4.1.2",
+    "whatwg-fetch": "^2.0.3"
   }
 }

@@ -3,7 +3,7 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   devtool: 'eval',
-  entry: ['./client/index.jsx'],
+  entry: ['whatwg-fetch', './client/index.jsx'],
   output: {
     path: path.join(__dirname, 'dist/client'),
     publicPath: '/',
