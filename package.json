@@ -9,7 +9,7 @@
     "watch-client": "webpack --config webpack.config.js --watch",
     "build-server": "babel server/ --out-dir dist/server",
     "start-server": "yarn run build-server && node dist/server/main.js",
-    "watch-server": "yarn run build-server && nodemon dist/server/main.js"
+    "watch-server": "chokidar 'server/**.js' -c 'yarn run start-server' --initial"
   },
   "lint-staged": {
     "*.jsx?": [
@@ -28,6 +28,7 @@
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
+    "chokidar-cli": "^1.2.0",
     "eslint": "^3.19.0",
     "eslint-plugin-flowtype": "^2.35.0",
     "eslint-plugin-react": "^6.10.3",
@@ -46,6 +47,7 @@
     "body-parser": "^1.17.2",
     "express": "^4.15.4",
     "marked": "^0.3.6",
+    "node-fetch": "^1.7.2",
     "prop-types": "^15.5.10",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",

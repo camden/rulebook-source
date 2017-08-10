@@ -1,7 +1,15 @@
+// @flow
+
+import { getMarkdownForRulebook } from './utils';
+
 export const addRoutes = router => {
   router.route('/rulebooks/:rulebookName').get((req, res) => {
-    res.json({
-      markdownData: 'this is data!',
+    const rulebookName = req.params.rulebookName;
+
+    getMarkdownForRulebook(rulebookName).then(markdown => {
+      return res.json({
+        markdownData: markdown,
+      });
     });
   });
 };
