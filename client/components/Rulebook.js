@@ -1,8 +1,9 @@
 // @flow
 
-import React, { Component } from 'react';
+import React, { createElement, Component } from 'react';
 import PropTypes from 'prop-types';
 
+import MarkdownRenderer from 'components/MarkdownRenderer';
 import { fetchRulebookData } from 'utils';
 
 export default class Rulebook extends Component {
@@ -46,7 +47,7 @@ export default class Rulebook extends Component {
     return (
       <div>
         This is the rulebook for {this.props.match.params.rulebookName}
-        <pre>{this.state.data.markdown}</pre>
+        <MarkdownRenderer markdownData={this.state.data.markdown} />
       </div>
     );
   }
