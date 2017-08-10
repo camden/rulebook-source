@@ -2,6 +2,7 @@
   "name": "rulebook",
   "version": "1.0.0",
   "description": "Rulebooks!",
+  "license": "UNLICENSED",
   "scripts": {
     "precommit": "lint-staged",
     "flow-check": "flow check",

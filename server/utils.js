@@ -32,8 +32,10 @@ export const getMarkdownForRulebook = async (
     throw new Error('rulebookData must have download_url');
   }
 
+  const fileData = await getFileData(rulebookData.download_url);
+
   return {
     status: 200,
-    data: getFileData(rulebookData.download_url),
+    data: fileData,
   };
 };

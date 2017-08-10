@@ -32,6 +32,7 @@ export default class Rulebook extends Component {
         throw new Error('response must have markdownData');
       }
 
+      console.log(markdownData);
       this.setState({
         data: {
           markdown: markdownData,
