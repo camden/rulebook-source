@@ -23,8 +23,10 @@ export default class Rulebook extends Component {
   }
 
   componentDidMount() {
+    const rulebookName = this.props.match.params.rulebookName + '.md';
+
     fetchRulebookData({
-      rulebookName: this.props.match.params.rulebookName,
+      rulebookName: rulebookName,
     }).then(rulebookData => {
       const markdownData = rulebookData.markdownData;
 
@@ -32,7 +34,6 @@ export default class Rulebook extends Component {
         throw new Error('response must have markdownData');
       }
 
-      console.log(markdownData);
       this.setState({
         data: {
           markdown: markdownData,
@@ -45,6 +46,7 @@ export default class Rulebook extends Component {
     return (
       <div>
         This is the rulebook for {this.props.match.params.rulebookName}
+        <pre>{this.state.data.markdown}</pre>
       </div>
     );
   }
