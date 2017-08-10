@@ -24,7 +24,7 @@ const compile = marksy({
 
 const MarkdownRenderer = ({ markdownData }: { markdownData: string }) => {
   const output = compile(markdownData);
-  console.log(output);
+
   return (
     <div>
       {output.tree}

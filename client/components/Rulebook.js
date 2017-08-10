@@ -46,7 +46,10 @@ export default class Rulebook extends Component {
   render() {
     return (
       <div>
-        This is the rulebook for {this.props.match.params.rulebookName}
+        <h1>
+          {this.props.match.params.rulebookName}
+        </h1>
+        <hr />
         <MarkdownRenderer markdownData={this.state.data.markdown} />
       </div>
     );
