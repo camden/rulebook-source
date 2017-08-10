@@ -27,6 +27,6 @@ export const getMarkdownForRulebook = (rulebookName: string): Promise<*> => {
       return getFileData(res.download_url);
     })
     .catch(err => {
-      console.log(`${err} - ${githubUrl}`);
+      throw new Error(`${err} - ${githubUrl}`);
     });
 };

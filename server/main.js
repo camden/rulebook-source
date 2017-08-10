@@ -6,6 +6,8 @@ import path from 'path';
 
 import { addRoutes } from './routes';
 
+process.title = process.argv[2];
+
 const PORT = 8080;
 const app = express();
 

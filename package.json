@@ -8,8 +8,9 @@
     "build-client": "webpack --config webpack.config.js",
     "watch-client": "webpack --config webpack.config.js --watch",
     "build-server": "babel server/ --out-dir dist/server",
-    "start-server": "yarn run build-server && node dist/server/main.js",
-    "watch-server": "chokidar 'server/**.js' -c 'yarn run start-server' --initial"
+    "start-server": "yarn run build-server && node dist/server/main.js rulebook-server",
+    "stop-server": "killall -SIGINT rulebook-server",
+    "watch-server": "chokidar 'server/**.js' -c 'yarn run stop-server; yarn run start-server' --initial"
   },
   "lint-staged": {
     "*.jsx?": [
