@@ -1,3 +1,5 @@
+// @flow
+
 import marked from 'marked';
 
 marked.setOptions({
@@ -30,5 +32,16 @@ const getFileData = rawUrl => {
   console.log(rawUrl);
   fetch(rawUrl).then(res => res.text()).then(res => {
     console.log(marked(res));
+  });
+};
+
+export const fetchRulebookData = ({
+  rulebookName,
+}: {
+  rulebookName: string,
+}): Promise<*> => {
+  const serverUrl = `${SITE_ROOT}/rulebooks/${rulebookName}`;
+  return fetch(serverUrl).then(res => res.json).then(res => {
+    return res;
   });
 };

@@ -1,3 +1,5 @@
+// @flow
+
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import React, { Component } from 'react';
 import { getMarkdown } from 'utils';
@@ -7,11 +9,6 @@ import Rulebook from 'components/Rulebook';
 import PageNotFound from 'components/PageNotFound';
 
 class App extends Component {
-  constructor() {
-    super();
-    console.log(getMarkdown());
-  }
-
   render() {
     return (
       <BrowserRouter>

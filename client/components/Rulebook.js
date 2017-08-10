@@ -1,3 +1,5 @@
+// @flow
+
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
@@ -9,7 +11,9 @@ export default class Rulebook extends Component {
   }
 
   componentDidMount() {
-    fetchRulebookData(this.props.match.params.rulebookName);
+    fetchRulebookData({
+      rulebookName: this.props.match.params.rulebookName,
+    });
   }
 
   render() {
