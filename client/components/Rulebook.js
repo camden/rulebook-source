@@ -1,7 +1,8 @@
 // @flow
 
-import React, { createElement, Component } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import frontMatter from 'front-matter';
 
 import MarkdownRenderer from 'components/MarkdownRenderer';
 import { fetchRulebookData } from 'utils';
@@ -9,6 +10,7 @@ import { fetchRulebookData } from 'utils';
 export default class Rulebook extends Component {
   state: {
     data: {
+      front_matter: Object,
       markdown: string,
     },
   };
@@ -18,6 +20,7 @@ export default class Rulebook extends Component {
 
     this.state = {
       data: {
+        front_matter: {},
         markdown: '',
       },
     };
@@ -35,9 +38,14 @@ export default class Rulebook extends Component {
         throw new Error('response must have markdownData');
       }
 
+      const content = frontMatter(markdownData);
+
+      console.log(markdownData);
+      console.log(content);
       this.setState({
         data: {
-          markdown: markdownData,
+          front_matter: content.attributes,
+          markdown: content.body,
         },
       });
     });
