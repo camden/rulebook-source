@@ -41,7 +41,7 @@ export const fetchRulebookData = ({
   rulebookName: string,
 }): Promise<*> => {
   const serverUrl = `${SITE_ROOT}/rulebooks/${rulebookName}`;
-  return fetch(serverUrl).then(res => res.json).then(res => {
+  return fetch(serverUrl).then(res => res.json()).then(res => {
     return res;
   });
 };

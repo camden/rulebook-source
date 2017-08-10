@@ -6,13 +6,37 @@ import PropTypes from 'prop-types';
 import { fetchRulebookData } from 'utils';
 
 export default class Rulebook extends Component {
+  state: {
+    data: {
+      markdown: string,
+    },
+  };
+
   constructor(props) {
     super(props);
+
+    this.state = {
+      data: {
+        markdown: '',
+      },
+    };
   }
 
   componentDidMount() {
     fetchRulebookData({
       rulebookName: this.props.match.params.rulebookName,
+    }).then(rulebookData => {
+      const markdownData = rulebookData.markdownData;
+
+      if (!markdownData) {
+        throw new Error('response must have markdownData');
+      }
+
+      this.setState({
+        data: {
+          markdown: markdownData,
+        },
+      });
     });
   }
 

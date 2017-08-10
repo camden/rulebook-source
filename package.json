@@ -4,6 +4,7 @@
   "description": "Rulebooks!",
   "scripts": {
     "precommit": "lint-staged",
+    "flow-check": "flow check",
     "build-client": "webpack --config webpack.config.js",
     "watch-client": "webpack --config webpack.config.js --watch",
     "build-server": "babel server/ --out-dir dist/server",
