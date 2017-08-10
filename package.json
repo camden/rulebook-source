@@ -6,7 +6,7 @@
     "precommit": "lint-staged",
     "build-client": "webpack --config webpack.config.js",
     "watch-client": "webpack --config webpack.config.js --watch",
-    "build-server": "babel server/main.js --out-dir dist",
+    "build-server": "babel server/ --out-dir dist/server",
     "start-server": "yarn run build-server && node dist/server/main.js",
     "watch-server": "yarn run build-server && nodemon dist/server/main.js"
   },
@@ -39,6 +39,7 @@
   },
   "dependencies": {
     "babel-loader": "^7.0.0",
+    "body-parser": "^1.17.2",
     "express": "^4.15.4",
     "marked": "^0.3.6",
     "react": "^15.5.4",

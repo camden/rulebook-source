@@ -1,7 +1,20 @@
 import express from 'express';
+import bodyParser from 'body-parser';
 import path from 'path';
 
+import { addRoutes } from './routes';
+
+const PORT = 8080;
 const app = express();
+
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+
+const router = express.Router();
+
+addRoutes(router);
+
+app.use('/api', router);
 
 app.use(
   '/static',
@@ -12,4 +25,6 @@ app.get('*', (req, res) => {
   res.sendFile(path.resolve(__dirname, '../../', 'dist/client', 'index.html'));
 });
 
-app.listen(8080, () => {});
+app.listen(PORT, () => {
+  console.log(`Listening on port ${PORT}...`);
+});
