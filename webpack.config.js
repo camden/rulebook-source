@@ -6,6 +6,7 @@ module.exports = {
   entry: ['./client/index.jsx'],
   output: {
     path: path.join(__dirname, 'dist/client'),
+    publicPath: '/',
     filename: 'static/js/bundle.js',
   },
   resolve: {

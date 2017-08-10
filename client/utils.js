@@ -5,6 +5,8 @@ marked.setOptions({
   sanitize: true,
 });
 
+const SITE_ROOT = 'http://localhost:8080/api';
+
 const REPO_AUTHOR = 'camden';
 const REPO_NAME = 'rulebooks';
 const GITHUB_ROOT = 'https://api.github.com';
@@ -13,8 +15,10 @@ const GITHUB_API_URL = `/repos/${REPO_AUTHOR}/${REPO_NAME}/contents`;
 export const getMarkdown = () => {
   const rulebooksPath = '/rulebooks/';
 
-  const url = GITHUB_ROOT + GITHUB_API_URL + rulebooksPath;
-  fetch(url).then(res => res.json()).then(res => {
+  const rulebookName = 'catan';
+  const githubUrl = GITHUB_ROOT + GITHUB_API_URL + rulebooksPath;
+  const serverUrl = `${SITE_ROOT}/rulebooks/${rulebookName}`;
+  fetch(serverUrl).then(res => res.json()).then(res => {
     console.log(res);
     for (let fileRes of res) {
       getFileData(fileRes.download_url);

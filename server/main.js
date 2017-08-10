@@ -10,11 +10,11 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-const router = express.Router();
+const apiRouter = express.Router();
 
-addRoutes(router);
+addRoutes(apiRouter);
 
-app.use('/api', router);
+app.use('/api', apiRouter);
 
 app.use(
   '/static',
