@@ -4,9 +4,11 @@
     [ "env", 
       {
         "targets": {
-          "browsers": ["last 2 versions", "ie >= 7"] 
+          "browsers": ["last 2 versions", "ie >= 7"],
+          "node": "current"
         }
       }],
+    "stage-0",
     "flow"
   ]
 }

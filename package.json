@@ -45,6 +45,7 @@
   },
   "dependencies": {
     "babel-loader": "^7.0.0",
+    "babel-polyfill": "^6.23.0",
     "body-parser": "^1.17.2",
     "express": "^4.15.4",
     "marked": "^0.3.6",

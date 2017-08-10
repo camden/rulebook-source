@@ -6,27 +6,34 @@ const REPO_NAME = 'rulebooks';
 const GITHUB_ROOT = 'https://api.github.com';
 const GITHUB_API_URL = `/repos/${REPO_AUTHOR}/${REPO_NAME}/contents`;
 
-const getFileData = (rawUrl: string): Promise<string> => {
-  return fetch(rawUrl).then(res => res.text()).then(fileData => {
-    return fileData;
-  });
+const getFileData = async (rawUrl: string): Promise<string> => {
+  const fileDataResponse = await fetch(rawUrl);
+  const fileData = await fileDataResponse.text();
+  return fileData;
 };
 
-export const getMarkdownForRulebook = (rulebookName: string): Promise<*> => {
+export const getMarkdownForRulebook = async (
+  rulebookName: string
+): Promise<*> => {
   const githubUrl = GITHUB_ROOT + GITHUB_API_URL + '/rulebooks/' + rulebookName;
 
-  return fetch(githubUrl)
-    .then(res => {
-      return res.json();
-    })
-    .then(res => {
-      if (!res.ok) {
-        throw new Error(res.message);
-      }
+  const rulebookDataResponse = await fetch(githubUrl);
 
-      return getFileData(res.download_url);
-    })
-    .catch(err => {
-      throw new Error(`${err} - ${githubUrl}`);
-    });
+  if (!rulebookDataResponse.ok) {
+    return {
+      status: rulebookDataResponse.status,
+      data: {},
+    };
+  }
+
+  const rulebookData = await rulebookDataResponse.json();
+
+  if (!rulebookData.download_url) {
+    throw new Error('rulebookData must have download_url');
+  }
+
+  return {
+    status: 200,
+    data: getFileData(rulebookData.download_url),
+  };
 };
