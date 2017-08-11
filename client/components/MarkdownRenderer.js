@@ -3,6 +3,13 @@
 import React, { createElement } from 'react';
 import PropTypes from 'prop-types';
 import marksy from 'marksy';
+import styled from 'styled-components';
+
+const Header1 = styled.h1`
+  color: ${props => {
+    return props.theme.backgroundColor;
+  }};
+`;
 
 const compile = marksy({
   // Pass in whatever creates elements for your
@@ -14,9 +21,9 @@ const compile = marksy({
   elements: {
     h1({ id, children }) {
       return (
-        <h1 className="my-custom-class">
+        <Header1>
           {children}
-        </h1>
+        </Header1>
       );
     },
   },
