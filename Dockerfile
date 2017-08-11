@@ -20,7 +20,7 @@ RUN yarn install --production
 COPY . ${workdir}
 
 # Expose the port the app runs in
-EXPOSE 8080
+EXPOSE 80
 
 # Serve the app
 CMD ["yarn", "start"]
