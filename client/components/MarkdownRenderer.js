@@ -5,12 +5,6 @@ import PropTypes from 'prop-types';
 import marksy from 'marksy';
 import styled from 'styled-components';
 
-const Header1 = styled.h1`
-  color: ${props => {
-    return props.theme.backgroundColor;
-  }};
-`;
-
 const compile = marksy({
   // Pass in whatever creates elements for your
   // virtual DOM library. h('h1', {})
@@ -21,9 +15,9 @@ const compile = marksy({
   elements: {
     h1({ id, children }) {
       return (
-        <Header1>
+        <h1>
           {children}
-        </Header1>
+        </h1>
       );
     },
   },

@@ -1,5 +1,7 @@
 // @flow
 
 export const MainTheme = {
-  backgroundColor: 'papayawhip',
+  colors: {
+    primary: 'palevioletred',
+  },
 };
