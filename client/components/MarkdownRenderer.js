@@ -5,6 +5,10 @@ import PropTypes from 'prop-types';
 import marksy from 'marksy';
 import styled from 'styled-components';
 
+import Highlighter from 'components/Highlighter';
+
+const ColoredDiv = styled.h1`color: blue;`;
+
 const compile = marksy({
   // Pass in whatever creates elements for your
   // virtual DOM library. h('h1', {})
@@ -15,9 +19,11 @@ const compile = marksy({
   elements: {
     h1({ id, children }) {
       return (
-        <h1>
-          {children}
-        </h1>
+        <Highlighter
+          search="sed"
+          textToHighlight={children[0]}
+          wrapper={ColoredDiv}
+        />
       );
     },
   },
