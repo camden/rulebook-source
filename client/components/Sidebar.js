@@ -3,6 +3,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+import TOCTitle from 'components/TOCTitle';
+
 type TOCNode = {
   id: string,
   level: number,
@@ -16,7 +18,9 @@ const renderChildren = ({ tree }: { tree: TOCTree }) => {
   return tree.map((node: TOCNode) => {
     return (
       <div key={node.id}>
-        {node.title}
+        <TOCTitle level={node.level}>
+          {node.title}
+        </TOCTitle>
         {renderChildren({ tree: node.children })}
       </div>
     );
