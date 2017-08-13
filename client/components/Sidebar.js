@@ -18,7 +18,7 @@ const renderChildren = ({ tree }: { tree: TOCTree }) => {
   return tree.map((node: TOCNode) => {
     return (
       <div key={node.id}>
-        <TOCTitle level={node.level}>
+        <TOCTitle level={node.level} id={node.id}>
           {node.title}
         </TOCTitle>
         {renderChildren({ tree: node.children })}
