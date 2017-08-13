@@ -3,6 +3,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import frontMatter from 'front-matter';
+import { Page, Row, Column } from 'hedron';
 
 import { fetchRulebookData } from 'utils';
 import { compileMarkdown } from 'markdown-utils';
@@ -59,15 +60,24 @@ export default class Rulebook extends Component {
 
   render() {
     return (
-      <div>
-        <h1>
-          {this.props.match.params.rulebookName}
-        </h1>
-        <hr />
-        <div>
-          {this.state.data.markdown}
-        </div>
-      </div>
+      <Page fluid>
+        <Row>
+          <Column md={3}>
+            <h1>Sidebar here</h1>
+          </Column>
+          <Column md={9}>
+            <div>
+              <h1>
+                {this.props.match.params.rulebookName}
+              </h1>
+              <hr />
+              <div>
+                {this.state.data.markdown}
+              </div>
+            </div>
+          </Column>
+        </Row>
+      </Page>
     );
   }
 }
