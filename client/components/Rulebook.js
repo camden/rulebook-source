@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import frontMatter from 'front-matter';
 import { Page, Row, Column } from 'hedron';
 
+import Sidebar from 'components/Sidebar';
 import { fetchRulebookData } from 'utils';
 import { compileMarkdown } from 'markdown-utils';
 
@@ -13,6 +14,7 @@ export default class Rulebook extends Component {
     data: {
       front_matter: Object,
       markdown: string,
+      toc: Array<Object>,
     },
   };
 
@@ -63,7 +65,7 @@ export default class Rulebook extends Component {
       <Page fluid>
         <Row>
           <Column md={3}>
-            <h1>Sidebar here</h1>
+            <Sidebar tableOfContents={this.state.data.toc} />
           </Column>
           <Column md={9}>
             <div>
