@@ -13,17 +13,23 @@ type TOCNode = {
 type TOCTree = Array<TOCNode>;
 
 const renderChildren = ({ tree }: { tree: TOCTree }) => {
-  let node: TOCNode;
-  for (node of tree) {
-    console.log(node.title);
-    renderChildren({ tree: node.children });
-  }
-
-  return <div />;
+  return tree.map((node: TOCNode) => {
+    return (
+      <div key={node.id}>
+        {node.title}
+        {renderChildren({ tree: node.children })}
+      </div>
+    );
+  });
 };
 
 const Sidebar = ({ tableOfContents }: { tableOfContents: TOCTree }) => {
-  return renderChildren({ tree: tableOfContents });
+  const renderedTOC = renderChildren({ tree: tableOfContents });
+  return (
+    <div>
+      {renderedTOC}
+    </div>
+  );
 };
 
 Sidebar.propTypes = {
