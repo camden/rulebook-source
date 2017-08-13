@@ -5,8 +5,6 @@ import PropTypes from 'prop-types';
 import marksy from 'marksy';
 import styled from 'styled-components';
 
-import Highlighter from 'components/Highlighter';
-
 const ColoredDiv = styled.h1`color: blue;`;
 
 const compile = marksy({
@@ -19,11 +17,9 @@ const compile = marksy({
   elements: {
     h1({ id, children }) {
       return (
-        <Highlighter
-          search="sed"
-          textToHighlight={children[0]}
-          wrapper={ColoredDiv}
-        />
+        <h1>
+          {children}
+        </h1>
       );
     },
   },
@@ -31,6 +27,7 @@ const compile = marksy({
 
 const MarkdownRenderer = ({ markdownData }: { markdownData: string }) => {
   const output = compile(markdownData);
+  console.log(output.toc);
 
   return (
     <div>
