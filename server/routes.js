@@ -14,7 +14,7 @@ export const addRoutes = router => {
       }
 
       return res.json({
-        markdownData: markdownResponse.data,
+        rulebookData: markdownResponse.data,
       });
     });
   });

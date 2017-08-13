@@ -4,8 +4,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import frontMatter from 'front-matter';
 
-import MarkdownRenderer from 'components/MarkdownRenderer';
 import { fetchRulebookData } from 'utils';
+import { compileMarkdown } from 'markdown-utils';
 
 export default class Rulebook extends Component {
   state: {
@@ -22,6 +22,7 @@ export default class Rulebook extends Component {
       data: {
         front_matter: {},
         markdown: '',
+        toc: [],
       },
     };
   }
@@ -31,21 +32,26 @@ export default class Rulebook extends Component {
 
     fetchRulebookData({
       rulebookName: rulebookName,
-    }).then(rulebookData => {
-      const markdownData = rulebookData.markdownData;
+    }).then(data => {
+      const rulebookData = data.rulebookData;
 
-      if (!markdownData) {
-        throw new Error('response must have markdownData');
+      if (!rulebookData) {
+        throw new Error('response must have rulebookData');
       }
 
-      const content = frontMatter(markdownData);
+      const markdown = frontMatter(rulebookData);
 
-      console.log(markdownData);
-      console.log(content);
+      const frontMatterData = markdown.attributes;
+
+      const compiledMarkdown = compileMarkdown(markdown.body);
+      const toc = compiledMarkdown.toc;
+      const markdownData = compiledMarkdown.tree;
+
       this.setState({
         data: {
-          front_matter: content.attributes,
-          markdown: content.body,
+          front_matter: frontMatterData,
+          markdown: markdownData,
+          toc: toc,
         },
       });
     });
@@ -58,7 +64,9 @@ export default class Rulebook extends Component {
           {this.props.match.params.rulebookName}
         </h1>
         <hr />
-        <MarkdownRenderer markdownData={this.state.data.markdown} />
+        <div>
+          {this.state.data.markdown}
+        </div>
       </div>
     );
   }
