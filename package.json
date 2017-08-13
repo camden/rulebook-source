@@ -34,6 +34,7 @@
     "webpack-dev-server": "^2.4.4"
   },
   "dependencies": {
+    "anchorate": "^1.1.0",
     "babel-cli": "^6.24.1",
     "babel-core": "^6.24.1",
     "babel-eslint": "^7.2.3",

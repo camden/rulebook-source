@@ -10,7 +10,7 @@ module.exports = {
     filename: 'static/js/bundle.js',
   },
   resolve: {
-    modules: ['node_modules', path.resolve(__dirname, 'client')],
+    modules: [path.resolve(__dirname, 'client'), 'node_modules'],
   },
   module: {
     loaders: [
