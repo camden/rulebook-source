@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 
 import TOCTitle from 'components/TOCTitle';
 
@@ -27,12 +28,17 @@ const renderChildren = ({ tree }: { tree: TOCTree }) => {
   });
 };
 
+const StickyDiv = styled.div`
+  position: sticky;
+  top: 0;
+`;
+
 const Sidebar = ({ tableOfContents }: { tableOfContents: TOCTree }) => {
   const renderedTOC = renderChildren({ tree: tableOfContents });
   return (
-    <div>
+    <StickyDiv>
       {renderedTOC}
-    </div>
+    </StickyDiv>
   );
 };
 
