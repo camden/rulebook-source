@@ -17,10 +17,34 @@ const AnchorLink = styled(LinkIcon)`
   }
 `;
 
-const Header = styled.h1`
-  font-size: ${props => props.size}rem;
+const GenericHeader = styled.div`
+  font-size: ${props => props.size};
+  font-weight: bold;
+  margin: 0.5px 0;
   display: inline-block;
 `;
+
+const Header = ({ id, level, children }) => {
+  const levelToSizeMap = {
+    '1': '2em',
+    '2': '1.5em',
+    '3': '1.17em',
+    '4': '1.12em',
+    '5': '.83em',
+    '6': '.75em',
+  };
+
+  return (
+    <div>
+      <Link to={`#${id}`}>
+        <AnchorLink size={level * 15} />
+      </Link>
+      <GenericHeader size={levelToSizeMap[level.toString()]}>
+        {children}
+      </GenericHeader>
+    </div>
+  );
+};
 
 export const compileMarkdown = marksy({
   // Pass in whatever creates elements for your
@@ -33,10 +57,7 @@ export const compileMarkdown = marksy({
     h1({ id, children }) {
       return (
         <div>
-          <Link to={`#${id}`}>
-            <AnchorLink size={20} />
-          </Link>
-          <Header id={id} size={2}>
+          <Header id={id} level={1}>
             {children}
           </Header>
         </div>
