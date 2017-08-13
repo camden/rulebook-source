@@ -31,32 +31,39 @@ export default class Rulebook extends Component {
   }
 
   componentDidMount() {
+    this.loadData();
+  }
+
+  async loadData() {
     const rulebookName = this.props.match.params.rulebookName + '.md';
 
-    fetchRulebookData({
+    const data = await fetchRulebookData({
       rulebookName: rulebookName,
-    }).then(data => {
-      const rulebookData = data.rulebookData;
+    });
 
-      if (!rulebookData) {
-        throw new Error('response must have rulebookData');
-      }
+    const rulebookData = data.rulebookData;
 
-      const markdown = frontMatter(rulebookData);
+    if (!rulebookData) {
+      throw new Error('response must have rulebookData');
+    }
 
-      const frontMatterData = markdown.attributes;
+    // Base64 string decoding
+    const content = atob(rulebookData.content);
 
-      const compiledMarkdown = compileMarkdown(markdown.body);
-      const toc = compiledMarkdown.toc;
-      const markdownData = compiledMarkdown.tree;
+    const markdown = frontMatter(content);
 
-      this.setState({
-        data: {
-          front_matter: frontMatterData,
-          markdown: markdownData,
-          toc: toc,
-        },
-      });
+    const frontMatterData = markdown.attributes;
+
+    const compiledMarkdown = compileMarkdown(markdown.body);
+    const toc = compiledMarkdown.toc;
+    const markdownData = compiledMarkdown.tree;
+
+    this.setState({
+      data: {
+        front_matter: frontMatterData,
+        markdown: markdownData,
+        toc: toc,
+      },
     });
   }
 

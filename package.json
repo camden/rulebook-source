@@ -47,6 +47,7 @@
     "body-parser": "^1.17.2",
     "express": "^4.15.4",
     "front-matter": "^2.1.2",
+    "ghrequest": "^1.0.1",
     "hedron": "^0.7.1",
     "html-webpack-plugin": "^2.30.1",
     "marksy": "^5.0.0",

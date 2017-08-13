@@ -2,13 +2,13 @@
 
 const SITE_ROOT = '/api';
 
-export const fetchRulebookData = ({
+export const fetchRulebookData = async ({
   rulebookName,
 }: {
   rulebookName: string,
 }): Promise<*> => {
   const serverUrl = `${SITE_ROOT}/rulebooks/${rulebookName}`;
-  return fetch(serverUrl).then(res => res.json()).then(res => {
-    return res;
-  });
+  const res = await fetch(serverUrl);
+  const resJSON = await res.json();
+  return resJSON;
 };

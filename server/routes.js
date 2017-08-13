@@ -7,11 +7,13 @@ export const addRoutes = router => {
     const rulebookName = req.params.rulebookName;
 
     getMarkdownForRulebook(rulebookName).then(markdownResponse => {
-      if (markdownResponse.status !== 200) {
+      if (markdownResponse.status === 404) {
         return res.status(markdownResponse.status).json({
           message: `Rulebook ${rulebookName} not found.`,
         });
       }
+
+      res.status(markdownResponse.status);
 
       return res.json({
         rulebookData: markdownResponse.data,
