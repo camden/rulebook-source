@@ -10,7 +10,11 @@ export const getRulebookContent = async (
   rulebookName: string
 ): Promise<Object> => {
   const url = GITHUB_ROOT + GITHUB_API_URL + '/rulebooks/' + rulebookName;
-  const response = await fetch(url);
+  const response = await fetch(url, {
+    headers: {
+      'User-Agent': REPO_AUTHOR + '/' + REPO_NAME,
+    },
+  });
   const rulebookData = await response.json();
 
   return {
