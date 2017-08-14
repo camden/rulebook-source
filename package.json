@@ -6,7 +6,7 @@
   "scripts": {
     "precommit": "lint-staged",
     "flow-check": "flow check",
-    "build-client": "webpack --config webpack.config.js",
+    "build-client": "webpack --config webpack.config.js -p",
     "watch-client": "webpack --config webpack.config.js --watch",
     "build-server": "babel server/ --out-dir dist/server",
     "start-server": "yarn run build-server && node dist/server/main.js rulebook-server",

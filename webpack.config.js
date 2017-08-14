@@ -1,8 +1,9 @@
+var webpack = require('webpack');
 var path = require('path');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  devtool: 'sourcemap',
+  devtool: 'cheap-module-source-map',
   entry: ['babel-polyfill', 'whatwg-fetch', './client/index.jsx'],
   output: {
     path: path.join(__dirname, 'dist/client'),
@@ -24,6 +25,11 @@ module.exports = {
     ],
   },
   plugins: [
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: JSON.stringify('production'),
+      },
+    }),
     new HtmlWebpackPlugin({
       template: 'client/index.html',
     }),
