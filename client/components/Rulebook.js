@@ -5,9 +5,13 @@ import PropTypes from 'prop-types';
 import frontMatter from 'front-matter';
 import { Page, Row, Column } from 'hedron';
 
+import ProgressBar from 'react-progress';
+
 import Sidebar from 'components/Sidebar';
 import { fetchRulebookData } from 'utils';
 import { compileMarkdown } from 'markdown-utils';
+
+const PROGRESS_INTERVAL_TIME = 200;
 
 export default class Rulebook extends Component {
   state: {
@@ -15,6 +19,10 @@ export default class Rulebook extends Component {
       front_matter: Object,
       markdown: string,
       toc: Array<Object>,
+    },
+    progress: {
+      percent: number,
+      interval: ?number,
     },
   };
 
@@ -27,11 +35,41 @@ export default class Rulebook extends Component {
         markdown: '',
         toc: [],
       },
+      progress: {
+        percent: 0,
+        interval: null,
+      },
     };
   }
 
   componentDidMount() {
     this.loadData();
+
+    const interval = setInterval(
+      this.incrementProgress.bind(this),
+      PROGRESS_INTERVAL_TIME
+    );
+
+    const nextProgress = Object.assign({}, this.state.progress, { interval });
+
+    this.setState({
+      progress: nextProgress,
+    });
+  }
+
+  incrementProgress() {
+    if (this.state.percent >= 100) {
+      return;
+    }
+
+    const remainingPercent = 100 - this.state.percent;
+    const toAdd = remainingPercent * Math.random();
+
+    this.setState({
+      progress: {
+        percent: this.state.progress.percent + toAdd,
+      },
+    });
   }
 
   async loadData() {
@@ -58,11 +96,19 @@ export default class Rulebook extends Component {
     const toc = compiledMarkdown.toc;
     const markdownData = compiledMarkdown.tree;
 
+    if (this.state.progress.interval) {
+      clearInterval(this.state.progress.interval);
+    }
+
     this.setState({
       data: {
         front_matter: frontMatterData,
         markdown: markdownData,
         toc: toc,
+      },
+      progress: {
+        interval: null,
+        percent: 100,
       },
     });
   }
@@ -70,6 +116,7 @@ export default class Rulebook extends Component {
   render() {
     return (
       <Page fluid>
+        <ProgressBar percent={this.state.progress.percent} />
         <Row>
           <Column md={3}>
             <Sidebar tableOfContents={this.state.data.toc} />

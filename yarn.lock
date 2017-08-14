@@ -3938,6 +3938,10 @@ react-feather@^1.0.6:
   version "1.0.6"
   resolved "https://registry.yarnpkg.com/react-feather/-/react-feather-1.0.6.tgz#672122f8020a4198250b83fe3939f8e5a4e9c7ed"
 
+react-progress@^0.0.12:
+  version "0.0.12"
+  resolved "https://registry.yarnpkg.com/react-progress/-/react-progress-0.0.12.tgz#386194cdfebaa65b452494284a9677cea3980bba"
+
 react-router-dom@^4.1.2:
   version "4.1.2"
   resolved "https://registry.yarnpkg.com/react-router-dom/-/react-router-dom-4.1.2.tgz#7f8a7ca868d32acadd19ca09543b40d26df8ec37"
