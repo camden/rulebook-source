@@ -11,7 +11,7 @@ import Sidebar from 'components/Sidebar';
 import { fetchRulebookData } from 'utils';
 import { compileMarkdown } from 'markdown-utils';
 
-const PROGRESS_INTERVAL_TIME = 200;
+const PROGRESS_INTERVAL_TIME = 500;
 
 export default class Rulebook extends Component {
   state: {
@@ -42,9 +42,7 @@ export default class Rulebook extends Component {
     };
   }
 
-  componentDidMount() {
-    this.loadData();
-
+  componentWillMount() {
     const interval = setInterval(
       this.incrementProgress.bind(this),
       PROGRESS_INTERVAL_TIME
@@ -57,13 +55,17 @@ export default class Rulebook extends Component {
     });
   }
 
+  componentDidMount() {
+    this.loadData();
+  }
+
   incrementProgress() {
-    if (this.state.percent >= 100) {
+    if (this.state.progress.percent >= 100) {
       return;
     }
 
-    const remainingPercent = 100 - this.state.percent;
-    const toAdd = remainingPercent * Math.random();
+    const remainingPercent = 100 - this.state.progress.percent;
+    const toAdd = remainingPercent * Math.random() / 2;
 
     this.setState({
       progress: {
