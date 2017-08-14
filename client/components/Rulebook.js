@@ -118,7 +118,10 @@ export default class Rulebook extends Component {
   render() {
     return (
       <Page fluid>
-        <ProgressBar percent={this.state.progress.percent} />
+        <ProgressBar
+          percent={this.state.progress.percent}
+          color={'lightblue'}
+        />
         <Row>
           <Column md={3}>
             <Sidebar tableOfContents={this.state.data.toc} />
