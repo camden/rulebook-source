@@ -13,9 +13,13 @@ import { addRoutes } from './routes';
 process.title = process.argv[2];
 
 const PORT = process.env.PORT || 8080;
+const REDIS_URL = process.env.REDIS_URL || null;
 
 const app = express();
-const redisClient = redis.createClient();
+const redisClient = redis.createClient({
+  url: REDIS_URL,
+});
+
 redisClient.on('connect', () => {
   console.log('Connected to redis.');
   main();
