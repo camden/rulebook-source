@@ -37,18 +37,18 @@ export default class Rulebook extends Component {
   async loadData() {
     const rulebookName = this.props.match.params.rulebookName + '.md';
 
-    const data = await fetchRulebookData({
+    const response = await fetchRulebookData({
       rulebookName: rulebookName,
     });
 
-    const rulebookData = data.rulebookData;
+    const rulebookData = response.data;
 
     if (!rulebookData) {
-      throw new Error('response must have rulebookData');
+      throw new Error('response must have data property.');
     }
 
     // Base64 string decoding
-    const content = atob(rulebookData.content);
+    const content = atob(rulebookData);
 
     const markdown = frontMatter(content);
 

@@ -2,7 +2,7 @@ var path = require('path');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  devtool: 'eval',
+  devtool: 'sourcemap',
   entry: ['babel-polyfill', 'whatwg-fetch', './client/index.jsx'],
   output: {
     path: path.join(__dirname, 'dist/client'),

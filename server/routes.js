@@ -2,7 +2,11 @@
 
 import { getMarkdownForRulebook } from './utils';
 
-export const addRoutes = router => {
+export const addRoutes = ({ router, redis }) => {
+  if (!redis) {
+    throw new Error('Redis client must be provided.');
+  }
+
   router.route('/rulebooks/:rulebookName').get((req, res) => {
     const rulebookName = req.params.rulebookName;
 
@@ -15,8 +19,10 @@ export const addRoutes = router => {
 
       res.status(markdownResponse.status);
 
+      redis.set(req.url, markdownResponse.data.content);
+
       return res.json({
-        rulebookData: markdownResponse.data,
+        data: markdownResponse.data.content,
       });
     });
   });

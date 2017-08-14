@@ -37,3 +37,16 @@ export const getMarkdownForRulebook = async (
     data: rulebookData.body,
   };
 };
+
+export const cacheHandler = ({ redis }) => {
+  return (req, res, next) => {
+    redis.get(req.url, (err, value) => {
+      // If the cached value exists, send it
+      if (value) {
+        res.send({ data: value });
+      } else {
+        next();
+      }
+    });
+  };
+};
