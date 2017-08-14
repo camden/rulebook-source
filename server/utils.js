@@ -23,6 +23,25 @@ export const getRulebookContent = async (
   };
 };
 
+export const getAllRulebooks = async (): Promise<Object> => {
+  const url = GITHUB_ROOT + GITHUB_API_URL + '/rulebooks/';
+  const response = await fetch(url, {
+    headers: {
+      'User-Agent': REPO_AUTHOR + '/' + REPO_NAME,
+    },
+  });
+
+  const rulebookData = await response.json();
+  const rulebooksArray = rulebookData.map(rulebookObj => {
+    return rulebookObj.name.split('.')[0];
+  });
+
+  return {
+    status: response.status,
+    rulebooksArray: rulebooksArray,
+  };
+};
+
 export const cacheHandler = ({ redis }) => {
   return (req, res, next) => {
     redis.get(req.url, (err, value) => {
