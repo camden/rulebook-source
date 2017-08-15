@@ -76,7 +76,7 @@ export default class Rulebook extends Component {
   render() {
     return (
       <Page fluid>
-        <ProgressBar loading={this.state.loading} color="pink" />
+        <ProgressBar loading={this.state.loading} />
         <Row>
           <Column md={3}>
             <Sidebar tableOfContents={this.state.data.toc} />
