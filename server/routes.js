@@ -29,10 +29,12 @@ export const addRoutes = ({ router, redis }) => {
         });
       }
 
-      redis.setex(req.url, 3600, markdownResponse.encodedContent);
+      const content = markdownResponse.encodedContent.replace(/\n/g, '');
+
+      redis.setex(req.url, 3600, JSON.stringify(content));
 
       return res.json({
-        data: markdownResponse.encodedContent,
+        data: content,
       });
     });
   });
@@ -45,7 +47,7 @@ export const addRoutes = ({ router, redis }) => {
         });
       }
 
-      redis.setex(req.url, 3600, githubResponse.rulebooksArray);
+      redis.setex(req.url, 3600, JSON.stringify(githubResponse.rulebooksArray));
 
       return res.json({
         data: githubResponse.rulebooksArray,

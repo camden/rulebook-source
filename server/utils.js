@@ -42,12 +42,32 @@ export const getAllRulebooks = async (): Promise<Object> => {
   };
 };
 
+const isJSON = (string: string): boolean => {
+  if (string === null || string === undefined) {
+    return false;
+  }
+
+  try {
+    JSON.parse(string);
+  } catch (e) {
+    return false;
+  }
+
+  return true;
+};
+
 export const cacheHandler = ({ redis }) => {
   return (req, res, next) => {
     redis.get(req.url, (err, value) => {
+      let data = value;
+
+      if (isJSON(value)) {
+        data = JSON.parse(value);
+      }
+
       // If the cached value exists, send it
       if (value) {
-        res.send({ data: value });
+        res.json({ data: data });
       } else {
         next();
       }
