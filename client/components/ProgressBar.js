@@ -77,18 +77,12 @@ class ProgressBar extends Component {
   }
 
   render() {
-    return (
-      <ReactProgress
-        percent={this.state.percent}
-        color={this.props.color ? this.props.color : 'lightblue'}
-      />
-    );
+    return <ReactProgress percent={this.state.percent} {...this.props} />;
   }
 }
 
 ProgressBar.propTypes = {
   loading: PropTypes.bool.isRequired,
-  color: PropTypes.string,
 };
 
 export default ProgressBar;
