@@ -5,8 +5,7 @@ import PropTypes from 'prop-types';
 import frontMatter from 'front-matter';
 import { Page, Row, Column } from 'hedron';
 
-import ProgressBar from 'react-progress';
-
+import ProgressBar from 'components/ProgressBar';
 import Sidebar from 'components/Sidebar';
 import { fetchRulebookData } from 'utils';
 import { compileMarkdown } from 'markdown-utils';
@@ -20,10 +19,7 @@ export default class Rulebook extends Component {
       markdown: string,
       toc: Array<Object>,
     },
-    progress: {
-      percent: number,
-      interval: ?number,
-    },
+    loading: boolean,
   };
 
   constructor(props) {
@@ -35,43 +31,12 @@ export default class Rulebook extends Component {
         markdown: '',
         toc: [],
       },
-      progress: {
-        percent: 0,
-        interval: null,
-      },
+      loading: true,
     };
-  }
-
-  componentWillMount() {
-    const interval = setInterval(
-      this.incrementProgress.bind(this),
-      PROGRESS_INTERVAL_TIME
-    );
-
-    const nextProgress = Object.assign({}, this.state.progress, { interval });
-
-    this.setState({
-      progress: nextProgress,
-    });
   }
 
   componentDidMount() {
     this.loadData();
-  }
-
-  incrementProgress() {
-    if (this.state.progress.percent >= 100) {
-      return;
-    }
-
-    const remainingPercent = 100 - this.state.progress.percent;
-    const toAdd = remainingPercent * Math.random() / 2;
-
-    this.setState({
-      progress: {
-        percent: this.state.progress.percent + toAdd,
-      },
-    });
   }
 
   async loadData() {
@@ -98,30 +63,20 @@ export default class Rulebook extends Component {
     const toc = compiledMarkdown.toc;
     const markdownData = compiledMarkdown.tree;
 
-    if (this.state.progress.interval) {
-      clearInterval(this.state.progress.interval);
-    }
-
     this.setState({
       data: {
         front_matter: frontMatterData,
         markdown: markdownData,
         toc: toc,
       },
-      progress: {
-        interval: null,
-        percent: 100,
-      },
+      loading: false,
     });
   }
 
   render() {
     return (
       <Page fluid>
-        <ProgressBar
-          percent={this.state.progress.percent}
-          color={'lightblue'}
-        />
+        <ProgressBar loading={this.state.loading} color="pink" />
         <Row>
           <Column md={3}>
             <Sidebar tableOfContents={this.state.data.toc} />
