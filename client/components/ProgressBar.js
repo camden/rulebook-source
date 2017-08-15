@@ -77,7 +77,17 @@ class ProgressBar extends Component {
   }
 
   render() {
-    return <ReactProgress percent={this.state.percent} {...this.props} />;
+    return (
+      <ReactProgress
+        {...this.props}
+        percent={this.state.percent}
+        color="hsl(200, 100%, 76%)"
+        style={{
+          height: '0.5vh',
+          boxShadow: '1px 1px 1px hsl(200, 100%, 90%)',
+        }}
+      />
+    );
   }
 }
 
