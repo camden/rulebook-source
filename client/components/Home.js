@@ -55,6 +55,7 @@ export default class Home extends Component {
       <div>
         <ProgressBar loading={this.state.loading} />
         <h1>Welcome to Rulebook.io!</h1>
+        <h3>Here are all of the rulebooks available:</h3>
         {this.state.data.allRulebooks.map(rulebookName =>
           this.rulebookInfo({ rulebookName })
         )}
