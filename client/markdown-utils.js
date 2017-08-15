@@ -17,11 +17,12 @@ const AnchorLink = styled(LinkIcon)`
   }
 `;
 
+const Wrapper = styled.div`margin: 0.5rem 0;`;
+
 const GenericHeader = styled.div`
   font-size: ${props => props.size};
   font-weight: bold;
-  margin: 0.5rem 0;
-  display: inline-block;
+  display: inline;
 `;
 
 const Header = ({ id, level, children }) => {
@@ -35,14 +36,14 @@ const Header = ({ id, level, children }) => {
   };
 
   return (
-    <div>
+    <Wrapper>
       <Link to={`#${id}`}>
         <AnchorLink size={14} />
       </Link>
       <GenericHeader id={id} size={levelToSizeMap[level.toString()]}>
         {children}
       </GenericHeader>
-    </div>
+    </Wrapper>
   );
 };
 
