@@ -35,10 +35,15 @@ class ProgressBar extends Component {
     } else {
       // Finished loading, now loading again, so restart bar
       if (nextProps.loading) {
-        this.setState({
-          percent: 0,
-        });
-        this.startAutoIncrement();
+        this.stopAutoIncrement();
+        this.setState(
+          {
+            percent: 0,
+          },
+          () => {
+            this.startAutoIncrement();
+          }
+        );
       }
     }
   }

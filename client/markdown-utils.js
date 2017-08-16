@@ -47,6 +47,8 @@ const Header = ({ id, level, children }) => {
   );
 };
 
+const Image = styled.img`width: 100%;`;
+
 export const compileMarkdown = marksy({
   // Pass in whatever creates elements for your
   // virtual DOM library. h('h1', {})
@@ -96,6 +98,9 @@ export const compileMarkdown = marksy({
           {children}
         </Header>
       );
+    },
+    img({ src, alt }) {
+      return <Image src={src} alt={alt} />;
     },
   },
 });

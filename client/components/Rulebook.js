@@ -15,6 +15,9 @@ const sidebarPercentage = 20;
 
 export default class Rulebook extends Component {
   state: {
+    ui: {
+      sidebarOpen: boolean,
+    },
     data: {
       front_matter: Object,
       markdown: string,
@@ -27,6 +30,9 @@ export default class Rulebook extends Component {
     super(props);
 
     this.state = {
+      ui: {
+        sidebarOpen: false,
+      },
       data: {
         front_matter: {},
         markdown: '',
@@ -74,20 +80,32 @@ export default class Rulebook extends Component {
     });
   }
 
+  toggleSidebar() {
+    const newUIState = Object.assign({}, this.state.ui, {
+      sidebarOpen: !this.state.ui.sidebarOpen,
+    });
+
+    this.setState({
+      ui: newUIState,
+    });
+  }
+
   render() {
     return (
       <Page fluid>
-        <ProgressBar loading={this.state.loading} />
         <Row>
           <Sidebar
             sidebarPercentage={sidebarPercentage}
             tableOfContents={this.state.data.toc}
           />
           <RulebookContent
+            onSidebarToggleClick={this.toggleSidebar.bind(this)}
+            sidebarOpen={this.state.ui.sidebarOpen}
             sidebarPercentage={sidebarPercentage}
             markdown={this.state.data.markdown}
           />
         </Row>
+        <ProgressBar loading={this.state.loading} />
       </Page>
     );
   }

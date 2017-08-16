@@ -9,6 +9,7 @@ import { injectGlobal } from 'styled-components';
 
 injectGlobal`
   body {
+    box-sizing: border-box;
     font-family: 'Open Sans', sans;
     margin: 0;
   }
