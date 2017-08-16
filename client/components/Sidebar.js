@@ -29,8 +29,9 @@ const renderChildren = ({ tree }: { tree: TOCTree }) => {
 };
 
 const StickyDiv = styled.div`
-  position: sticky;
+  position: absolute;
   top: 0;
+  width: 20%;
 `;
 
 const Sidebar = ({ tableOfContents }: { tableOfContents: TOCTree }) => {

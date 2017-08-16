@@ -8,7 +8,10 @@ import { spring, Motion } from 'react-motion';
 const HoveredDiv = styled.div`
   padding: 1rem 3rem;
   box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.24);
-  transform: translate3d(${props => props.translate}%, 0, 0);
+  background-color: white;
+  position: absolute;
+  top: 0;
+  left: ${props => props.translate}%;
 `;
 
 class RulebookContent extends Component {
@@ -16,7 +19,7 @@ class RulebookContent extends Component {
     super(props);
 
     this.state = {
-      isOpen: false,
+      isOpen: true,
     };
   }
 
@@ -24,7 +27,7 @@ class RulebookContent extends Component {
 
   render() {
     return (
-      <Motion style={{ translate: spring(this.state.isOpen ? -10 : 0) }}>
+      <Motion style={{ translate: spring(this.state.isOpen ? 20 : 0) }}>
         {interpolatedStyle =>
           <HoveredDiv translate={interpolatedStyle.translate}>
             {this.props.markdown}

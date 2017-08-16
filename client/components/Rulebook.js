@@ -79,12 +79,8 @@ export default class Rulebook extends Component {
       <Page fluid>
         <ProgressBar loading={this.state.loading} />
         <Row>
-          <Column md={3}>
-            <Sidebar tableOfContents={this.state.data.toc} />
-          </Column>
-          <Column md={9} fluid>
-            <RulebookContent markdown={this.state.data.markdown} />
-          </Column>
+          <Sidebar tableOfContents={this.state.data.toc} />
+          <RulebookContent markdown={this.state.data.markdown} />
         </Row>
       </Page>
     );
