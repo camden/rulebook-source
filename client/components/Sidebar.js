@@ -29,9 +29,16 @@ const renderChildren = ({ tree }: { tree: TOCTree }) => {
 };
 
 const StickyDiv = styled.div`
-  position: absolute;
+  position: fixed;
   top: 0;
-  width: ${props => props.sidebarPercentage}%;
+
+  padding: 1rem 2rem;
+
+  width: ${props => props.sidebarPercentage.desktop}%;
+
+  @media (max-width: ${props => props.theme.media.mobile}) {
+    width: ${props => props.sidebarPercentage.mobile}%;
+  }
 `;
 
 const Sidebar = ({
@@ -51,7 +58,10 @@ const Sidebar = ({
 
 Sidebar.propTypes = {
   tableOfContents: PropTypes.array.isRequired,
-  sidebarPercentage: PropTypes.number.isRequired,
+  sidebarPercentage: PropTypes.shape({
+    mobile: PropTypes.number.isRequired,
+    desktop: PropTypes.number.isRequired,
+  }).isRequired,
 };
 
 export default Sidebar;

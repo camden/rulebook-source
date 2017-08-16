@@ -11,7 +11,10 @@ import Sidebar from 'components/Sidebar';
 import { fetchRulebookData } from 'utils';
 import { compileMarkdown } from 'markdown-utils';
 
-const sidebarPercentage = 20;
+const sidebarPercentage = {
+  mobile: 80,
+  desktop: 30,
+};
 
 export default class Rulebook extends Component {
   state: {
