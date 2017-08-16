@@ -10,6 +10,9 @@ const AnchorLink = styled(LinkIcon)`
   color: #ccc;
   padding-right: 0.5rem;
   transition: all 150ms linear;
+  font-size: ${props => props.size};
+  box-sizing: content-box;
+  padding: 0 0.5rem 0 0;
 
   &:hover {
     cursor: pointer;
@@ -38,7 +41,7 @@ const Header = ({ id, level, children }) => {
   return (
     <Wrapper>
       <Link to={`#${id}`}>
-        <AnchorLink size={14} />
+        <AnchorLink size={'1em'} />
       </Link>
       <GenericHeader id={id} size={levelToSizeMap[level.toString()]}>
         {children}
