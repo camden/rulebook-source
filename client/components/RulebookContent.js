@@ -27,7 +27,14 @@ class RulebookContent extends Component {
 
   render() {
     return (
-      <Motion style={{ translate: spring(this.state.isOpen ? 20 : 0) }}>
+      // TODO add stiffness to spring etc
+      <Motion
+        style={{
+          translate: spring(
+            this.state.isOpen ? this.props.sidebarPercentage : 0
+          ),
+        }}
+      >
         {interpolatedStyle =>
           <HoveredDiv translate={interpolatedStyle.translate}>
             {this.props.markdown}
@@ -39,6 +46,7 @@ class RulebookContent extends Component {
 
 RulebookContent.propTypes = {
   markdown: PropTypes.node.isRequired,
+  sidebarPercentage: PropTypes.number.isRequired,
 };
 
 export default RulebookContent;

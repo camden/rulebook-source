@@ -31,13 +31,19 @@ const renderChildren = ({ tree }: { tree: TOCTree }) => {
 const StickyDiv = styled.div`
   position: absolute;
   top: 0;
-  width: 20%;
+  width: ${props => props.sidebarPercentage}%;
 `;
 
-const Sidebar = ({ tableOfContents }: { tableOfContents: TOCTree }) => {
+const Sidebar = ({
+  tableOfContents,
+  sidebarPercentage,
+}: {
+  tableOfContents: TOCTree,
+  sidebarPercentage: number,
+}) => {
   const renderedTOC = renderChildren({ tree: tableOfContents });
   return (
-    <StickyDiv>
+    <StickyDiv sidebarPercentage={sidebarPercentage}>
       {renderedTOC}
     </StickyDiv>
   );
@@ -45,6 +51,7 @@ const Sidebar = ({ tableOfContents }: { tableOfContents: TOCTree }) => {
 
 Sidebar.propTypes = {
   tableOfContents: PropTypes.array.isRequired,
+  sidebarPercentage: PropTypes.number.isRequired,
 };
 
 export default Sidebar;

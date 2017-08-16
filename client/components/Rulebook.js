@@ -11,7 +11,7 @@ import Sidebar from 'components/Sidebar';
 import { fetchRulebookData } from 'utils';
 import { compileMarkdown } from 'markdown-utils';
 
-const PROGRESS_INTERVAL_TIME = 500;
+const sidebarPercentage = 20;
 
 export default class Rulebook extends Component {
   state: {
@@ -79,8 +79,14 @@ export default class Rulebook extends Component {
       <Page fluid>
         <ProgressBar loading={this.state.loading} />
         <Row>
-          <Sidebar tableOfContents={this.state.data.toc} />
-          <RulebookContent markdown={this.state.data.markdown} />
+          <Sidebar
+            sidebarPercentage={sidebarPercentage}
+            tableOfContents={this.state.data.toc}
+          />
+          <RulebookContent
+            sidebarPercentage={sidebarPercentage}
+            markdown={this.state.data.markdown}
+          />
         </Row>
       </Page>
     );
