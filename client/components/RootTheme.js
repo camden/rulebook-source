@@ -13,6 +13,10 @@ injectGlobal`
     font-family: 'Open Sans', sans;
     margin: 0;
   }
+
+  *, *:before, *:after {
+    box-sizing: inherit;
+  }
 `;
 
 const RootTheme = ({ children }) => {

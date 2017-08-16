@@ -8,11 +8,15 @@ import { spring, Motion } from 'react-motion';
 const HoveredDiv = styled.div`
   box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.24);
   background-color: white;
-  position: absolute;
+  position: relative;
   top: 0;
 `;
 
-const InnerDiv = styled.div`padding: 1rem 3rem;`;
+const InnerContent = styled.div`
+  padding: 1rem 3rem;
+  margin: 0 auto;
+  width: ${props => props.width};
+`;
 
 class RulebookContent extends Component {
   render() {
@@ -32,14 +36,14 @@ class RulebookContent extends Component {
               width: `${100 - interpolatedStyle.translate}%`,
             }}
           >
-            <InnerDiv>
+            <InnerContent width={`${60 + interpolatedStyle.translate}%`}>
               <input
                 type="button"
                 value="Toggle Sidebar"
                 onClick={this.props.onSidebarToggleClick}
               />
               {this.props.markdown}
-            </InnerDiv>
+            </InnerContent>
           </HoveredDiv>}
       </Motion>
     );
