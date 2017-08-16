@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import frontMatter from 'front-matter';
 import { Page, Row, Column } from 'hedron';
 
+import RulebookContent from 'components/RulebookContent';
 import ProgressBar from 'components/ProgressBar';
 import Sidebar from 'components/Sidebar';
 import { fetchRulebookData } from 'utils';
@@ -81,16 +82,8 @@ export default class Rulebook extends Component {
           <Column md={3}>
             <Sidebar tableOfContents={this.state.data.toc} />
           </Column>
-          <Column md={9}>
-            <div>
-              <h1>
-                {this.props.match.params.rulebookName}
-              </h1>
-              <hr />
-              <div>
-                {this.state.data.markdown}
-              </div>
-            </div>
+          <Column md={9} fluid>
+            <RulebookContent markdown={this.state.data.markdown} />
           </Column>
         </Row>
       </Page>

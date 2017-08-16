@@ -3,16 +3,22 @@
 import React from 'react';
 import { ThemeProvider } from 'styled-components';
 
-import BaseStyle from 'components/BaseStyle';
 import { MainTheme } from 'themes';
+
+import { injectGlobal } from 'styled-components';
+
+injectGlobal`
+  body {
+    font-family: 'Open Sans', sans;
+    margin: 0;
+  }
+`;
 
 const RootTheme = ({ children }) => {
   return (
-    <BaseStyle>
-      <ThemeProvider theme={MainTheme}>
-        {children}
-      </ThemeProvider>
-    </BaseStyle>
+    <ThemeProvider theme={MainTheme}>
+      {children}
+    </ThemeProvider>
   );
 };
 

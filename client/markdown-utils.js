@@ -17,7 +17,7 @@ const AnchorLink = styled(LinkIcon)`
   }
 `;
 
-const Wrapper = styled.div`margin: 0.5rem 0;`;
+const Wrapper = styled.div`padding: 0.5rem 0;`;
 
 const GenericHeader = styled.div`
   font-size: ${props => props.size};
