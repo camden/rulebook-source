@@ -38,6 +38,18 @@ const levelToSizeMap = {
 };
 
 class Header extends Component {
+  state: {
+    collapsed: boolean,
+  };
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      collapsed: true,
+    };
+  }
+
   render() {
     return (
       <Wrapper>
