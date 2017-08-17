@@ -31,7 +31,7 @@ const InnerContent = styled.div`
 `;
 
 class RulebookContent extends Component {
-  content({ translateX }) {
+  content({ isMobile, translateX }) {
     return (
       <HoveredDiv
         style={{
@@ -40,11 +40,13 @@ class RulebookContent extends Component {
         }}
       >
         <InnerContent translateX={translateX}>
-          <input
-            type="button"
-            value="Toggle Sidebar"
-            onClick={this.props.onSidebarToggleClick}
-          />
+          {!isMobile
+            ? <input
+                type="button"
+                value="Toggle Sidebar"
+                onClick={this.props.onSidebarToggleClick}
+              />
+            : null}
           {this.props.markdown}
         </InnerContent>
       </HoveredDiv>
@@ -71,7 +73,10 @@ class RulebookContent extends Component {
           // TODO add stiffness to spring etc
           <Motion style={this.sidebarTransitionStyle({ isMobile })}>
             {interpolatedStyle =>
-              this.content({ translateX: interpolatedStyle.translateX })}
+              this.content({
+                isMobile,
+                translateX: interpolatedStyle.translateX,
+              })}
           </Motion>}
       </Media>
     );
