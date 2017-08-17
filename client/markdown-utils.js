@@ -2,53 +2,9 @@
 
 import React, { createElement } from 'react';
 import marksy from 'marksy';
-import { Link } from 'react-router-dom';
-import { Link as LinkIcon } from 'react-feather';
 import styled from 'styled-components';
 
-const AnchorLink = styled(LinkIcon)`
-  color: #ccc;
-  padding-right: 0.5rem;
-  transition: all 150ms linear;
-  font-size: ${props => props.size};
-  box-sizing: content-box;
-  padding: 0 0.5rem 0 0;
-
-  &:hover {
-    cursor: pointer;
-    color: #888;
-  }
-`;
-
-const Wrapper = styled.div`padding: 0.5rem 0;`;
-
-const GenericHeader = styled.div`
-  font-size: ${props => props.size};
-  font-weight: bold;
-  display: inline;
-`;
-
-const Header = ({ id, level, children }) => {
-  const levelToSizeMap = {
-    '1': '2em',
-    '2': '1.5em',
-    '3': '1.17em',
-    '4': '1.12em',
-    '5': '.83em',
-    '6': '.75em',
-  };
-
-  return (
-    <Wrapper>
-      <Link to={`#${id}`}>
-        <AnchorLink size={'1em'} />
-      </Link>
-      <GenericHeader id={id} size={levelToSizeMap[level.toString()]}>
-        {children}
-      </GenericHeader>
-    </Wrapper>
-  );
-};
+import Header from 'components/Header';
 
 const Image = styled.img`width: 100%;`;
 
