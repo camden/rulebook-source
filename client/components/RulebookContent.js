@@ -27,6 +27,7 @@ const InnerContent = styled.div`
 
   @media (max-width: ${props => props.theme.media.mobile}) {
     width: auto;
+    padding: 1rem 1rem;
   }
 `;
 
