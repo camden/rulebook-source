@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import frontMatter from 'front-matter';
 import { Page, Row, Column } from 'hedron';
 
+import Media from 'components/Media';
 import RulebookContent from 'components/RulebookContent';
 import ProgressBar from 'components/ProgressBar';
 import Sidebar from 'components/Sidebar';
@@ -12,7 +13,7 @@ import { fetchRulebookData } from 'utils';
 import { compileMarkdown } from 'markdown-utils';
 
 const sidebarPercentage = {
-  mobile: 80,
+  mobile: 0,
   desktop: 30,
 };
 
@@ -97,10 +98,15 @@ export default class Rulebook extends Component {
     return (
       <Page fluid>
         <Row>
-          <Sidebar
-            sidebarPercentage={sidebarPercentage}
-            tableOfContents={this.state.data.toc}
-          />
+          <Media query={'mobile'}>
+            {isMobile =>
+              !isMobile
+                ? <Sidebar
+                    sidebarPercentage={sidebarPercentage}
+                    tableOfContents={this.state.data.toc}
+                  />
+                : null}
+          </Media>
           <RulebookContent
             onSidebarToggleClick={this.toggleSidebar.bind(this)}
             sidebarOpen={this.state.ui.sidebarOpen}
