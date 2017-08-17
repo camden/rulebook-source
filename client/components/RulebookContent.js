@@ -19,7 +19,12 @@ const InnerContent = styled.div`
   padding: 1rem 3rem;
   margin: 0 auto;
 
-  width: ${props => props.width};
+  width: ${props => 60 + props.translateX}%;
+
+  @media (max-width: ${props => props.theme.media.tablet}) {
+    width: ${props => Math.min(80 + props.translateX, 100)}%;
+  }
+
   @media (max-width: ${props => props.theme.media.mobile}) {
     width: auto;
   }
@@ -34,7 +39,7 @@ class RulebookContent extends Component {
           width: `${100 - translateX}%`,
         }}
       >
-        <InnerContent width={`${60 + translateX}%`}>
+        <InnerContent translateX={translateX}>
           <input
             type="button"
             value="Toggle Sidebar"
