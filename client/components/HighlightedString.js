@@ -11,9 +11,10 @@ import type { GlossaryItem } from 'types';
 const HighlightedWord = styled.span`
   font-weight: bold;
   cursor: pointer;
+  text-decoration: underline;
+  text-decoration-skip: ink;
   color: ${props => props.theme.colors.primary};
 `;
-
 const Definition = styled.div`text-align: left;`;
 const DefinitionTitle = styled.div`font-weight: bold;`;
 const DefinitionBody = styled.div``;
@@ -47,13 +48,14 @@ const HighlightedString = ({
   return (
     <Tooltip
       interactive
-      position="bottom"
-      trigger="mouseenter"
+      position="top"
+      trigger="focus click"
       animateFill={false}
+      arrow={true}
       html={<DefinitionPopup match={match} glossaryItem={glossaryItem} />}
       theme={'light'}
     >
-      <HighlightedWord>
+      <HighlightedWord tabIndex={0}>
         {match}
       </HighlightedWord>
     </Tooltip>
