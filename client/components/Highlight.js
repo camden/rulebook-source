@@ -21,7 +21,12 @@ const highlightText = ({
 }): string => {
   const replacedText = glossary.reduce((prev, currentGlossaryItem) => {
     // TODO do all aliases
-    const currentWord: string = currentGlossaryItem.matches[0];
+    let currentWord: string = currentGlossaryItem.name;
+
+    if (currentGlossaryItem.matches) {
+      currentWord = currentGlossaryItem.matches[0];
+    }
+
     return reactStringReplace(prev, currentWord, match => {
       return wrapper({ match, glossaryItem: currentGlossaryItem });
     });
@@ -37,6 +42,14 @@ const Highlight = ({
   text: string,
   glossary: Glossary,
 }) => {
+  if (!glossary) {
+    return (
+      <div>
+        {text}
+      </div>
+    );
+  }
+
   const highlightedText = highlightText({
     textToReplace: text,
     glossary,

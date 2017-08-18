@@ -10,6 +10,8 @@ import MarkdownHeader from 'components/MarkdownHeader';
 
 import type { Glossary } from 'types';
 
+const Paragraph = styled.p``;
+
 const Image = styled.img`
   width: 100%;
   padding: 1.5rem;
@@ -78,7 +80,11 @@ export const compileMarkdown = ({
         return <Image src={src} alt={alt} />;
       },
       p({ children }) {
-        return <Highlight text={children} glossary={glossary} />;
+        return (
+          <Paragraph>
+            <Highlight text={children} glossary={glossary} />
+          </Paragraph>
+        );
       },
     },
   })(markdown);

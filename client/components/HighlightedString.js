@@ -15,8 +15,14 @@ const HighlightedWord = styled.span`
   text-decoration-skip: ink;
   color: ${props => props.theme.colors.primary};
 `;
-const Definition = styled.div`text-align: left;`;
-const DefinitionTitle = styled.div`font-weight: bold;`;
+const Definition = styled.div`
+  text-align: left;
+  padding: 1rem;
+`;
+const DefinitionTitle = styled.div`
+  font-weight: bold;
+  padding-bottom: 0.5rem;
+`;
 const DefinitionBody = styled.div``;
 
 const DefinitionPopup = ({
