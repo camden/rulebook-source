@@ -4,6 +4,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ReactProgress from 'react-progress';
 
+import { MainTheme } from 'themes';
+
 class ProgressBar extends Component {
   state: {
     percent: number,
@@ -86,10 +88,10 @@ class ProgressBar extends Component {
       <ReactProgress
         {...this.props}
         percent={this.state.percent}
-        color="hsl(200, 100%, 76%)"
+        color={MainTheme.colors.primary}
         style={{
           height: '0.5vh',
-          boxShadow: '1px 1px 1px hsl(200, 100%, 90%)',
+          boxShadow: `1px 2px 4px ${MainTheme.colors.primary_transparent}`,
         }}
       />
     );
