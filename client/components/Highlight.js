@@ -4,18 +4,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import reactStringReplace from 'react-string-replace';
 
-const glossary = [
-  {
-    name: 'sed',
-    aliases: [],
-    definition: 'this is a test defn.',
-  },
-  {
-    name: 'erat',
-    aliases: [],
-    definition: 'this is another def',
-  },
-];
+import type { Glossary } from 'types';
 
 const wrapper = ({ match, definition }) => {
   return (
@@ -25,22 +14,31 @@ const wrapper = ({ match, definition }) => {
   );
 };
 
-const highlightText = ({ textToReplace, definitions, wrapper }): Array<*> => {
-  const replacedText = definitions.reduce((prev, current) => {
-    return reactStringReplace(prev, current.name, (match, index, offset) => {
-      return wrapper({ match, definition: current.definition });
+const highlightText = ({ textToReplace, glossary, wrapper }): Array<*> => {
+  const replacedText = glossary.reduce((prev, currentGlossaryEntry) => {
+    // TODO do all aliases
+    const currentWord = currentGlossaryEntry.names[0];
+    return reactStringReplace(prev, currentWord, (match, index, offset) => {
+      return wrapper({ match, definition: currentGlossaryEntry.definition });
     });
   }, textToReplace);
 
   return replacedText;
 };
 
-const Highlight = ({ text, matches }) => {
+const Highlight = ({
+  text,
+  glossary,
+}: {
+  text: string,
+  glossary: Glossary,
+}) => {
   const highlightedText = highlightText({
     textToReplace: text,
-    definitions: glossary,
+    glossary,
     wrapper,
   });
+
   return (
     <div>
       {highlightedText}

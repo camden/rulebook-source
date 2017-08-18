@@ -70,7 +70,11 @@ export default class Rulebook extends Component {
 
     const frontMatterData = markdown.attributes;
 
-    const compiledMarkdown = compileMarkdown(markdown.body);
+    const compiledMarkdown = compileMarkdown({
+      markdown: markdown.body,
+      glossary: frontMatterData.glossary,
+    });
+
     const toc = compiledMarkdown.toc;
     const markdownData = compiledMarkdown.tree;
 
