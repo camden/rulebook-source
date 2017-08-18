@@ -16,7 +16,7 @@ const HoveredDiv = styled.div`
 `;
 
 const InnerContent = styled.div`
-  padding: 1rem 3rem;
+  padding: 1rem 3rem 3rem;
   margin: 0 auto;
 
   width: ${props => 60 + props.translateX}%;
@@ -27,7 +27,7 @@ const InnerContent = styled.div`
 
   @media (max-width: ${props => props.theme.media.mobile}) {
     width: auto;
-    padding: 1rem 1rem;
+    padding: 1rem 1rem 2rem;
   }
 `;
 
