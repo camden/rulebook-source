@@ -19,11 +19,11 @@ const highlightText = ({
   glossary: Glossary,
   wrapper: Function,
 }): string => {
-  const replacedText = glossary.reduce((prev, currentGlossaryEntry) => {
+  const replacedText = glossary.reduce((prev, currentGlossaryItem) => {
     // TODO do all aliases
-    const currentWord = currentGlossaryEntry.names[0];
+    const currentWord: string = currentGlossaryItem.matches[0];
     return reactStringReplace(prev, currentWord, match => {
-      return wrapper({ match, definition: currentGlossaryEntry.definition });
+      return wrapper({ match, glossaryItem: currentGlossaryItem });
     });
   }, textToReplace);
 
@@ -48,13 +48,6 @@ const Highlight = ({
       {highlightedText}
     </div>
   );
-};
-
-Highlight.propTypes = {
-  text: PropTypes.string.isRequired,
-  matches: PropTypes.arrayOf(
-    PropTypes.oneOf([PropTypes.string, PropTypes.instanceOf(RegExp)]).isRequired
-  ).isRequired,
 };
 
 export default Highlight;

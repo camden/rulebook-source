@@ -6,6 +6,8 @@ import styled from 'styled-components';
 
 import 'react-tippy/dist/tippy.css';
 
+import type { GlossaryItem } from 'types';
+
 const HighlightedWord = styled.span`
   font-weight: bold;
   cursor: pointer;
@@ -15,28 +17,39 @@ const Definition = styled.div`text-align: left;`;
 const DefinitionTitle = styled.div`font-weight: bold;`;
 const DefinitionBody = styled.div``;
 
-const DefinitionPopup = ({ match, definition }) => {
+const DefinitionPopup = ({
+  match,
+  glossaryItem,
+}: {
+  match: string,
+  glossaryItem: GlossaryItem,
+}) => {
   return (
     <Definition>
       <DefinitionTitle>
-        {match}
+        {glossaryItem.name}
       </DefinitionTitle>
       <DefinitionBody>
-        {definition}
+        {glossaryItem.definition}
       </DefinitionBody>
     </Definition>
   );
 };
 
-const HighlightedString = ({ match, definition }) => {
+const HighlightedString = ({
+  match,
+  glossaryItem,
+}: {
+  match: string,
+  glossaryItem: GlossaryItem,
+}) => {
   return (
     <Tooltip
       interactive
-      title={definition}
       position="bottom"
       trigger="mouseenter"
       animateFill={false}
-      html={<DefinitionPopup match={match} definition={definition} />}
+      html={<DefinitionPopup match={match} glossaryItem={glossaryItem} />}
       theme={'light'}
     >
       <HighlightedWord>
