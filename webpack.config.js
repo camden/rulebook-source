@@ -14,13 +14,17 @@ module.exports = {
     modules: [path.resolve(__dirname, 'client'), 'node_modules'],
   },
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.jsx?$/,
         include: path.join(__dirname, 'client'),
         use: {
           loader: 'babel-loader',
         },
+      },
+      {
+        test: /\.css$/,
+        use: [{ loader: 'style-loader' }, { loader: 'css-loader' }],
       },
     ],
   },

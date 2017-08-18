@@ -4,15 +4,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import reactStringReplace from 'react-string-replace';
 
+import HighlightedString from 'components/HighlightedString';
+
 import type { Glossary } from 'types';
 
-const wrapper = ({ match, definition }) => {
-  return (
-    <strong>
-      {match} ({definition})
-    </strong>
-  );
-};
+const wrapper = HighlightedString;
 
 const highlightText = ({
   textToReplace,

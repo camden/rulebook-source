@@ -45,6 +45,7 @@
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
     "body-parser": "^1.17.2",
+    "css-loader": "^0.28.5",
     "express": "^4.15.4",
     "front-matter": "^2.1.2",
     "ghrequest": "^1.0.1",
@@ -62,7 +63,9 @@
     "react-router": "^4.1.2",
     "react-router-dom": "^4.1.2",
     "react-string-replace": "^0.4.0",
+    "react-tippy": "^1.2.1",
     "redis": "^2.8.0",
+    "style-loader": "^0.18.2",
     "styled-components": "^2.1.2",
     "webpack": "^2.4.1",
     "whatwg-fetch": "^2.0.3"
