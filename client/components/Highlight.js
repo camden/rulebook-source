@@ -14,11 +14,19 @@ const wrapper = ({ match, definition }) => {
   );
 };
 
-const highlightText = ({ textToReplace, glossary, wrapper }): Array<*> => {
+const highlightText = ({
+  textToReplace,
+  glossary,
+  wrapper,
+}: {
+  textToReplace: string,
+  glossary: Glossary,
+  wrapper: Function,
+}): string => {
   const replacedText = glossary.reduce((prev, currentGlossaryEntry) => {
     // TODO do all aliases
     const currentWord = currentGlossaryEntry.names[0];
-    return reactStringReplace(prev, currentWord, (match, index, offset) => {
+    return reactStringReplace(prev, currentWord, match => {
       return wrapper({ match, definition: currentGlossaryEntry.definition });
     });
   }, textToReplace);
