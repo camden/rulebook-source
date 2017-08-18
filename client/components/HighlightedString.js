@@ -11,6 +11,7 @@ import type { GlossaryItem } from 'types';
 const HighlightedWord = styled.span`
   font-weight: bold;
   cursor: pointer;
+  color: ${props => props.theme.colors.primary};
 `;
 
 const Definition = styled.div`text-align: left;`;
