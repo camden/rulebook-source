@@ -4,9 +4,16 @@ import React, { createElement } from 'react';
 import marksy from 'marksy';
 import styled from 'styled-components';
 
+import HighlightedString from 'components/HighlightedString';
+import Highlight from 'components/Highlight';
 import Header from 'components/Header';
 
-const Image = styled.img`width: 100%;`;
+const Image = styled.img`
+  width: 100%;
+  padding: 1.5rem;
+`;
+
+const highlightWrapper = HighlightedString;
 
 export const compileMarkdown = marksy({
   // Pass in whatever creates elements for your
@@ -60,6 +67,9 @@ export const compileMarkdown = marksy({
     },
     img({ src, alt }) {
       return <Image src={src} alt={alt} />;
+    },
+    p({ children }) {
+      return <Highlight text={children} matches={['sed', /(erat)/g]} />;
     },
   },
 });

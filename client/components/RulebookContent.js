@@ -5,8 +5,6 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { spring, Motion } from 'react-motion';
 
-import HighlightedString from 'components/HighlightedString';
-import Highlight from 'components/Highlight';
 import Media from 'components/Media';
 
 const HoveredDiv = styled.div`
@@ -50,13 +48,6 @@ class RulebookContent extends Component {
                 onClick={this.props.onSidebarToggleClick}
               />
             : null}
-          <Highlight
-            text={
-              "this is an example of text i want to highlight! Here's another example. Cool!"
-            }
-            regex={/(example)/g}
-            wrapper={HighlightedString}
-          />
           {this.props.markdown}
         </InnerContent>
       </HoveredDiv>
