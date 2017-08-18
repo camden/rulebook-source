@@ -6,7 +6,7 @@ import styled from 'styled-components';
 
 import HighlightedString from 'components/HighlightedString';
 import Highlight from 'components/Highlight';
-import Header from 'components/Header';
+import MarkdownHeader from 'components/MarkdownHeader';
 
 import type { Glossary } from 'types';
 
@@ -34,44 +34,44 @@ export const compileMarkdown = ({
     elements: {
       h1({ id, children }) {
         return (
-          <Header id={id} level={1}>
+          <MarkdownHeader id={id} level={1}>
             {children}
-          </Header>
+          </MarkdownHeader>
         );
       },
       h2({ id, children }) {
         return (
-          <Header id={id} level={2}>
+          <MarkdownHeader id={id} level={2}>
             {children}
-          </Header>
+          </MarkdownHeader>
         );
       },
       h3({ id, children }) {
         return (
-          <Header id={id} level={3}>
+          <MarkdownHeader id={id} level={3}>
             {children}
-          </Header>
+          </MarkdownHeader>
         );
       },
       h4({ id, children }) {
         return (
-          <Header id={id} level={4}>
+          <MarkdownHeader id={id} level={4}>
             {children}
-          </Header>
+          </MarkdownHeader>
         );
       },
       h5({ id, children }) {
         return (
-          <Header id={id} level={5}>
+          <MarkdownHeader id={id} level={5}>
             {children}
-          </Header>
+          </MarkdownHeader>
         );
       },
       h6({ id, children }) {
         return (
-          <Header id={id} level={6}>
+          <MarkdownHeader id={id} level={6}>
             {children}
-          </Header>
+          </MarkdownHeader>
         );
       },
       img({ src, alt }) {

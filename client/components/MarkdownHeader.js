@@ -37,7 +37,7 @@ const levelToSizeMap = {
   '6': '.75em',
 };
 
-class Header extends Component {
+class MarkdownHeader extends Component {
   state: {
     collapsed: boolean,
   };
@@ -67,10 +67,10 @@ class Header extends Component {
   }
 }
 
-Header.propTypes = {
+MarkdownHeader.propTypes = {
   id: PropTypes.number.isRequired,
   level: PropTypes.number.isRequired,
   children: PropTypes.node.isRequired,
 };
 
-export default Header;
+export default MarkdownHeader;
