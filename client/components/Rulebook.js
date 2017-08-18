@@ -115,6 +115,7 @@ export default class Rulebook extends Component {
             onSidebarToggleClick={this.toggleSidebar.bind(this)}
             sidebarOpen={this.state.ui.sidebarOpen}
             sidebarPercentage={sidebarPercentage}
+            attributes={this.state.data.front_matter}
             markdown={this.state.data.markdown}
           />
         </Row>

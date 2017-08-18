@@ -7,6 +7,12 @@ import { spring, Motion } from 'react-motion';
 
 import Media from 'components/Media';
 
+const PageTitle = styled.div`
+  padding: 0.5rem 0;
+  font-size: 2.25em;
+  font-weight: bold;
+`;
+
 const HoveredDiv = styled.div`
   box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.24);
   background-color: white;
@@ -48,6 +54,9 @@ class RulebookContent extends Component {
                 onClick={this.props.onSidebarToggleClick}
               />
             : null}
+          <PageTitle>
+            {this.props.attributes.title}
+          </PageTitle>
           {this.props.markdown}
         </InnerContent>
       </HoveredDiv>
@@ -85,6 +94,7 @@ class RulebookContent extends Component {
 }
 
 RulebookContent.propTypes = {
+  attributes: PropTypes.object.isRequired,
   markdown: PropTypes.node.isRequired,
   sidebarPercentage: PropTypes.shape({
     mobile: PropTypes.number.isRequired,
