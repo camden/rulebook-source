@@ -20,7 +20,7 @@ const AnchorLink = styled(LinkIcon)`
   }
 `;
 
-const Wrapper = styled.div`padding: 0.5rem 0;`;
+const Wrapper = styled.div`padding: 1.25rem 0 0.5rem;`;
 
 const GenericHeader = styled.div`
   font-size: ${props => props.size};
