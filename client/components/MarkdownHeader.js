@@ -50,14 +50,24 @@ class MarkdownHeader extends Component {
     };
   }
 
+  getId({ title }: { title: string }): string {
+    // replace strings with dashes, not alphanumeric with nothing
+    return title
+      .replace(/[^a-zA-Z\d\s]/g, '')
+      .replace(/\s+/g, '-')
+      .toLowerCase();
+  }
+
   render() {
+    const id = this.getId({ title: this.props.children[0] });
+
     return (
       <Wrapper>
-        <Link to={`#${this.props.id}`}>
+        <Link to={`#${id}`}>
           <AnchorLink size={'1em'} />
         </Link>
         <GenericHeader
-          id={this.props.id}
+          id={id}
           size={levelToSizeMap[this.props.level.toString()]}
         >
           {this.props.children}
