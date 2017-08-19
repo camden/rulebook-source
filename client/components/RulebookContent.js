@@ -7,14 +7,18 @@ import { spring, Motion } from 'react-motion';
 
 import Media from 'components/Media';
 
+const contentHorizontalPadding = '3rem';
+
 const PageTitle = styled.div`
-  padding: 0.5rem 0;
   font-size: 2.25em;
   font-weight: bold;
+  position: relative;
+  top: 0;
+  box-shadow: ${props => props.theme.shadows.light};
 `;
 
 const HoveredDiv = styled.div`
-  box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.24);
+  box-shadow: ${props => props.theme.shadows.strong};
   background-color: white;
   overflow: hidden;
   position: relative;
@@ -22,18 +26,25 @@ const HoveredDiv = styled.div`
 `;
 
 const InnerContent = styled.div`
-  padding: 1rem 3rem 3rem;
   margin: 0 auto;
 
   width: ${props => 60 + props.translateX}%;
+  padding: 1rem ${contentHorizontalPadding};
 
   @media (max-width: ${props => props.theme.media.tablet}) {
     width: ${props => Math.min(80 + props.translateX, 100)}%;
   }
 
   @media (max-width: ${props => props.theme.media.mobile}) {
-    width: auto;
     padding: 1rem 1rem 2rem;
+    width: auto;
+  }
+`;
+
+const MarkdownContent = styled.div`
+  padding-bottom: 3rem;
+  @media (max-width: ${props => props.theme.media.mobile}) {
+    padding-bottom: 2rem;
   }
 `;
 
@@ -46,6 +57,11 @@ class RulebookContent extends Component {
           width: `${100 - translateX}%`,
         }}
       >
+        <PageTitle>
+          <InnerContent translateX={translateX}>
+            {this.props.attributes.title}
+          </InnerContent>
+        </PageTitle>
         <InnerContent translateX={translateX}>
           {!isMobile
             ? <input
@@ -54,10 +70,9 @@ class RulebookContent extends Component {
                 onClick={this.props.onSidebarToggleClick}
               />
             : null}
-          <PageTitle>
-            {this.props.attributes.title}
-          </PageTitle>
-          {this.props.markdown}
+          <MarkdownContent>
+            {this.props.markdown}
+          </MarkdownContent>
         </InnerContent>
       </HoveredDiv>
     );
