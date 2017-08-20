@@ -1,9 +1,13 @@
 // @flow
 
 import React, { Component } from 'react';
-import ProgressBar from 'components/ProgressBar';
 import { Link } from 'react-router-dom';
+import styled from 'styled-components';
+
+import ProgressBar from 'components/ProgressBar';
 import { fetchAllRulebooks } from 'utils';
+
+const HomeWrapper = styled.div`padding: 0 2rem;`;
 
 export default class Home extends Component {
   state: {
@@ -52,14 +56,14 @@ export default class Home extends Component {
 
   render() {
     return (
-      <div>
+      <HomeWrapper>
         <ProgressBar loading={this.state.loading} />
         <h1>Welcome to Rulebook.io!</h1>
         <h3>Here are all of the rulebooks available:</h3>
         {this.state.data.allRulebooks.map(rulebookName =>
           this.rulebookInfo({ rulebookName })
         )}
-      </div>
+      </HomeWrapper>
     );
   }
 }
