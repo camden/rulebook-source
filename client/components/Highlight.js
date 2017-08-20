@@ -44,9 +44,9 @@ const Highlight = ({
 }) => {
   if (!glossary) {
     return (
-      <div>
+      <span>
         {text}
-      </div>
+      </span>
     );
   }
 
@@ -57,10 +57,15 @@ const Highlight = ({
   });
 
   return (
-    <div>
+    <span>
       {highlightedText}
-    </div>
+    </span>
   );
+};
+
+Highlight.propTypes = {
+  text: PropTypes.array.isRequired,
+  glossary: PropTypes.array.isRequired,
 };
 
 export default Highlight;

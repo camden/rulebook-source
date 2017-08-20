@@ -16,7 +16,7 @@ const Media = ({ query, children }) => {
 
 Media.propTypes = {
   query: PropTypes.oneOf(Object.keys(queries)).isRequired,
-  children: PropTypes.node.isRequired,
+  children: PropTypes.func.isRequired,
 };
 
 export default Media;

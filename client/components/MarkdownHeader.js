@@ -78,7 +78,7 @@ class MarkdownHeader extends Component {
 }
 
 MarkdownHeader.propTypes = {
-  id: PropTypes.number.isRequired,
+  id: PropTypes.string.isRequired,
   level: PropTypes.number.isRequired,
   children: PropTypes.node.isRequired,
 };
