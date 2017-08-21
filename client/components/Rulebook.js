@@ -3,20 +3,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import frontMatter from 'front-matter';
-import { Page, Row, Column } from 'hedron';
 
-import Media from 'components/Media';
-import RulebookContent from 'components/RulebookContent';
+import RulebookPanels from 'components/RulebookPanels';
 import ProgressBar from 'components/ProgressBar';
-import Sidebar from 'components/Sidebar';
 import { fetchRulebookData } from 'utils';
 import { compileMarkdown } from 'markdown-utils';
-
-// In ems
-const sidebarOffset = {
-  mobile: 0,
-  desktop: 30,
-};
 
 export default class Rulebook extends Component {
   state: {
@@ -100,30 +91,9 @@ export default class Rulebook extends Component {
   }
 
   render() {
-    const sidebarOffset = {
-      value: 300,
-      unit: 'px',
-    };
-    const sidebarWidth = {
-      value: 300,
-      unit: 'px',
-    };
-
     return (
       <div>
-        <Sidebar
-          sidebarOffset={sidebarOffset}
-          sidebarWidth={sidebarWidth}
-          tableOfContents={this.state.data.toc}
-        />
-        <RulebookContent
-          sidebarOffset={sidebarOffset}
-          sidebarWidth={sidebarWidth}
-          onSidebarToggleClick={this.toggleSidebar.bind(this)}
-          sidebarOpen={this.state.ui.sidebarOpen}
-          attributes={this.state.data.front_matter}
-          markdown={this.state.data.markdown}
-        />
+        <RulebookPanels data={this.state.data} />
         <ProgressBar loading={this.state.loading} />
       </div>
     );

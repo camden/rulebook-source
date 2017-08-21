@@ -2,7 +2,6 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
 
 import TOCTitle from 'components/TOCTitle';
 
@@ -28,32 +27,13 @@ const renderChildren = ({ tree }: { tree: TOCTree }) => {
   });
 };
 
-const OffsetDiv = styled.div`
-  position: absolute;
-  top: 0;
-  left: ${props => props.offset};
-  bottom: 0;
-  width: ${props => props.width};
-  overflow-y: auto;
-`;
-
-const Sidebar = ({
-  tableOfContents,
-  sidebarOffset,
-  sidebarWidth,
-}: {
-  tableOfContents: TOCTree,
-}) => {
+const Sidebar = ({ tableOfContents }: { tableOfContents: TOCTree }) => {
   const renderedTOC = renderChildren({ tree: tableOfContents });
   // TODO do this calculation outside
   return (
-    <OffsetDiv
-      offset={`${sidebarOffset.value -
-        sidebarWidth.value}${sidebarOffset.unit}`}
-      width={`${sidebarWidth.value}${sidebarWidth.unit}`}
-    >
+    <div>
       {renderedTOC}
-    </OffsetDiv>
+    </div>
   );
 };
 
