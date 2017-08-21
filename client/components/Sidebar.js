@@ -28,40 +28,37 @@ const renderChildren = ({ tree }: { tree: TOCTree }) => {
   });
 };
 
-const StickyDiv = styled.div`
-  position: fixed;
+const OffsetDiv = styled.div`
+  position: absolute;
   top: 0;
-
-  padding: 1rem 2rem;
-
-  width: ${props => props.sidebarPercentage.desktop}%;
-
-  @media (max-width: ${props => props.theme.media.mobile}) {
-    width: ${props => props.sidebarPercentage.mobile}%;
-  }
+  left: ${props => props.offset};
+  bottom: 0;
+  width: ${props => props.width};
+  overflow-y: auto;
 `;
 
 const Sidebar = ({
   tableOfContents,
-  sidebarPercentage,
+  sidebarOffset,
+  sidebarWidth,
 }: {
   tableOfContents: TOCTree,
-  sidebarPercentage: number,
 }) => {
   const renderedTOC = renderChildren({ tree: tableOfContents });
+  // TODO do this calculation outside
   return (
-    <StickyDiv sidebarPercentage={sidebarPercentage}>
+    <OffsetDiv
+      offset={`${sidebarOffset.value -
+        sidebarWidth.value}${sidebarOffset.unit}`}
+      width={`${sidebarWidth.value}${sidebarWidth.unit}`}
+    >
       {renderedTOC}
-    </StickyDiv>
+    </OffsetDiv>
   );
 };
 
 Sidebar.propTypes = {
   tableOfContents: PropTypes.array.isRequired,
-  sidebarPercentage: PropTypes.shape({
-    mobile: PropTypes.number.isRequired,
-    desktop: PropTypes.number.isRequired,
-  }).isRequired,
 };
 
 export default Sidebar;

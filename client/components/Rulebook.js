@@ -12,7 +12,8 @@ import Sidebar from 'components/Sidebar';
 import { fetchRulebookData } from 'utils';
 import { compileMarkdown } from 'markdown-utils';
 
-const sidebarPercentage = {
+// In ems
+const sidebarOffset = {
   mobile: 0,
   desktop: 30,
 };
@@ -99,28 +100,32 @@ export default class Rulebook extends Component {
   }
 
   render() {
+    const sidebarOffset = {
+      value: 300,
+      unit: 'px',
+    };
+    const sidebarWidth = {
+      value: 300,
+      unit: 'px',
+    };
+
     return (
-      <Page fluid>
-        <Row>
-          <Media query={'mobile'}>
-            {isMobile =>
-              !isMobile
-                ? <Sidebar
-                    sidebarPercentage={sidebarPercentage}
-                    tableOfContents={this.state.data.toc}
-                  />
-                : null}
-          </Media>
-          <RulebookContent
-            onSidebarToggleClick={this.toggleSidebar.bind(this)}
-            sidebarOpen={this.state.ui.sidebarOpen}
-            sidebarPercentage={sidebarPercentage}
-            attributes={this.state.data.front_matter}
-            markdown={this.state.data.markdown}
-          />
-        </Row>
+      <div>
+        <Sidebar
+          sidebarOffset={sidebarOffset}
+          sidebarWidth={sidebarWidth}
+          tableOfContents={this.state.data.toc}
+        />
+        <RulebookContent
+          sidebarOffset={sidebarOffset}
+          sidebarWidth={sidebarWidth}
+          onSidebarToggleClick={this.toggleSidebar.bind(this)}
+          sidebarOpen={this.state.ui.sidebarOpen}
+          attributes={this.state.data.front_matter}
+          markdown={this.state.data.markdown}
+        />
         <ProgressBar loading={this.state.loading} />
-      </Page>
+      </div>
     );
   }
 }
