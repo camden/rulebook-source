@@ -11,10 +11,8 @@ import styled from 'styled-components';
 const Panel = styled.div`
   position: absolute;
   top: 0;
-  left: ${props => props.offset};
   bottom: 0;
   overflow-y: auto;
-  width: ${props => props.width || 'auto'};
 `;
 
 const sidebarValues = {
@@ -98,11 +96,9 @@ class RulebookPanels extends Component {
   }
 
   getSidebarTransitionStyle() {
-    const sidebarTransitionStyle = {
+    return {
       currentOffset: spring(this.calculateSidebarDestinationOffset()),
     };
-
-    return sidebarTransitionStyle;
   }
 
   render() {
