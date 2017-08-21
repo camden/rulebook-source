@@ -12,7 +12,8 @@ const Panel = styled.div`
   position: absolute;
   top: 0;
   bottom: 0;
-  overflow-y: auto;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
 `;
 
 const sidebarValues = {
