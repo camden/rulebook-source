@@ -15,7 +15,7 @@
     "start": "yarn run build-client && yarn run start-server"
   },
   "lint-staged": {
-    "*.jsx?": [
+    "*.{js,jsx}": [
       "prettier --write --trailing-comma es5 --single-quote",
       "git add"
     ]
