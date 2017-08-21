@@ -5,7 +5,7 @@
   "license": "UNLICENSED",
   "scripts": {
     "precommit": "lint-staged",
-    "flow-check": "flow check",
+    "flow-check": "flow check --show-all-errors | flow-result-checker",
     "build-client": "webpack --config webpack.config.js -p",
     "watch-client": "NODE_ENV=dev webpack --config webpack.config.js --watch",
     "build-server": "babel server/ --out-dir dist/server",
@@ -28,6 +28,7 @@
     "eslint-plugin-flowtype": "^2.35.0",
     "eslint-plugin-react": "^6.10.3",
     "flow-bin": "^0.52.0",
+    "flow-result-checker": "^0.2.0",
     "husky": "^0.14.3",
     "lint-staged": "^4.0.3",
     "prettier": "^1.5.3",

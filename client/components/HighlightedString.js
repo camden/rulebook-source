@@ -47,12 +47,15 @@ const DefinitionPopup = ({
 const HighlightedString = ({
   match,
   glossaryItem,
+  index,
 }: {
   match: string,
   glossaryItem: GlossaryItem,
+  index: number,
 }) => {
   return (
     <Tooltip
+      key={`${match}-${index}`}
       interactive
       position="top"
       trigger="focus click"
