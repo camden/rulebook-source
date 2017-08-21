@@ -10,7 +10,7 @@ import MarkdownHeader from 'components/MarkdownHeader';
 
 import type { Glossary } from 'types';
 
-const Paragraph = styled.div``;
+const Paragraph = styled.div`padding: 0.5rem;`;
 
 const Image = styled.img`
   width: 100%;

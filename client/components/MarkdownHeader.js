@@ -26,15 +26,16 @@ const GenericHeader = styled.div`
   font-size: ${props => props.size};
   font-weight: bold;
   display: inline;
+  ${props => (props.underline ? 'border-bottom: 1px solid #ccc' : '')};
 `;
 
 const levelToSizeMap = {
-  '1': '2em',
-  '2': '1.5em',
-  '3': '1.17em',
-  '4': '1.12em',
-  '5': '.83em',
-  '6': '.75em',
+  '1': '1.8rem',
+  '2': '1.5rem',
+  '3': '1.3rem',
+  '4': '1.1rem',
+  '5': '1rem',
+  '6': '0.8rem',
 };
 
 class MarkdownHeader extends Component {
@@ -68,6 +69,7 @@ class MarkdownHeader extends Component {
         </Link>
         <GenericHeader
           id={id}
+          underline={this.props.level === 1}
           size={levelToSizeMap[this.props.level.toString()]}
         >
           {this.props.children}

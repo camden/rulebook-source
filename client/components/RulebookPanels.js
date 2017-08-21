@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Motion, spring } from 'react-motion';
+import { Motion, spring, presets } from 'react-motion';
 
 import RulebookContent from 'components/RulebookContent';
 import Sidebar from 'components/Sidebar';
@@ -34,7 +34,7 @@ class RulebookPanels extends Component {
     super(props);
 
     this.state = {
-      sidebarOpen: true,
+      sidebarOpen: false,
     };
 
     this.handleToggleSidebarClick = this.handleToggleSidebarClick.bind(this);
@@ -98,7 +98,10 @@ class RulebookPanels extends Component {
 
   getSidebarTransitionStyle() {
     return {
-      currentOffset: spring(this.calculateSidebarDestinationOffset()),
+      currentOffset: spring(
+        this.calculateSidebarDestinationOffset(),
+        presets.stiff
+      ),
     };
   }
 
