@@ -1,6 +1,7 @@
 // @flow
 
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import RulebookContent from 'components/RulebookContent';
 import Sidebar from 'components/Sidebar';
@@ -16,6 +17,12 @@ const Panel = styled.div`
 `;
 
 class RulebookPanels extends Component {
+  state: {
+    sidebarOffset: number,
+    sidebarWidth: number,
+    sidebarUnit: string,
+  };
+
   constructor(props) {
     super(props);
 
@@ -60,6 +67,12 @@ class RulebookPanels extends Component {
   }
 }
 
-// TODO add prop types
+RulebookPanels.propTypes = {
+  data: PropTypes.shape({
+    front_matter: PropTypes.object.isRequired,
+    markdown: PropTypes.array.isRequired,
+    toc: PropTypes.arrayOf(PropTypes.object).isRequired,
+  }).isRequired,
+};
 
 export default RulebookPanels;

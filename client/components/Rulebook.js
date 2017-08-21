@@ -16,7 +16,7 @@ export default class Rulebook extends Component {
     },
     data: {
       front_matter: Object,
-      markdown: string,
+      markdown: Array<Object>,
       toc: Array<Object>,
     },
     loading: boolean,
@@ -31,7 +31,7 @@ export default class Rulebook extends Component {
       },
       data: {
         front_matter: {},
-        markdown: '',
+        markdown: [],
         toc: [],
       },
       loading: true,
