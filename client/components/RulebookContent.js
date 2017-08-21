@@ -7,7 +7,14 @@ class RulebookContent extends Component {
   content() {
     return (
       <div>
-        {this.props.attributes.title}
+        <input
+          type="button"
+          onClick={this.props.onSidebarToggleClick}
+          value="Toggle Sidebar"
+        />
+        <h1>
+          {this.props.attributes.title}
+        </h1>
         {this.props.markdown}
       </div>
     );
@@ -21,6 +28,7 @@ class RulebookContent extends Component {
 RulebookContent.propTypes = {
   attributes: PropTypes.object.isRequired,
   markdown: PropTypes.node.isRequired,
+  onSidebarToggleClick: PropTypes.func.isRequired,
 };
 
 export default RulebookContent;

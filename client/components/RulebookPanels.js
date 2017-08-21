@@ -16,35 +16,55 @@ const Panel = styled.div`
   width: ${props => props.width || 'auto'};
 `;
 
+const sidebarValues = {
+  offset: 300,
+  width: 300,
+  unit: 'px',
+};
+
 class RulebookPanels extends Component {
   state: {
-    sidebarOffset: number,
-    sidebarWidth: number,
-    sidebarUnit: string,
+    sidebarOpen: boolean,
   };
+
+  handleToggleSidebarClick: Function;
 
   constructor(props) {
     super(props);
 
     this.state = {
-      sidebarOffset: 300,
-      sidebarWidth: 300,
-      sidebarUnit: 'px',
+      sidebarOpen: true,
     };
+
+    this.handleToggleSidebarClick = this.handleToggleSidebarClick.bind(this);
   }
 
   calculateSidebarWidth(): string {
-    return this.state.sidebarWidth + this.state.sidebarUnit;
+    return sidebarValues.width + sidebarValues.unit;
   }
 
   calculateSidebarOffset(): string {
-    const offsetValue = this.state.sidebarOffset - this.state.sidebarWidth;
-    return offsetValue + this.state.sidebarUnit;
+    let offsetValue = -sidebarValues.offset;
+    if (this.state.sidebarOpen) {
+      offsetValue = sidebarValues.offset - sidebarValues.width;
+    }
+
+    return offsetValue + sidebarValues.unit;
   }
 
   calculateContentOffset(): string {
-    const offsetValue = this.state.sidebarOffset;
-    return offsetValue + this.state.sidebarUnit;
+    let offsetValue = 0;
+    if (this.state.sidebarOpen) {
+      offsetValue = sidebarValues.offset;
+    }
+
+    return offsetValue + sidebarValues.unit;
+  }
+
+  handleToggleSidebarClick(): void {
+    this.setState({
+      sidebarOpen: !this.state.sidebarOpen,
+    });
   }
 
   render() {
@@ -60,6 +80,7 @@ class RulebookPanels extends Component {
           <RulebookContent
             attributes={this.props.data.front_matter}
             markdown={this.props.data.markdown}
+            onSidebarToggleClick={this.handleToggleSidebarClick}
           />
         </Panel>
       </div>
