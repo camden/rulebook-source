@@ -2,11 +2,14 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
+
+const RulebookBody = styled.div`padding: 1rem 3rem 3rem;`;
 
 class RulebookContent extends Component {
-  content() {
+  render() {
     return (
-      <div>
+      <RulebookBody>
         <input
           type="button"
           onClick={this.props.onSidebarToggleClick}
@@ -16,12 +19,8 @@ class RulebookContent extends Component {
           {this.props.attributes.title}
         </h1>
         {this.props.markdown}
-      </div>
+      </RulebookBody>
     );
-  }
-
-  render() {
-    return this.content();
   }
 }
 

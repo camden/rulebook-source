@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 
 import TOCTitle from 'components/TOCTitle';
 
@@ -27,13 +28,18 @@ const renderChildren = ({ tree }: { tree: TOCTree }) => {
   });
 };
 
+const SidebarBody = styled.div`
+  padding: 1rem 2rem;
+  border-right: 1px solid #ccc;
+`;
+
 const Sidebar = ({ tableOfContents }: { tableOfContents: TOCTree }) => {
   const renderedTOC = renderChildren({ tree: tableOfContents });
   // TODO do this calculation outside
   return (
-    <div>
+    <SidebarBody>
       {renderedTOC}
-    </div>
+    </SidebarBody>
   );
 };
 
