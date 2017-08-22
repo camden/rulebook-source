@@ -20,13 +20,15 @@ const AnchorLink = styled(LinkIcon)`
   }
 `;
 
-const Wrapper = styled.div`padding: 1.25rem 0 0.5rem;`;
+const Wrapper = styled.div`
+  padding: 1.25rem 0 0.5rem;
+  ${props => (props.underline ? 'border-bottom: 1px solid #ccc' : '')};
+`;
 
 const GenericHeader = styled.div`
   font-size: ${props => props.size};
   font-weight: bold;
   display: inline;
-  ${props => (props.underline ? 'border-bottom: 1px solid #ccc' : '')};
 `;
 
 const levelToSizeMap = {
@@ -63,13 +65,12 @@ class MarkdownHeader extends Component {
     const id = this.getId({ title: this.props.children[0] });
 
     return (
-      <Wrapper>
+      <Wrapper underline={this.props.level === 1}>
         <Link to={`#${id}`}>
           <AnchorLink size={'1em'} />
         </Link>
         <GenericHeader
           id={id}
-          underline={this.props.level === 1}
           size={levelToSizeMap[this.props.level.toString()]}
         >
           {this.props.children}

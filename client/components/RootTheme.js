@@ -1,11 +1,9 @@
 // @flow
 
 import React from 'react';
-import { ThemeProvider } from 'styled-components';
-
 import { MainTheme } from 'themes';
 
-import { injectGlobal } from 'styled-components';
+import styled, { injectGlobal, ThemeProvider } from 'styled-components';
 
 // TODO remove star selector
 injectGlobal`
@@ -22,10 +20,14 @@ injectGlobal`
   }
 `;
 
+const GlobalStyles = styled.div`color: ${props => props.theme.colors.black};`;
+
 const RootTheme = ({ children }) => {
   return (
     <ThemeProvider theme={MainTheme}>
-      {children}
+      <GlobalStyles>
+        {children}
+      </GlobalStyles>
     </ThemeProvider>
   );
 };
