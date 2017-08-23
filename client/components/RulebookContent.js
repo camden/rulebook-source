@@ -14,6 +14,19 @@ const RulebookBody = styled.div`
   }
 `;
 
+const RulebookTitle = styled.div`
+  // This redundancy is for browsers
+  // that don't support position: sticky
+  position: relative;
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: white;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.95);
+`;
+
 class RulebookContent extends Component {
   render() {
     return (
@@ -23,9 +36,6 @@ class RulebookContent extends Component {
           onClick={this.props.onSidebarToggleClick}
           value="Toggle Sidebar"
         />
-        <h1>
-          {this.props.attributes.title}
-        </h1>
         {this.props.markdown}
       </RulebookBody>
     );

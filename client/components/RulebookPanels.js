@@ -8,12 +8,20 @@ import RulebookContent from 'components/RulebookContent';
 import Sidebar from 'components/Sidebar';
 import styled from 'styled-components';
 
+const HEADER_HEIGHT = '4rem';
+
 const Panel = styled.div`
   position: absolute;
-  top: 0;
+  top: ${props => props.verticalOffset};
   bottom: 0;
   overflow-y: scroll;
   -webkit-overflow-scrolling: touch;
+`;
+
+const RulebookTitle = styled.div`
+  background-color: white;
+  height: ${props => props.height};
+  border: 1px dotted pink;
 `;
 
 const sidebarValues = {
@@ -71,7 +79,9 @@ class RulebookPanels extends Component {
   content({ currentSidebarOffset }) {
     return (
       <div>
+        <RulebookTitle height={HEADER_HEIGHT}>Settlers of Catan</RulebookTitle>
         <Panel
+          verticalOffset={HEADER_HEIGHT}
           style={{
             left: this.calculateSidebarOffset({ currentSidebarOffset }),
             width: this.calculateSidebarWidth(),
@@ -80,6 +90,7 @@ class RulebookPanels extends Component {
           <Sidebar tableOfContents={this.props.data.toc} />
         </Panel>
         <Panel
+          verticalOffset={HEADER_HEIGHT}
           style={{
             left: this.calculateContentOffset({
               currentSidebarOffset,
