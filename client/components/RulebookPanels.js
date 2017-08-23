@@ -21,11 +21,14 @@ const Panel = styled.div`
 const PageHeader = styled.div`
   background-color: white;
   height: ${props => props.height};
-  border-bottom: 1px solid ${props => props.theme.colors.border};
+  // border-bottom: 1px solid ${props => props.theme.colors.border};
+  box-shadow: ${props => props.theme.shadows.light};
   display: flex;
   align-items: center;
   justify-content: center;
 `;
+
+const HeaderSection = styled.div`flex: 1;`;
 
 const RulebookTitle = styled.span`
   font-size: 2em;
@@ -88,9 +91,17 @@ class RulebookPanels extends Component {
     return (
       <div>
         <PageHeader height={HEADER_HEIGHT}>
+          <HeaderSection>
+            <input
+              type="button"
+              onClick={this.handleToggleSidebarClick}
+              value="Toggle Sidebar"
+            />
+          </HeaderSection>
           <RulebookTitle>
             {this.props.data.front_matter.title}
           </RulebookTitle>
+          <HeaderSection />
         </PageHeader>
         <Panel
           verticalOffset={HEADER_HEIGHT}
