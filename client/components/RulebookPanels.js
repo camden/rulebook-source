@@ -15,6 +15,7 @@ const MenuToggle = styled.div`
   // To center align the icon
   display: flex;
   align-items: center;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 
   cursor: pointer;
   padding: 1.5rem;

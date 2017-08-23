@@ -92,6 +92,7 @@ class ProgressBar extends Component {
         style={{
           height: '0.5vh',
           boxShadow: `1px 2px 4px ${MainTheme.colors.primary_transparent}`,
+          webkitTapHighlightColor: 'transparent',
         }}
       />
     );
