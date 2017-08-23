@@ -30,7 +30,7 @@ const renderChildren = ({ tree }: { tree: TOCTree }) => {
 
 const SidebarBody = styled.div`
   padding: 1rem 2rem;
-  border-right: 1px solid #ccc;
+  border-right: 1px solid ${props => props.theme.colors.border};
 `;
 
 const Sidebar = ({ tableOfContents }: { tableOfContents: TOCTree }) => {

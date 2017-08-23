@@ -21,7 +21,7 @@ const Panel = styled.div`
 const RulebookTitle = styled.div`
   background-color: white;
   height: ${props => props.height};
-  border: 1px dotted pink;
+  border-bottom: 1px solid ${props => props.theme.colors.border};
 `;
 
 const sidebarValues = {
