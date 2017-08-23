@@ -18,10 +18,18 @@ const Panel = styled.div`
   -webkit-overflow-scrolling: touch;
 `;
 
-const RulebookTitle = styled.div`
+const PageHeader = styled.div`
   background-color: white;
   height: ${props => props.height};
   border-bottom: 1px solid ${props => props.theme.colors.border};
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+const RulebookTitle = styled.span`
+  font-size: 2em;
+  font-weight: bold;
 `;
 
 const sidebarValues = {
@@ -79,7 +87,11 @@ class RulebookPanels extends Component {
   content({ currentSidebarOffset }) {
     return (
       <div>
-        <RulebookTitle height={HEADER_HEIGHT}>Settlers of Catan</RulebookTitle>
+        <PageHeader height={HEADER_HEIGHT}>
+          <RulebookTitle>
+            {this.props.data.front_matter.title}
+          </RulebookTitle>
+        </PageHeader>
         <Panel
           verticalOffset={HEADER_HEIGHT}
           style={{
