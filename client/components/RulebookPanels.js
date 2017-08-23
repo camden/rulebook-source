@@ -21,11 +21,12 @@ const Panel = styled.div`
 const PageHeader = styled.div`
   background-color: white;
   height: ${props => props.height};
-  // border-bottom: 1px solid ${props => props.theme.colors.border};
-  box-shadow: ${props => props.theme.shadows.light};
+  border-bottom: 1px solid ${props => props.theme.colors.border};
+
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-wrap: wrap;
 `;
 
 const HeaderSection = styled.div`flex: 1;`;
@@ -33,6 +34,9 @@ const HeaderSection = styled.div`flex: 1;`;
 const RulebookTitle = styled.span`
   font-size: 2em;
   font-weight: bold;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
 
 const sidebarValues = {
