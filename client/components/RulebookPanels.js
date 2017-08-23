@@ -3,12 +3,26 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Motion, spring, presets } from 'react-motion';
+import { Menu as MenuIcon } from 'react-feather';
 
 import RulebookContent from 'components/RulebookContent';
 import Sidebar from 'components/Sidebar';
 import styled from 'styled-components';
 
 const HEADER_HEIGHT = '4rem';
+
+const MenuToggle = styled.div`
+  // To center align the icon
+  display: flex;
+  align-items: center;
+
+  cursor: pointer;
+  padding: 1.5rem;
+  transition: all 150ms linear;
+  &:hover {
+    color: #888;
+  }
+`;
 
 const Panel = styled.div`
   position: absolute;
@@ -96,11 +110,9 @@ class RulebookPanels extends Component {
       <div>
         <PageHeader height={HEADER_HEIGHT}>
           <HeaderSection>
-            <input
-              type="button"
-              onClick={this.handleToggleSidebarClick}
-              value="Toggle Sidebar"
-            />
+            <MenuToggle onClick={this.handleToggleSidebarClick}>
+              <MenuIcon />
+            </MenuToggle>
           </HeaderSection>
           <RulebookTitle>
             {this.props.data.front_matter.title}
