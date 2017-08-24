@@ -3,6 +3,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import frontMatter from 'front-matter';
+import { anchorate } from 'anchorate';
 
 import RulebookPanels from 'components/RulebookPanels';
 import ProgressBar from 'components/ProgressBar';
@@ -70,6 +71,8 @@ export default class Rulebook extends Component {
     const toc = compiledMarkdown.toc;
     const markdownData = compiledMarkdown.tree;
 
+    this.finishedLoading();
+
     this.setState({
       data: {
         front_matter: frontMatterData,
@@ -78,6 +81,10 @@ export default class Rulebook extends Component {
       },
       loading: false,
     });
+  }
+
+  finishedLoading() {
+    anchorate();
   }
 
   toggleSidebar() {
