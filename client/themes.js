@@ -7,12 +7,15 @@ export const MainTheme = {};
 
 MainTheme.colors = {
   primary: 'hsl(340, 60%, 65%)',
-  primary_transparent: 'hsla(340, 60%, 65%, .3)',
   black: '#333',
   border: '#efefef',
   webkitTapDefault: 'rgba(0,0,0,.2)',
   icon: {},
 };
+
+MainTheme.colors.primary_transparent = Color(MainTheme.colors.primary)
+  .fade(0.5)
+  .string();
 
 MainTheme.colors.icon = {
   default: Color(MainTheme.colors.primary).lighten(0.35).string(),
