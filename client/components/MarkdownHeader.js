@@ -2,12 +2,13 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
 import { Link as LinkIcon } from 'react-feather';
 import styled from 'styled-components';
 
+import Link from 'components/Link';
+
 const AnchorLink = styled(LinkIcon)`
-  color: #ccc;
+  color: #ededed;
   padding-right: 0.5rem;
   transition: all 150ms linear;
   font-size: ${props => props.size};

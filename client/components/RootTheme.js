@@ -17,7 +17,6 @@ injectGlobal`
     // Remove webkit tap area on everything but links
     -webkit-tap-highlight-color: transparent;
   }
-
 `;
 
 const GlobalStyles = styled.div`color: ${props => props.theme.colors.black};`;

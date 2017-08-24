@@ -1,9 +1,10 @@
 // @flow
 
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+
+import Link from 'components/Link';
 
 const IndentedTitle = styled.div`
   padding: 0.5rem 0;
