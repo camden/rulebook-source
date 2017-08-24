@@ -4,9 +4,15 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
+import Media from 'components/Media';
 import RulebookContent from 'components/RulebookContent';
 import Sidebar from 'components/Sidebar';
 import PageHeader from 'components/PageHeader';
+
+type SidebarValue = {
+  width: number,
+  unit: string,
+};
 
 const PanelWrapper = styled.div`
   display: flex;
@@ -31,8 +37,14 @@ const Panel = styled.div`
 `;
 
 const sidebarValues = {
-  width: 400,
-  unit: 'px',
+  desktop: {
+    width: 500,
+    unit: 'px',
+  },
+  mobile: {
+    width: 300,
+    unit: 'px',
+  },
 };
 
 class RulebookPanels extends Component {
@@ -54,38 +66,47 @@ class RulebookPanels extends Component {
     this.content = this.content.bind(this);
   }
 
-  calculateSidebarWidth(): string {
-    return sidebarValues.width + sidebarValues.unit;
+  calculateSidebarWidth({ isMobile }): string {
+    const currentSidebarValue: SidebarValue =
+      sidebarValues[isMobile ? 'mobile' : 'desktop'];
+
+    return currentSidebarValue.width + currentSidebarValue.unit;
   }
 
-  calculateSidebarOffset(): string {
-    let offsetValue = -sidebarValues.width;
+  calculateSidebarOffset({ isMobile }): string {
+    const currentSidebarValue: SidebarValue =
+      sidebarValues[isMobile ? 'mobile' : 'desktop'];
+
+    let offsetValue = -currentSidebarValue.width;
     if (this.state.sidebarOpen) {
       offsetValue = 0;
     }
-    return offsetValue + sidebarValues.unit;
+    return offsetValue + currentSidebarValue.unit;
   }
 
-  calculateContentOffset(): string {
+  calculateContentOffset({ isMobile }): string {
+    const currentSidebarValue: SidebarValue =
+      sidebarValues[isMobile ? 'mobile' : 'desktop'];
+
     let offsetValue = 0;
     if (this.state.sidebarOpen) {
-      offsetValue = sidebarValues.width;
+      offsetValue = currentSidebarValue.width;
     }
-    return offsetValue + sidebarValues.unit;
+    return offsetValue + currentSidebarValue.unit;
   }
 
-  calculateSidebarStyle(): Object {
-    const offset: string = this.calculateSidebarOffset();
+  calculateSidebarStyle({ isMobile }): Object {
+    const offset: string = this.calculateSidebarOffset({ isMobile });
     const transform: string = `translate3d(${offset}, 0, 0)`;
-    const width = this.calculateSidebarWidth();
+    const width = this.calculateSidebarWidth({ isMobile });
     return {
       transform,
       width,
     };
   }
 
-  calculateContentStyle(): Object {
-    const left = this.calculateContentOffset();
+  calculateContentStyle({ isMobile }): Object {
+    const left = this.calculateContentOffset({ isMobile });
     return {
       left: left,
     };
@@ -109,16 +130,21 @@ class RulebookPanels extends Component {
           title={this.props.data.front_matter.title || ''}
         />
         <PageContent>
-          <Panel style={this.calculateSidebarStyle()}>
-            <Sidebar tableOfContents={this.props.data.toc} />
-          </Panel>
-          <Panel style={this.calculateContentStyle()}>
-            <RulebookContent
-              attributes={this.props.data.front_matter}
-              markdown={this.props.data.markdown}
-              onSidebarToggleClick={this.handleToggleSidebarClick}
-            />
-          </Panel>
+          <Media query={'mobile'}>
+            {isMobile =>
+              <div>
+                <Panel style={this.calculateSidebarStyle({ isMobile })}>
+                  <Sidebar tableOfContents={this.props.data.toc} />
+                </Panel>
+                <Panel style={this.calculateContentStyle({ isMobile })}>
+                  <RulebookContent
+                    attributes={this.props.data.front_matter}
+                    markdown={this.props.data.markdown}
+                    onSidebarToggleClick={this.handleToggleSidebarClick}
+                  />
+                </Panel>
+              </div>}
+          </Media>
         </PageContent>
       </PanelWrapper>
     );

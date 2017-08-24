@@ -8,7 +8,7 @@ import { decode as decodeHTMLEntities } from 'he';
 import { generateId } from 'utils';
 import Link from 'components/Link';
 
-const TOCLink = styled(Link)`
+const TOCLink = styled(({ bold, level, ...rest }) => <Link {...rest} />)`
   padding: 0.5rem 0;
   padding-left: ${props => props.level}rem;
   display: block;
