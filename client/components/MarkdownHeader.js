@@ -2,10 +2,10 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Link as LinkIcon } from 'react-feather';
 import styled from 'styled-components';
 
 import { generateId } from 'utils';
+import { default as LinkIcon } from 'components/icons/Link';
 import Link from 'components/Link';
 
 const AnchorLink = styled(LinkIcon)`

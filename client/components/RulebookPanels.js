@@ -2,8 +2,8 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Menu as MenuIcon } from 'react-feather';
 
+import { default as MenuIcon } from 'components/icons/Menu';
 import RulebookContent from 'components/RulebookContent';
 import Sidebar from 'components/Sidebar';
 import styled from 'styled-components';
