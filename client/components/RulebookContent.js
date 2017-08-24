@@ -6,7 +6,7 @@ import styled from 'styled-components';
 
 const RulebookBody = styled.div`
   padding: 1rem 3rem 3rem;
-  max-width: 65%;
+  max-width: 50rem;
   margin: 0 auto;
   @media (max-width: ${props => props.theme.media.mobile}) {
     padding: 1rem;

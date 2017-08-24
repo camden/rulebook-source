@@ -43,7 +43,7 @@ const Panel = styled.div`
   -webkit-overflow-scrolling: touch;
   overflow-y: scroll;
 
-  transition: left 225ms ease;
+  transition: all 225ms ease;
 `;
 
 const PageHeader = styled.div`
@@ -68,7 +68,6 @@ const RulebookTitle = styled.span`
 `;
 
 const sidebarValues = {
-  offset: 300,
   width: 300,
   unit: 'px',
 };
@@ -97,9 +96,9 @@ class RulebookPanels extends Component {
   }
 
   calculateSidebarOffset(): string {
-    let offsetValue = -sidebarValues.offset;
+    let offsetValue = -sidebarValues.width;
     if (this.state.sidebarOpen) {
-      offsetValue = sidebarValues.offset - sidebarValues.width;
+      offsetValue = 0;
     }
     return offsetValue + sidebarValues.unit;
   }
@@ -113,10 +112,11 @@ class RulebookPanels extends Component {
   }
 
   calculateSidebarStyle(): Object {
-    const left = this.calculateSidebarOffset();
+    const offset: string = this.calculateSidebarOffset();
+    const transform: string = `translate3d(${offset}, 0, 0)`;
     const width = this.calculateSidebarWidth();
     return {
-      left,
+      transform,
       width,
     };
   }
