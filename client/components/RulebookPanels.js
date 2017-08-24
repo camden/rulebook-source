@@ -2,7 +2,6 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Motion, spring, presets } from 'react-motion';
 import { Menu as MenuIcon } from 'react-feather';
 
 import RulebookContent from 'components/RulebookContent';
@@ -31,6 +30,8 @@ const Panel = styled.div`
   bottom: 0;
   overflow-y: scroll;
   -webkit-overflow-scrolling: touch;
+
+  transition: left 225ms ease;
 `;
 
 const PageHeader = styled.div`
@@ -82,20 +83,19 @@ class RulebookPanels extends Component {
     return sidebarValues.width + sidebarValues.unit;
   }
 
-  calculateSidebarDestinationOffset(): number {
+  calculateSidebarOffset(): string {
     let offsetValue = -sidebarValues.offset;
     if (this.state.sidebarOpen) {
       offsetValue = sidebarValues.offset - sidebarValues.width;
     }
-    return offsetValue;
+    return offsetValue + sidebarValues.unit;
   }
 
-  calculateSidebarOffset({ currentSidebarOffset }): string {
-    return currentSidebarOffset + sidebarValues.unit;
-  }
-
-  calculateContentOffset({ currentSidebarOffset }): string {
-    const offsetValue = sidebarValues.width + currentSidebarOffset;
+  calculateContentOffset(): string {
+    let offsetValue = 0;
+    if (this.state.sidebarOpen) {
+      offsetValue = sidebarValues.width;
+    }
     return offsetValue + sidebarValues.unit;
   }
 
@@ -105,7 +105,7 @@ class RulebookPanels extends Component {
     });
   }
 
-  content({ currentSidebarOffset }) {
+  content() {
     return (
       <div>
         <PageHeader height={HEADER_HEIGHT}>
@@ -122,7 +122,7 @@ class RulebookPanels extends Component {
         <Panel
           verticalOffset={HEADER_HEIGHT}
           style={{
-            left: this.calculateSidebarOffset({ currentSidebarOffset }),
+            left: this.calculateSidebarOffset(),
             width: this.calculateSidebarWidth(),
           }}
         >
@@ -131,9 +131,7 @@ class RulebookPanels extends Component {
         <Panel
           verticalOffset={HEADER_HEIGHT}
           style={{
-            left: this.calculateContentOffset({
-              currentSidebarOffset,
-            }),
+            left: this.calculateContentOffset(),
           }}
         >
           <RulebookContent
@@ -146,24 +144,8 @@ class RulebookPanels extends Component {
     );
   }
 
-  getSidebarTransitionStyle() {
-    return {
-      currentOffset: spring(
-        this.calculateSidebarDestinationOffset(),
-        presets.stiff
-      ),
-    };
-  }
-
   render() {
-    return (
-      <Motion style={this.getSidebarTransitionStyle()}>
-        {interpolatingStyle =>
-          this.content({
-            currentSidebarOffset: interpolatingStyle.currentOffset,
-          })}
-      </Motion>
-    );
+    return this.content();
   }
 }
 
