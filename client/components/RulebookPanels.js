@@ -8,7 +8,12 @@ import RulebookContent from 'components/RulebookContent';
 import Sidebar from 'components/Sidebar';
 import styled from 'styled-components';
 
-const HEADER_HEIGHT = '5rem';
+const PanelWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+`;
 
 const MenuToggle = styled.div`
   // To center align the icon
@@ -24,11 +29,18 @@ const MenuToggle = styled.div`
   }
 `;
 
+const PageContent = styled.div`
+  height: 100%;
+  position: relative;
+  overflow-y: scroll;
+`;
+
 const Panel = styled.div`
   position: absolute;
-  top: ${props => props.verticalOffset};
+  top: 0;
   bottom: 0;
-  overflow-y: scroll;
+  left: 0;
+  right: 0;
   -webkit-overflow-scrolling: touch;
 
   transition: left 225ms ease;
@@ -36,12 +48,13 @@ const Panel = styled.div`
 
 const PageHeader = styled.div`
   background-color: white;
-  height: ${props => props.height};
   border-bottom: 1px solid ${props => props.theme.colors.border};
 
   display: flex;
   align-items: center;
   justify-content: center;
+
+  flex-shrink: 0;
 `;
 
 const HeaderSection = styled.div`flex: 1;`;
@@ -99,16 +112,35 @@ class RulebookPanels extends Component {
     return offsetValue + sidebarValues.unit;
   }
 
+  calculateSidebarStyle(): Object {
+    const left = this.calculateSidebarOffset();
+    const width = this.calculateSidebarWidth();
+    return {
+      left,
+      width,
+    };
+  }
+
+  calculateContentStyle(): Object {
+    const left = this.calculateContentOffset();
+    return {
+      left: left,
+    };
+  }
+
   handleToggleSidebarClick(): void {
     this.setState({
       sidebarOpen: !this.state.sidebarOpen,
     });
   }
 
+  // <Panel style={this.calculateSidebarStyle()}>
+  //   <Sidebar tableOfContents={this.props.data.toc} />
+  // </Panel>
   content() {
     return (
-      <div>
-        <PageHeader height={HEADER_HEIGHT}>
+      <PanelWrapper>
+        <PageHeader>
           <HeaderSection>
             <MenuToggle onClick={this.handleToggleSidebarClick}>
               <MenuIcon />
@@ -119,28 +151,16 @@ class RulebookPanels extends Component {
           </RulebookTitle>
           <HeaderSection />
         </PageHeader>
-        <Panel
-          verticalOffset={HEADER_HEIGHT}
-          style={{
-            left: this.calculateSidebarOffset(),
-            width: this.calculateSidebarWidth(),
-          }}
-        >
-          <Sidebar tableOfContents={this.props.data.toc} />
-        </Panel>
-        <Panel
-          verticalOffset={HEADER_HEIGHT}
-          style={{
-            left: this.calculateContentOffset(),
-          }}
-        >
-          <RulebookContent
-            attributes={this.props.data.front_matter}
-            markdown={this.props.data.markdown}
-            onSidebarToggleClick={this.handleToggleSidebarClick}
-          />
-        </Panel>
-      </div>
+        <PageContent>
+          <Panel style={this.calculateContentStyle()}>
+            <RulebookContent
+              attributes={this.props.data.front_matter}
+              markdown={this.props.data.markdown}
+              onSidebarToggleClick={this.handleToggleSidebarClick}
+            />
+          </Panel>
+        </PageContent>
+      </PanelWrapper>
     );
   }
 
