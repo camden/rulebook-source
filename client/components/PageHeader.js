@@ -15,8 +15,10 @@ const MenuToggle = styled.div`
   cursor: pointer;
   padding: 1.5rem;
   transition: all 150ms linear;
+  color: ${props => props.theme.colors.icon.default};
+
   &:hover {
-    color: #888;
+    color: ${props => props.theme.colors.icon.hover};
   }
 `;
 

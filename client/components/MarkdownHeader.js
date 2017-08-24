@@ -9,16 +9,18 @@ import { default as LinkIcon } from 'components/icons/Link';
 import Link from 'components/Link';
 
 const AnchorLink = styled(LinkIcon)`
-  color: #ededed;
   padding-right: 0.5rem;
   transition: all 150ms linear;
   font-size: ${props => props.size};
   box-sizing: content-box;
   padding: 0 0.5rem 0 0;
 
+  cursor: pointer;
+
+  color: ${props => props.theme.colors.icon.default};
+
   &:hover {
-    cursor: pointer;
-    color: #888;
+    color: ${props => props.theme.colors.icon.hover};
   }
 `;
 
