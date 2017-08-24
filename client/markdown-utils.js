@@ -13,6 +13,7 @@ import type { Glossary } from 'types';
 const Paragraph = styled.div`padding: 0.5rem;`;
 
 const Image = styled.img`
+  box-sizing: border-box;
   width: 100%;
   padding: 1.5rem;
 `;
