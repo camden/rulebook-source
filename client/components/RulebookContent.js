@@ -25,9 +25,7 @@ class RulebookContent extends Component {
 }
 
 RulebookContent.propTypes = {
-  attributes: PropTypes.object.isRequired,
   markdown: PropTypes.node.isRequired,
-  onSidebarToggleClick: PropTypes.func.isRequired,
 };
 
 export default RulebookContent;

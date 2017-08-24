@@ -2,31 +2,17 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 
-import { default as MenuIcon } from 'components/icons/Menu';
 import RulebookContent from 'components/RulebookContent';
 import Sidebar from 'components/Sidebar';
-import styled from 'styled-components';
+import PageHeader from 'components/PageHeader';
 
 const PanelWrapper = styled.div`
   display: flex;
   flex-direction: column;
   height: 100vh;
   overflow: hidden;
-`;
-
-const MenuToggle = styled.div`
-  // To center align the icon
-  display: flex;
-  align-items: center;
-  -webkit-tap-highlight-color: ${props => props.theme.colors.webkitTapDefault};
-
-  cursor: pointer;
-  padding: 1.5rem;
-  transition: all 150ms linear;
-  &:hover {
-    color: #888;
-  }
 `;
 
 const PageContent = styled.div`
@@ -44,27 +30,6 @@ const Panel = styled.div`
   overflow-y: scroll;
 
   transition: all 225ms ease;
-`;
-
-const PageHeader = styled.div`
-  background-color: white;
-  border-bottom: 1px solid ${props => props.theme.colors.border};
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  flex-shrink: 0;
-`;
-
-const HeaderSection = styled.div`flex: 1;`;
-
-const RulebookTitle = styled.span`
-  font-size: 2em;
-  font-weight: bold;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 `;
 
 const sidebarValues = {
@@ -137,17 +102,10 @@ class RulebookPanels extends Component {
   content() {
     return (
       <PanelWrapper>
-        <PageHeader>
-          <HeaderSection>
-            <MenuToggle onClick={this.handleToggleSidebarClick}>
-              <MenuIcon />
-            </MenuToggle>
-          </HeaderSection>
-          <RulebookTitle>
-            {this.props.data.front_matter.title}
-          </RulebookTitle>
-          <HeaderSection />
-        </PageHeader>
+        <PageHeader
+          onToggleSidebarClick={this.handleToggleSidebarClick}
+          title={this.props.data.front_matter.title || ''}
+        />
         <PageContent>
           <Panel style={this.calculateSidebarStyle()}>
             <Sidebar tableOfContents={this.props.data.toc} />
