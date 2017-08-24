@@ -1,5 +1,7 @@
 // @flow
 
+import { decode as decodeHTMLEntities } from 'he';
+
 const SITE_ROOT = '/api';
 
 export const fetchRulebookData = async ({
@@ -22,5 +24,9 @@ export const fetchAllRulebooks = async (): Promise<*> => {
 
 export const generateId = ({ title }: { title: string }): string => {
   // replace strings with dashes, not alphanumeric with nothing
-  return title.replace(/[^a-zA-Z\d\s]/g, '').replace(/\s+/g, '-').toLowerCase();
+  const decodedTitle = decodeHTMLEntities(title);
+  return decodedTitle
+    .replace(/[^a-zA-Z\d\s]/g, '')
+    .replace(/\s+/g, '-')
+    .toLowerCase();
 };

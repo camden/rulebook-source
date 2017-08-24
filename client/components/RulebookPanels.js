@@ -32,7 +32,6 @@ const MenuToggle = styled.div`
 const PageContent = styled.div`
   height: 100%;
   position: relative;
-  overflow-y: scroll;
 `;
 
 const Panel = styled.div`
@@ -42,6 +41,7 @@ const Panel = styled.div`
   left: 0;
   right: 0;
   -webkit-overflow-scrolling: touch;
+  overflow-y: scroll;
 
   transition: left 225ms ease;
 `;
