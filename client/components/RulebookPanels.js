@@ -31,7 +31,7 @@ const Panel = styled.div`
 `;
 
 const sidebarValues = {
-  width: 300,
+  width: 400,
   unit: 'px',
 };
 
