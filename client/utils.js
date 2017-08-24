@@ -19,3 +19,8 @@ export const fetchAllRulebooks = async (): Promise<*> => {
   const resJSON = await res.json();
   return resJSON;
 };
+
+export const generateId = ({ title }: { title: string }): string => {
+  // replace strings with dashes, not alphanumeric with nothing
+  return title.replace(/[^a-zA-Z\d\s]/g, '').replace(/\s+/g, '-').toLowerCase();
+};

@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { Link as LinkIcon } from 'react-feather';
 import styled from 'styled-components';
 
+import { generateId } from 'utils';
 import Link from 'components/Link';
 
 const AnchorLink = styled(LinkIcon)`
@@ -54,16 +55,8 @@ class MarkdownHeader extends Component {
     };
   }
 
-  getId({ title }: { title: string }): string {
-    // replace strings with dashes, not alphanumeric with nothing
-    return title
-      .replace(/[^a-zA-Z\d\s]/g, '')
-      .replace(/\s+/g, '-')
-      .toLowerCase();
-  }
-
   render() {
-    const id = this.getId({ title: this.props.children[0] });
+    const id = generateId({ title: this.props.children[0] });
 
     return (
       <Wrapper underline={this.props.level === 1}>
