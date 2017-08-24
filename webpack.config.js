@@ -4,7 +4,7 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   devtool: 'cheap-module-source-map',
-  entry: ['babel-polyfill', 'whatwg-fetch', './client/index.jsx'],
+  entry: ['babel-polyfill', 'whatwg-fetch', './client/index.js'],
   output: {
     path: path.join(__dirname, 'dist/client'),
     publicPath: '/',

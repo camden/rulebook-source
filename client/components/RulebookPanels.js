@@ -9,13 +9,13 @@ import RulebookContent from 'components/RulebookContent';
 import Sidebar from 'components/Sidebar';
 import styled from 'styled-components';
 
-const HEADER_HEIGHT = '4rem';
+const HEADER_HEIGHT = '5rem';
 
 const MenuToggle = styled.div`
   // To center align the icon
   display: flex;
   align-items: center;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-tap-highlight-color: ${props => props.theme.colors.webkitTapDefault};
 
   cursor: pointer;
   padding: 1.5rem;
@@ -41,7 +41,6 @@ const PageHeader = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-wrap: wrap;
 `;
 
 const HeaderSection = styled.div`flex: 1;`;

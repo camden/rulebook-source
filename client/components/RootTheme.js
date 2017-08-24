@@ -13,11 +13,11 @@ injectGlobal`
     margin: 0;
     height: 100%;
     min-height: 100%;
+
+    // Remove webkit tap area on everything but links
+    -webkit-tap-highlight-color: transparent;
   }
 
-  *, *:before, *:after {
-    box-sizing: inherit;
-  }
 `;
 
 const GlobalStyles = styled.div`color: ${props => props.theme.colors.black};`;
