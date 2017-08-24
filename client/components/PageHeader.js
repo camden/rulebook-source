@@ -6,6 +6,21 @@ import styled from 'styled-components';
 
 import { default as MenuIcon } from 'components/icons/Menu';
 
+const Header = styled.div`
+  background-color: white;
+  border-bottom: 1px solid ${props => props.theme.colors.border};
+  position: relative;
+  top: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+`;
+
+const HeaderSection = styled.div`flex: 1;`;
+
 const MenuToggle = styled.div`
   // To center align the icon
   display: flex;
@@ -21,19 +36,6 @@ const MenuToggle = styled.div`
     color: ${props => props.theme.colors.icon.hover};
   }
 `;
-
-const Header = styled.div`
-  background-color: white;
-  border-bottom: 1px solid ${props => props.theme.colors.border};
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  flex-shrink: 0;
-`;
-
-const HeaderSection = styled.div`flex: 1;`;
 
 const RulebookTitle = styled.span`
   font-size: 2em;

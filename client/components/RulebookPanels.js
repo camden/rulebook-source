@@ -11,12 +11,10 @@ import PageHeader from 'components/PageHeader';
 const PanelWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  height: 100vh;
-  overflow: hidden;
 `;
 
 const PageContent = styled.div`
-  height: 100%;
+  flex: 1;
   position: relative;
 `;
 
@@ -101,7 +99,11 @@ class RulebookPanels extends Component {
 
   content() {
     return (
-      <PanelWrapper>
+      <PanelWrapper
+        style={{
+          height: window.innerHeight + 'px',
+        }}
+      >
         <PageHeader
           onToggleSidebarClick={this.handleToggleSidebarClick}
           title={this.props.data.front_matter.title || ''}
