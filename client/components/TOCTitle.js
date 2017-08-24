@@ -3,6 +3,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import { decode as decodeHTMLEntities } from 'he';
 
 import { generateId } from 'utils';
 import Link from 'components/Link';
@@ -14,10 +15,12 @@ const IndentedTitle = styled.div`
 
 const TOCTitle = ({ children, level }) => {
   const formattedId = generateId({ title: children });
+
+  const decodedTitle = decodeHTMLEntities(children);
   return (
     <Link to={`#${formattedId}`}>
       <IndentedTitle level={level}>
-        {children}
+        {decodedTitle}
       </IndentedTitle>
     </Link>
   );
