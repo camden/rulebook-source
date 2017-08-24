@@ -134,9 +134,6 @@ class RulebookPanels extends Component {
     });
   }
 
-  // <Panel style={this.calculateSidebarStyle()}>
-  //   <Sidebar tableOfContents={this.props.data.toc} />
-  // </Panel>
   content() {
     return (
       <PanelWrapper>
@@ -152,6 +149,9 @@ class RulebookPanels extends Component {
           <HeaderSection />
         </PageHeader>
         <PageContent>
+          <Panel style={this.calculateSidebarStyle()}>
+            <Sidebar tableOfContents={this.props.data.toc} />
+          </Panel>
           <Panel style={this.calculateContentStyle()}>
             <RulebookContent
               attributes={this.props.data.front_matter}
