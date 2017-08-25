@@ -35,10 +35,12 @@ const SidebarBody = styled.div`
 
 const Sidebar = ({ tableOfContents }: { tableOfContents: TOCTree }) => {
   const renderedTOC = renderChildren({ tree: tableOfContents });
-  // TODO do this calculation outside
   return (
     <SidebarBody>
       {renderedTOC}
+      <TOCTitle level={1} id={'glossary'}>
+        Glossary
+      </TOCTitle>
     </SidebarBody>
   );
 };
