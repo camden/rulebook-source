@@ -27,6 +27,10 @@ const MenuToggle = styled.div`
   align-items: center;
   -webkit-tap-highlight-color: ${props => props.theme.colors.webkitTapDefault};
 
+  width: fit-content;
+
+  user-select: none;
+
   cursor: pointer;
   padding: 1.5rem;
   transition: all 150ms linear;
@@ -49,7 +53,10 @@ const PageHeader = ({ onToggleSidebarClick, title }) => {
   return (
     <Header>
       <HeaderSection>
-        <MenuToggle onClick={onToggleSidebarClick}>
+        <MenuToggle
+          aria-label={'Side menu toggle'}
+          onClick={onToggleSidebarClick}
+        >
           <MenuIcon />
         </MenuToggle>
       </HeaderSection>
