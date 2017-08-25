@@ -2,16 +2,21 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
 
+import MarkdownParagraph from 'components/MarkdownParagraph';
 import MarkdownHeader from 'components/MarkdownHeader';
 import type { Glossary as GlossaryType } from 'types';
 
 const glossaryItem = entry => {
   return (
-    <MarkdownHeader key={entry.name} id={`glossary-${entry.name}`} level={2}>
-      {entry.name}
-    </MarkdownHeader>
+    <section key={`${entry.name}`}>
+      <MarkdownHeader id={`glossary-${entry.name}`} level={2}>
+        {entry.name}
+      </MarkdownHeader>
+      <MarkdownParagraph>
+        {entry.definition}
+      </MarkdownParagraph>
+    </section>
   );
 };
 

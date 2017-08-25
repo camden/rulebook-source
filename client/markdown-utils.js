@@ -7,10 +7,9 @@ import styled from 'styled-components';
 import HighlightedString from 'components/HighlightedString';
 import Highlight from 'components/Highlight';
 import MarkdownHeader from 'components/MarkdownHeader';
+import MarkdownParagraph from 'components/MarkdownParagraph';
 
 import type { Glossary } from 'types';
-
-const Paragraph = styled.div`padding: 0.5rem;`;
 
 const Image = styled.img`
   box-sizing: border-box;
@@ -82,9 +81,9 @@ export const compileMarkdown = ({
       },
       p({ children }) {
         return (
-          <Paragraph>
+          <MarkdownParagraph>
             <Highlight text={children} glossary={glossary} />
-          </Paragraph>
+          </MarkdownParagraph>
         );
       },
     },
