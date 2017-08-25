@@ -58,7 +58,8 @@ class MarkdownHeader extends Component {
   }
 
   render() {
-    const id = generateId({ title: this.props.children[0] });
+    const title = this.props.children;
+    const id = generateId({ title });
 
     return (
       <Wrapper underline={this.props.level === 1}>
@@ -79,7 +80,7 @@ class MarkdownHeader extends Component {
 MarkdownHeader.propTypes = {
   id: PropTypes.string.isRequired,
   level: PropTypes.number.isRequired,
-  children: PropTypes.node.isRequired,
+  children: PropTypes.string.isRequired,
 };
 
 export default MarkdownHeader;

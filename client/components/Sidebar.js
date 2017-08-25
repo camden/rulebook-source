@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 import TOCTitle from 'components/TOCTitle';
+import type { Glossary as GlossaryType } from 'types';
 
 type TOCNode = {
   id: string,
@@ -28,12 +29,28 @@ const renderChildren = ({ tree }: { tree: TOCTree }) => {
   });
 };
 
-const SidebarBody = styled.div`
+const glossaryItems = (glossary: GlossaryType) => {
+  return glossary.map(entry => {
+    return (
+      <TOCTitle key={entry.name} level={2} id={`glossary-${entry.name}`}>
+        {entry.name}
+      </TOCTitle>
+    );
+  });
+};
+
+const SidebarBody = styled.nav`
   padding: 1rem 2rem;
   border-right: 1px solid ${props => props.theme.colors.border};
 `;
 
-const Sidebar = ({ tableOfContents }: { tableOfContents: TOCTree }) => {
+const Sidebar = ({
+  tableOfContents,
+  glossary,
+}: {
+  tableOfContents: TOCTree,
+  glossary: GlossaryType,
+}) => {
   const renderedTOC = renderChildren({ tree: tableOfContents });
   return (
     <SidebarBody>
@@ -41,12 +58,19 @@ const Sidebar = ({ tableOfContents }: { tableOfContents: TOCTree }) => {
       <TOCTitle level={1} id={'glossary'}>
         Glossary
       </TOCTitle>
+      {glossaryItems(glossary)}
     </SidebarBody>
   );
 };
 
+Sidebar.defaultProps = {
+  tableOfContents: [],
+  glossary: [],
+};
+
 Sidebar.propTypes = {
   tableOfContents: PropTypes.array.isRequired,
+  glossary: PropTypes.array.isRequired,
 };
 
 export default Sidebar;

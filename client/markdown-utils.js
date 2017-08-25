@@ -38,42 +38,42 @@ export const compileMarkdown = ({
       h1({ id, children }) {
         return (
           <MarkdownHeader id={id} level={1}>
-            {children}
+            {children[0]}
           </MarkdownHeader>
         );
       },
       h2({ id, children }) {
         return (
           <MarkdownHeader id={id} level={2}>
-            {children}
+            {children[0]}
           </MarkdownHeader>
         );
       },
       h3({ id, children }) {
         return (
           <MarkdownHeader id={id} level={3}>
-            {children}
+            {children[0]}
           </MarkdownHeader>
         );
       },
       h4({ id, children }) {
         return (
           <MarkdownHeader id={id} level={4}>
-            {children}
+            {children[0]}
           </MarkdownHeader>
         );
       },
       h5({ id, children }) {
         return (
           <MarkdownHeader id={id} level={5}>
-            {children}
+            {children[0]}
           </MarkdownHeader>
         );
       },
       h6({ id, children }) {
         return (
           <MarkdownHeader id={id} level={6}>
-            {children}
+            {children[0]}
           </MarkdownHeader>
         );
       },

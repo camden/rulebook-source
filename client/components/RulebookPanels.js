@@ -14,6 +14,17 @@ type SidebarValue = {
   unit: string,
 };
 
+const sidebarValues = {
+  desktop: {
+    width: 400,
+    unit: 'px',
+  },
+  mobile: {
+    width: 300,
+    unit: 'px',
+  },
+};
+
 const PanelWrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -35,17 +46,6 @@ const Panel = styled.div`
 
   transition: all 225ms ease;
 `;
-
-const sidebarValues = {
-  desktop: {
-    width: 500,
-    unit: 'px',
-  },
-  mobile: {
-    width: 300,
-    unit: 'px',
-  },
-};
 
 class RulebookPanels extends Component {
   state: {
@@ -127,20 +127,22 @@ class RulebookPanels extends Component {
       >
         <PageHeader
           onToggleSidebarClick={this.handleToggleSidebarClick}
-          title={this.props.data.front_matter.title || ''}
+          title={this.props.data.front_matter.title}
         />
         <PageContent>
           <Media query={'mobile'}>
             {isMobile =>
               <div>
                 <Panel style={this.calculateSidebarStyle({ isMobile })}>
-                  <Sidebar tableOfContents={this.props.data.toc} />
+                  <Sidebar
+                    glossary={this.props.data.front_matter.glossary}
+                    tableOfContents={this.props.data.toc}
+                  />
                 </Panel>
                 <Panel style={this.calculateContentStyle({ isMobile })}>
                   <RulebookContent
-                    attributes={this.props.data.front_matter}
+                    glossary={this.props.data.front_matter.glossary}
                     markdown={this.props.data.markdown}
-                    onSidebarToggleClick={this.handleToggleSidebarClick}
                   />
                 </Panel>
               </div>}

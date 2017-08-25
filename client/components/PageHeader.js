@@ -75,6 +75,11 @@ const PageHeader = ({ onToggleSidebarClick, title }) => {
   );
 };
 
+PageHeader.defaultProps = {
+  onToggleSidebarClick: () => {},
+  title: '',
+};
+
 PageHeader.propTypes = {
   onToggleSidebarClick: PropTypes.func.isRequired,
   title: PropTypes.string.isRequired,
