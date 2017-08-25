@@ -3,7 +3,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
+import { default as HomeIcon } from 'components/icons/Home';
 import { default as MenuIcon } from 'components/icons/Menu';
 
 const Header = styled.div`
@@ -19,9 +21,12 @@ const Header = styled.div`
   flex-shrink: 0;
 `;
 
-const HeaderSection = styled.div`flex: 1;`;
+const HeaderSection = styled.div`
+  flex: 1;
+  display: flex;
+`;
 
-const MenuToggle = styled.div`
+const Icon = styled.div`
   // To center align the icon
   display: flex;
   align-items: center;
@@ -53,12 +58,14 @@ const PageHeader = ({ onToggleSidebarClick, title }) => {
   return (
     <Header>
       <HeaderSection>
-        <MenuToggle
-          aria-label={'Side menu toggle'}
-          onClick={onToggleSidebarClick}
-        >
+        <Icon aria-label={'Side menu toggle'} onClick={onToggleSidebarClick}>
           <MenuIcon />
-        </MenuToggle>
+        </Icon>
+        <Link to="/">
+          <Icon aria-label={'Home button'}>
+            <HomeIcon />
+          </Icon>
+        </Link>
       </HeaderSection>
       <RulebookTitle>
         {title}
