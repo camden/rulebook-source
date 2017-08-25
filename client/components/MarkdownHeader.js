@@ -24,9 +24,13 @@ const AnchorLink = styled(LinkIcon)`
   }
 `;
 
+const underlineStyle = `
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 0.5rem;
+`;
 const Wrapper = styled.div`
-  padding: 0.5rem 0;
-  ${props => (props.underline ? 'border-bottom: 1px solid #ccc' : '')};
+  padding: 0.75rem 0 0.25rem;
+  ${props => (props.underline ? underlineStyle : '')};
 `;
 
 const GenericHeader = styled.div`
