@@ -8,10 +8,9 @@ import { generateId } from 'utils';
 import { default as LinkIcon } from 'components/icons/Link';
 import Link from 'components/Link';
 
-const AnchorLink = styled(LinkIcon)`
+const AnchorLink = styled.span`
   padding-right: 0.5rem;
   transition: all 150ms linear;
-  font-size: ${props => props.size};
   box-sizing: content-box;
   padding: 0 0.5rem 0 0;
 
@@ -28,6 +27,7 @@ const underlineStyle = `
     border-bottom: 1px solid #ccc;
     margin-bottom: 0.5rem;
 `;
+
 const Wrapper = styled.div`
   padding: 0.75rem 0 0.25rem;
   ${props => (props.underline ? underlineStyle : '')};
@@ -68,7 +68,9 @@ class MarkdownHeader extends Component {
     return (
       <Wrapper underline={this.props.level === 1}>
         <Link to={`#${id}`}>
-          <AnchorLink size={'1em'} />
+          <AnchorLink>
+            <LinkIcon size={20} />
+          </AnchorLink>
         </Link>
         <GenericHeader
           id={id}
