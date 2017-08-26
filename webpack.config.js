@@ -37,15 +37,15 @@ module.exports = {
     new webpack.optimize.UglifyJsPlugin({
       comments: false, // remove comments
       compress: {
-        unused: true,
-        dead_code: true, // big one--strip code that will never execute
-        warnings: false, // good for prod apps so users can't peek behind curtain
-        drop_debugger: true,
-        conditionals: true,
-        evaluate: true,
-        drop_console: true, // strips console statements
-        sequences: true,
         booleans: true,
+        conditionals: true,
+        dead_code: true, // big one--strip code that will never execute
+        drop_console: true, // strips console statements
+        drop_debugger: true,
+        evaluate: true,
+        sequences: true,
+        unused: true,
+        warnings: false, // good for prod apps so users can't peek behind curtain
       },
     }),
     new HtmlWebpackPlugin({
