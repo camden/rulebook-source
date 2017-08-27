@@ -42,18 +42,14 @@ const glossaryItems = (glossary: GlossaryType) => {
 const SidebarBody = styled.nav`
   padding: 1rem 2rem;
   border-right: 1px solid ${props => props.theme.colors.border};
+  width: ${props => props.width || 'auto'};
 `;
 
-const Sidebar = ({
-  tableOfContents,
-  glossary,
-}: {
-  tableOfContents: TOCTree,
-  glossary: GlossaryType,
-}) => {
+const Sidebar = props => {
+  const { tableOfContents, glossary, width } = props;
   const renderedTOC = renderChildren({ tree: tableOfContents });
   return (
-    <SidebarBody>
+    <SidebarBody width={width}>
       {renderedTOC}
       <TOCTitle level={1} id={'glossary'}>
         Glossary
@@ -71,6 +67,7 @@ Sidebar.defaultProps = {
 Sidebar.propTypes = {
   tableOfContents: PropTypes.array.isRequired,
   glossary: PropTypes.array.isRequired,
+  width: PropTypes.string.isRequired,
 };
 
 export default Sidebar;

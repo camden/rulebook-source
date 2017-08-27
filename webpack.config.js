@@ -40,8 +40,6 @@ module.exports = {
         booleans: true,
         conditionals: true,
         dead_code: true, // big one--strip code that will never execute
-        drop_console: true, // strips console statements
-        drop_debugger: true,
         evaluate: true,
         sequences: true,
         unused: true,

@@ -25,27 +25,17 @@ const sidebarValues = {
   },
 };
 
-const PanelWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
+const PanelWrapper = styled.div``;
 
 const PageContent = styled.div`
-  flex: 1;
+  display: flex;
   position: relative;
+  top: 5rem;
 `;
 
-const Panel = styled.div`
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  -webkit-overflow-scrolling: touch;
-  overflow-y: scroll;
+const transitionTime = '250ms';
 
-  transition: all 225ms ease;
-`;
+const Panel = styled.div`transition: all ${transitionTime} ease;`;
 
 class RulebookPanels extends Component {
   state: {
@@ -98,17 +88,22 @@ class RulebookPanels extends Component {
   calculateSidebarStyle({ isMobile }): Object {
     const offset: string = this.calculateSidebarOffset({ isMobile });
     const transform: string = `translate3d(${offset}, 0, 0)`;
-    const width = this.calculateSidebarWidth({ isMobile });
+    const width: string = this.calculateSidebarWidth({ isMobile });
+    const flex: string = '0 0';
+    const flexBasis: string = this.state.sidebarOpen ? width : '0';
+
     return {
-      transform,
       width,
+      transform,
+      flex,
+      flexBasis,
+      overflow: 'hidden',
     };
   }
 
-  calculateContentStyle({ isMobile }): Object {
-    const left = this.calculateContentOffset({ isMobile });
+  calculateContentStyle(): Object {
     return {
-      left: left,
+      flex: '1',
     };
   }
 
@@ -129,25 +124,24 @@ class RulebookPanels extends Component {
           onToggleSidebarClick={this.handleToggleSidebarClick}
           title={this.props.data.front_matter.title}
         />
-        <PageContent>
-          <Media query={'mobile'}>
-            {isMobile =>
-              <div>
-                <Panel style={this.calculateSidebarStyle({ isMobile })}>
-                  <Sidebar
-                    glossary={this.props.data.front_matter.glossary}
-                    tableOfContents={this.props.data.toc}
-                  />
-                </Panel>
-                <Panel style={this.calculateContentStyle({ isMobile })}>
-                  <RulebookContent
-                    glossary={this.props.data.front_matter.glossary}
-                    markdown={this.props.data.markdown}
-                  />
-                </Panel>
-              </div>}
-          </Media>
-        </PageContent>
+        <Media query={'mobile'}>
+          {isMobile =>
+            <PageContent>
+              <Panel style={this.calculateSidebarStyle({ isMobile })}>
+                <Sidebar
+                  width={this.calculateSidebarWidth({ isMobile })}
+                  glossary={this.props.data.front_matter.glossary}
+                  tableOfContents={this.props.data.toc}
+                />
+              </Panel>
+              <Panel style={this.calculateContentStyle()}>
+                <RulebookContent
+                  glossary={this.props.data.front_matter.glossary}
+                  markdown={this.props.data.markdown}
+                />
+              </Panel>
+            </PageContent>}
+        </Media>
       </PanelWrapper>
     );
   }
