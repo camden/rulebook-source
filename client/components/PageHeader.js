@@ -30,6 +30,7 @@ const Header = styled.div`
 const HeaderSection = styled.div`
   flex: 1;
   display: flex;
+  height: 100%;
 `;
 
 const Icon = styled.div`
@@ -38,7 +39,10 @@ const Icon = styled.div`
   align-items: center;
   -webkit-tap-highlight-color: ${props => props.theme.colors.webkitTapDefault};
 
+  width: auto;
   width: fit-content;
+
+  height: 100%;
 
   user-select: none;
 
@@ -49,6 +53,11 @@ const Icon = styled.div`
 
   &:hover {
     color: ${props => props.theme.colors.icon.hover};
+  }
+
+  &:focus {
+    background-color: ${props => props.theme.colors.icon.focus};
+    outline: none;
   }
 `;
 
@@ -66,10 +75,14 @@ const PageHeader = props => {
   return (
     <Header height={height}>
       <HeaderSection>
-        <Icon aria-label={'Side menu toggle'} onClick={onToggleSidebarClick}>
+        <Icon
+          tabIndex={1}
+          aria-label={'Side menu toggle'}
+          onClick={onToggleSidebarClick}
+        >
           <MenuIcon />
         </Icon>
-        <Link to="/">
+        <Link to="/" tabIndex={1}>
           <Icon aria-label={'Home button'}>
             <HomeIcon />
           </Icon>

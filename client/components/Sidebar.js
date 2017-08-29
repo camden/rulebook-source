@@ -51,8 +51,7 @@ const glossaryItems = (glossary: GlossaryType, onClick: Function) => {
 };
 
 const SidebarBody = styled.nav`
-  padding: 1rem 2rem;
-  border-right: 1px solid ${props => props.theme.colors.border};
+  padding: 1rem 2rem 2rem;
   background-color: white;
   width: 100%;
 `;

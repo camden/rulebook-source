@@ -9,7 +9,7 @@ MainTheme.colors = {
   primary: 'hsl(340, 60%, 65%)',
   black: '#333',
   border: '#efefef',
-  webkitTapDefault: 'rgba(0,0,0,.2)',
+  webkitTapDefault: 'transparent',
   icon: {},
 };
 
@@ -20,6 +20,7 @@ MainTheme.colors.primary_transparent = Color(MainTheme.colors.primary)
 MainTheme.colors.icon = {
   default: Color(MainTheme.colors.primary).lighten(0.35).string(),
   hover: Color(MainTheme.colors.primary).string(),
+  focus: Color(MainTheme.colors.primary).lighten(0.85).string(),
 };
 
 MainTheme.shadows = {
