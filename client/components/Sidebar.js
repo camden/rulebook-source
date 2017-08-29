@@ -16,11 +16,17 @@ type TOCNode = {
 
 type TOCTree = Array<TOCNode>;
 
-const renderChildren = ({ tree }: { tree: TOCTree }) => {
+const renderChildren = ({
+  tree,
+  onClick,
+}: {
+  tree: TOCTree,
+  onClick: Function,
+}) => {
   return tree.map((node: TOCNode) => {
     return (
       <div key={node.id}>
-        <TOCTitle level={node.level} id={node.id}>
+        <TOCTitle level={node.level} id={node.id} onClick={onClick}>
           {node.title}
         </TOCTitle>
         {renderChildren({ tree: node.children })}
@@ -29,10 +35,15 @@ const renderChildren = ({ tree }: { tree: TOCTree }) => {
   });
 };
 
-const glossaryItems = (glossary: GlossaryType) => {
+const glossaryItems = (glossary: GlossaryType, onClick: Function) => {
   return glossary.map(entry => {
     return (
-      <TOCTitle key={entry.name} level={2} id={`glossary-${entry.name}`}>
+      <TOCTitle
+        key={entry.name}
+        level={2}
+        id={`glossary-${entry.name}`}
+        onClick={onClick}
+      >
         {entry.name}
       </TOCTitle>
     );
@@ -47,27 +58,33 @@ const SidebarBody = styled.nav`
 `;
 
 const Sidebar = props => {
-  const { tableOfContents, glossary } = props;
-  const renderedTOC = renderChildren({ tree: tableOfContents });
+  const { glossary, onCloseSidebarClick, tableOfContents } = props;
+
+  const renderedTOC = renderChildren({
+    tree: tableOfContents,
+    onClick: onCloseSidebarClick,
+  });
+
   return (
     <SidebarBody>
       {renderedTOC}
-      <TOCTitle level={1} id={'glossary'}>
+      <TOCTitle level={1} id={'glossary'} onClick={onCloseSidebarClick}>
         Glossary
       </TOCTitle>
-      {glossaryItems(glossary)}
+      {glossaryItems(glossary, onCloseSidebarClick)}
     </SidebarBody>
   );
 };
 
 Sidebar.defaultProps = {
-  tableOfContents: [],
   glossary: [],
+  tableOfContents: [],
 };
 
 Sidebar.propTypes = {
-  tableOfContents: PropTypes.array.isRequired,
   glossary: PropTypes.array.isRequired,
+  onCloseSidebarClick: PropTypes.func.isRequired,
+  tableOfContents: PropTypes.array.isRequired,
 };
 
 export default Sidebar;

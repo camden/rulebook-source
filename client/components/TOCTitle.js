@@ -25,12 +25,21 @@ const TOCLink = styled(({ bold, level, ...rest }) => <Link {...rest} />)`
   }
 `;
 
-const TOCTitle = ({ children, level }) => {
+const TOCTitle = props => {
+  const { children, level } = props;
+
   const formattedId = generateId({ title: children });
 
   const decodedTitle = decodeHTMLEntities(children);
+
   return (
-    <TOCLink to={`#${formattedId}`} level={level} bold={level === 1}>
+    <TOCLink
+      {...props}
+      to={`#${formattedId}`}
+      level={level}
+      bold={level === 1}
+      id={`toc-${formattedId}`}
+    >
       {decodedTitle}
     </TOCLink>
   );
@@ -39,7 +48,7 @@ const TOCTitle = ({ children, level }) => {
 TOCTitle.propTypes = {
   children: PropTypes.string.isRequired,
   level: PropTypes.number.isRequired,
-  id: PropTypes.string.isRequired,
+  id: PropTypes.string,
 };
 
 export default TOCTitle;

@@ -16,7 +16,7 @@ type SidebarValue = {
 
 const sidebarValues = {
   desktop: {
-    width: 400,
+    width: 500,
     unit: 'px',
   },
   mobile: {
@@ -48,6 +48,7 @@ class RulebookPanels extends Component {
   };
 
   handleToggleSidebarClick: Function;
+  closeSidebar: Function;
   content: Function;
 
   constructor(props) {
@@ -58,6 +59,7 @@ class RulebookPanels extends Component {
     };
 
     this.handleToggleSidebarClick = this.handleToggleSidebarClick.bind(this);
+    this.closeSidebar = this.closeSidebar.bind(this);
     this.content = this.content.bind(this);
   }
 
@@ -113,6 +115,12 @@ class RulebookPanels extends Component {
     });
   }
 
+  closeSidebar(): void {
+    this.setState({
+      sidebarOpen: false,
+    });
+  }
+
   content() {
     return (
       <div
@@ -131,6 +139,7 @@ class RulebookPanels extends Component {
               <Sidebar
                 glossary={this.props.data.front_matter.glossary}
                 tableOfContents={this.props.data.toc}
+                onCloseSidebarClick={this.closeSidebar}
               />
             </SidebarWrapper>}
         </Media>
