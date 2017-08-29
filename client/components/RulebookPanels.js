@@ -21,7 +21,7 @@ const sidebarValues = {
   },
   mobile: {
     width: 85,
-    unit: '%',
+    unit: 'vw',
   },
 };
 
