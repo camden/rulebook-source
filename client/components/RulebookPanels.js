@@ -20,8 +20,8 @@ const sidebarValues = {
     unit: 'px',
   },
   mobile: {
-    width: 300,
-    unit: 'px',
+    width: 85,
+    unit: '%',
   },
 };
 
@@ -76,16 +76,16 @@ class RulebookPanels extends Component {
     this.content = this.content.bind(this);
   }
 
-  calculateSidebarWidth({ isMobile }): string {
+  calculateSidebarWidth({ isDesktop }): string {
     const currentSidebarValue: SidebarValue =
-      sidebarValues[isMobile ? 'mobile' : 'desktop'];
+      sidebarValues[isDesktop ? 'desktop' : 'mobile'];
 
     return currentSidebarValue.width + currentSidebarValue.unit;
   }
 
-  calculateSidebarOffset({ isMobile }): string {
+  calculateSidebarOffset({ isDesktop }): string {
     const currentSidebarValue: SidebarValue =
-      sidebarValues[isMobile ? 'mobile' : 'desktop'];
+      sidebarValues[isDesktop ? 'desktop' : 'mobile'];
 
     let offsetValue = -currentSidebarValue.width;
     if (this.state.sidebarOpen) {
@@ -94,9 +94,9 @@ class RulebookPanels extends Component {
     return offsetValue + currentSidebarValue.unit;
   }
 
-  calculateContentOffset({ isMobile }): string {
+  calculateContentOffset({ isDesktop }): string {
     const currentSidebarValue: SidebarValue =
-      sidebarValues[isMobile ? 'mobile' : 'desktop'];
+      sidebarValues[isDesktop ? 'desktop' : 'mobile'];
 
     let offsetValue = 0;
     if (this.state.sidebarOpen) {
@@ -105,10 +105,10 @@ class RulebookPanels extends Component {
     return offsetValue + currentSidebarValue.unit;
   }
 
-  calculateSidebarStyle({ isMobile }): Object {
-    const offset: string = this.calculateSidebarOffset({ isMobile });
+  calculateSidebarStyle({ isDesktop }): Object {
+    const offset: string = this.calculateSidebarOffset({ isDesktop });
     const transform: string = `translate3d(${offset}, 0, 0)`;
-    const width: string = this.calculateSidebarWidth({ isMobile });
+    const width: string = this.calculateSidebarWidth({ isDesktop });
 
     return {
       width,
@@ -146,9 +146,9 @@ class RulebookPanels extends Component {
           onToggleSidebarClick={this.handleToggleSidebarClick}
           title={this.props.data.front_matter.title}
         />
-        <Media query={'mobile'}>
-          {isMobile =>
-            <SidebarWrapper style={this.calculateSidebarStyle({ isMobile })}>
+        <Media query={'desktop'}>
+          {isDesktop =>
+            <SidebarWrapper style={this.calculateSidebarStyle({ isDesktop })}>
               <Sidebar
                 glossary={this.props.data.front_matter.glossary}
                 tableOfContents={this.props.data.toc}

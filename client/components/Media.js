@@ -8,7 +8,7 @@ import queries from 'media-queries';
 
 const Media = ({ query, children }) => {
   return (
-    <ReactMedia query={`(max-width: ${queries[query]})`}>
+    <ReactMedia query={`(min-width: ${queries[query]})`}>
       {children}
     </ReactMedia>
   );

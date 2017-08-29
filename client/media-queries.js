@@ -1,8 +1,7 @@
 // @flow
 
 const queries = {
-  mobile: '40em',
-  tablet: '50em',
+  desktop: '60em',
 };
 
 export default queries;
