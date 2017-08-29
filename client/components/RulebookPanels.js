@@ -127,21 +127,21 @@ class RulebookPanels extends Component {
         />
         <Media query={'mobile'}>
           {isMobile =>
-            <PageContent>
-              <SidebarWrapper style={this.calculateSidebarStyle({ isMobile })}>
-                <Sidebar
-                  glossary={this.props.data.front_matter.glossary}
-                  tableOfContents={this.props.data.toc}
-                />
-              </SidebarWrapper>
-              <div style={this.calculateContentStyle()}>
-                <RulebookContent
-                  glossary={this.props.data.front_matter.glossary}
-                  markdown={this.props.data.markdown}
-                />
-              </div>
-            </PageContent>}
+            <SidebarWrapper style={this.calculateSidebarStyle({ isMobile })}>
+              <Sidebar
+                glossary={this.props.data.front_matter.glossary}
+                tableOfContents={this.props.data.toc}
+              />
+            </SidebarWrapper>}
         </Media>
+        <PageContent>
+          <div style={this.calculateContentStyle()}>
+            <RulebookContent
+              glossary={this.props.data.front_matter.glossary}
+              markdown={this.props.data.markdown}
+            />
+          </div>
+        </PageContent>
       </div>
     );
   }
