@@ -26,13 +26,25 @@ const sidebarValues = {
 };
 
 const HEADER_HEIGHT = '5rem';
+const transitionTime = '250ms';
 
 const PageContent = styled.div`
   margin-top: ${HEADER_HEIGHT};
   overflow-y: auto;
+  position: relative;
 `;
 
-const transitionTime = '250ms';
+const Overlay = styled.div`
+  background-color: ${props =>
+    props.visible ? 'hsla(0, 0%, 0%, 0.1)' : 'transparent'};
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  transition: background-color ${transitionTime} ease;
+`;
+
 const SidebarWrapper = styled.div`
   transition: all ${transitionTime} ease;
   position: fixed;
@@ -40,6 +52,7 @@ const SidebarWrapper = styled.div`
   bottom: 0;
   left: 0;
   overflow-y: auto;
+  z-index: 1;
 `;
 
 class RulebookPanels extends Component {
@@ -144,6 +157,10 @@ class RulebookPanels extends Component {
             </SidebarWrapper>}
         </Media>
         <PageContent>
+          <Overlay
+            visible={this.state.sidebarOpen}
+            onClick={this.closeSidebar}
+          />
           <RulebookContent
             style={this.calculateContentStyle()}
             glossary={this.props.data.front_matter.glossary}
