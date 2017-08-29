@@ -18,7 +18,7 @@ const Header = styled.div`
   right: 0;
   bottom: 0;
 
-  height: 5rem;
+  height: ${props => props.height};
 
   z-index: 10;
 
@@ -60,9 +60,11 @@ const RulebookTitle = styled.span`
   text-overflow: ellipsis;
 `;
 
-const PageHeader = ({ onToggleSidebarClick, title }) => {
+const PageHeader = props => {
+  const { onToggleSidebarClick, title, height } = props;
+
   return (
-    <Header>
+    <Header height={height}>
       <HeaderSection>
         <Icon aria-label={'Side menu toggle'} onClick={onToggleSidebarClick}>
           <MenuIcon />
@@ -84,11 +86,13 @@ const PageHeader = ({ onToggleSidebarClick, title }) => {
 PageHeader.defaultProps = {
   onToggleSidebarClick: () => {},
   title: '',
+  height: '5rem',
 };
 
 PageHeader.propTypes = {
   onToggleSidebarClick: PropTypes.func.isRequired,
   title: PropTypes.string.isRequired,
+  height: PropTypes.string.isRequired,
 };
 
 export default PageHeader;

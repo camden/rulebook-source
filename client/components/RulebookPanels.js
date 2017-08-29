@@ -25,18 +25,22 @@ const sidebarValues = {
   },
 };
 
-const PanelWrapper = styled.div``;
+const HEADER_HEIGHT = '5rem';
 
 const PageContent = styled.div`
-  display: flex;
-  position: relative;
-  top: 5rem;
-  overflowY: scroll;
+  margin-top: ${HEADER_HEIGHT};
+  overflow-y: auto;
 `;
 
 const transitionTime = '250ms';
-
-const Panel = styled.div`transition: all ${transitionTime} ease;`;
+const SidebarWrapper = styled.div`
+  transition: all ${transitionTime} ease;
+  position: fixed;
+  top: ${HEADER_HEIGHT};
+  bottom: 0;
+  left: 0;
+  overflow-y: auto;
+`;
 
 class RulebookPanels extends Component {
   state: {
@@ -90,15 +94,10 @@ class RulebookPanels extends Component {
     const offset: string = this.calculateSidebarOffset({ isMobile });
     const transform: string = `translate3d(${offset}, 0, 0)`;
     const width: string = this.calculateSidebarWidth({ isMobile });
-    const flex: string = '0 0';
-    const flexBasis: string = this.state.sidebarOpen ? width : '0';
 
     return {
       width,
       transform,
-      flex,
-      flexBasis,
-      overflowX: 'hidden',
     };
   }
 
@@ -116,34 +115,34 @@ class RulebookPanels extends Component {
 
   content() {
     return (
-      <PanelWrapper
+      <div
         style={{
           height: window.innerHeight + 'px',
         }}
       >
         <PageHeader
+          height={HEADER_HEIGHT}
           onToggleSidebarClick={this.handleToggleSidebarClick}
           title={this.props.data.front_matter.title}
         />
         <Media query={'mobile'}>
           {isMobile =>
             <PageContent>
-              <Panel style={this.calculateSidebarStyle({ isMobile })}>
+              <SidebarWrapper style={this.calculateSidebarStyle({ isMobile })}>
                 <Sidebar
-                  width={this.calculateSidebarWidth({ isMobile })}
                   glossary={this.props.data.front_matter.glossary}
                   tableOfContents={this.props.data.toc}
                 />
-              </Panel>
-              <Panel style={this.calculateContentStyle()}>
+              </SidebarWrapper>
+              <div style={this.calculateContentStyle()}>
                 <RulebookContent
                   glossary={this.props.data.front_matter.glossary}
                   markdown={this.props.data.markdown}
                 />
-              </Panel>
+              </div>
             </PageContent>}
         </Media>
-      </PanelWrapper>
+      </div>
     );
   }
 
