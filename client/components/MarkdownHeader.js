@@ -39,6 +39,11 @@ const GenericHeader = styled.div`
   display: inline;
 `;
 
+const AnchorOffset = styled.div`
+  position: relative;
+  top: -5rem;
+`;
+
 const levelToSizeMap = {
   '1': '1.8rem',
   '2': '1.5rem',
@@ -67,15 +72,13 @@ class MarkdownHeader extends Component {
 
     return (
       <Wrapper underline={this.props.level === 1}>
+        <AnchorOffset id={id} />
         <Link to={`#${id}`}>
           <AnchorLink>
             <LinkIcon size={20} />
           </AnchorLink>
         </Link>
-        <GenericHeader
-          id={id}
-          size={levelToSizeMap[this.props.level.toString()]}
-        >
+        <GenericHeader size={levelToSizeMap[this.props.level.toString()]}>
           {this.props.children}
         </GenericHeader>
       </Wrapper>

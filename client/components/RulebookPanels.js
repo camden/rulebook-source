@@ -144,12 +144,11 @@ class RulebookPanels extends Component {
             </SidebarWrapper>}
         </Media>
         <PageContent>
-          <div style={this.calculateContentStyle()}>
-            <RulebookContent
-              glossary={this.props.data.front_matter.glossary}
-              markdown={this.props.data.markdown}
-            />
-          </div>
+          <RulebookContent
+            style={this.calculateContentStyle()}
+            glossary={this.props.data.front_matter.glossary}
+            markdown={this.props.data.markdown}
+          />
         </PageContent>
       </div>
     );
