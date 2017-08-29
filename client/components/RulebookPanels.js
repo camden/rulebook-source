@@ -31,6 +31,7 @@ const PageContent = styled.div`
   display: flex;
   position: relative;
   top: 5rem;
+  overflowY: scroll;
 `;
 
 const transitionTime = '250ms';
@@ -97,7 +98,7 @@ class RulebookPanels extends Component {
       transform,
       flex,
       flexBasis,
-      overflow: 'hidden',
+      overflowX: 'hidden',
     };
   }
 
