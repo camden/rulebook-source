@@ -29,7 +29,7 @@ const renderChildren = ({
         <TOCTitle level={node.level} id={node.id} onClick={onClick}>
           {node.title}
         </TOCTitle>
-        {renderChildren({ tree: node.children })}
+        {renderChildren({ tree: node.children, onClick })}
       </div>
     );
   });
