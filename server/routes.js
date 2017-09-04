@@ -1,6 +1,6 @@
 // @flow
 
-import { getRulebookContent, getAllRulebooks } from './utils';
+import { getRulebookContent, getAllRulebooks, getFromCache } from './utils';
 
 export const addRoutes = ({ router, redis }) => {
   if (!redis) {
@@ -57,7 +57,7 @@ export const addRoutes = ({ router, redis }) => {
 
   // For now, just search by name
   router.route('/search').get((req, res) => {
-    const query = req.query.q;
+    let query = req.query.q;
 
     if (!query) {
       return res.status(400).json({
@@ -65,12 +65,29 @@ export const addRoutes = ({ router, redis }) => {
       });
     }
 
-    const matchingRulebooks = [];
+    query = query.toLowerCase().trim();
 
-    redis.setex(req.url, 600, JSON.stringify(matchingRulebooks));
+    // TODO Make this not a 'magic route'
+    getFromCache({ redis, key: '/rulebooks' }).then(data => {
+      let matchingRulebooks = [];
 
-    return res.json({
-      data: matchingRulebooks,
+      if (data && Array.isArray(data)) {
+        matchingRulebooks = data.filter(rulebook => {
+          return (
+            rulebook
+              .toLowerCase()
+              .trim()
+              .replace('/rulebooks/', '')
+              .indexOf(query) > -1
+          );
+        });
+      }
+
+      redis.setex(req.url, 5, JSON.stringify(matchingRulebooks));
+
+      return res.json({
+        data: matchingRulebooks,
+      });
     });
   });
 

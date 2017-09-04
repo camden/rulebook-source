@@ -57,25 +57,31 @@ const isJSON = (string: string): boolean => {
 };
 
 export const getFromCache = ({ redis, key }): Object => {
-  redis.get(key, (err, value) => {
-    let data = value;
+  return new Promise((resolve, reject) => {
+    redis.get(key, (err, value) => {
+      if (err) {
+        return reject(err);
+      }
 
-    if (isJSON(value)) {
-      data = JSON.parse(value);
-    }
+      let data = value;
 
-    return data;
+      if (isJSON(value)) {
+        data = JSON.parse(value);
+      }
+
+      return resolve(data);
+    });
   });
 };
 
 export const cacheHandler = ({ redis }) => {
   return (req, res, next) => {
-    let data = getFromCache({ redis: redis, key: req.url });
-
-    if (data) {
-      res.json({ data: data });
-    } else {
-      next();
-    }
+    return getFromCache({ redis: redis, key: req.url }).then(data => {
+      if (data) {
+        res.json({ data: data });
+      } else {
+        next();
+      }
+    });
   };
 };
