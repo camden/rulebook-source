@@ -3,6 +3,8 @@
 import { getAllRulebooks, getRulebookContent, getFromCache } from './utils';
 import { getRulebooks } from './api';
 
+const rulebooksRoute = '/rulebooks';
+
 export const addRoutes = ({ router, redis }) => {
   if (!redis) {
     throw new Error('Redis client must be provided.');
@@ -40,7 +42,7 @@ export const addRoutes = ({ router, redis }) => {
     });
   });
 
-  router.route('/rulebooks').get((req, res) => {
+  router.route(rulebooksRoute).get((req, res) => {
     return getRulebooks({ req, res, redis });
   });
 
@@ -57,12 +59,12 @@ export const addRoutes = ({ router, redis }) => {
     query = query.toLowerCase().trim();
 
     // TODO Make this not a 'magic route'
-    let data = await getFromCache({ redis, key: '/rulebooks' });
+    let data = await getFromCache({ redis, key: rulebooksRoute });
 
     if (!data) {
       const githubResponse = await getAllRulebooks();
       data = githubResponse.rulebooksArray;
-      redis.setex(req.url, 3600, JSON.stringify(data));
+      redis.setex(rulebooksRoute, 3600, JSON.stringify(data));
     }
 
     let matchingRulebooks = [];
