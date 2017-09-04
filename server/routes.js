@@ -1,6 +1,7 @@
 // @flow
 
-import { getRulebookContent, getAllRulebooks, getFromCache } from './utils';
+import { getAllRulebooks, getRulebookContent, getFromCache } from './utils';
+import { getRulebooks } from './api';
 
 export const addRoutes = ({ router, redis }) => {
   if (!redis) {
@@ -40,23 +41,11 @@ export const addRoutes = ({ router, redis }) => {
   });
 
   router.route('/rulebooks').get((req, res) => {
-    getAllRulebooks().then(githubResponse => {
-      if (githubResponse.status !== 200) {
-        return res.status(githubResponse.status).json({
-          message: 'Unknown error.',
-        });
-      }
-
-      redis.setex(req.url, 3600, JSON.stringify(githubResponse.rulebooksArray));
-
-      return res.json({
-        data: githubResponse.rulebooksArray,
-      });
-    });
+    return getRulebooks({ req, res, redis });
   });
 
   // For now, just search by name
-  router.route('/search').get((req, res) => {
+  router.route('/search').get(async (req, res) => {
     let query = req.query.q;
 
     if (!query) {
@@ -68,26 +57,32 @@ export const addRoutes = ({ router, redis }) => {
     query = query.toLowerCase().trim();
 
     // TODO Make this not a 'magic route'
-    getFromCache({ redis, key: '/rulebooks' }).then(data => {
-      let matchingRulebooks = [];
+    let data = await getFromCache({ redis, key: '/rulebooks' });
 
-      if (data && Array.isArray(data)) {
-        matchingRulebooks = data.filter(rulebook => {
-          return (
-            rulebook
-              .toLowerCase()
-              .trim()
-              .replace('/rulebooks/', '')
-              .indexOf(query) > -1
-          );
-        });
-      }
+    if (!data) {
+      const githubResponse = await getAllRulebooks();
+      data = githubResponse.rulebooksArray;
+      redis.setex(req.url, 3600, JSON.stringify(data));
+    }
 
-      redis.setex(req.url, 5, JSON.stringify(matchingRulebooks));
+    let matchingRulebooks = [];
 
-      return res.json({
-        data: matchingRulebooks,
+    if (data && Array.isArray(data)) {
+      matchingRulebooks = data.filter(rulebook => {
+        return (
+          rulebook
+            .toLowerCase()
+            .trim()
+            .replace('/rulebooks/', '')
+            .indexOf(query) > -1
+        );
       });
+    }
+
+    redis.setex(req.url, 10, JSON.stringify(matchingRulebooks));
+
+    return res.json({
+      data: matchingRulebooks,
     });
   });
 

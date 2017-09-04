@@ -56,7 +56,7 @@ const isJSON = (string: string): boolean => {
   return true;
 };
 
-export const getFromCache = ({ redis, key }): Object => {
+export const getFromCache = async ({ redis, key }): Object => {
   return new Promise((resolve, reject) => {
     redis.get(key, (err, value) => {
       if (err) {
