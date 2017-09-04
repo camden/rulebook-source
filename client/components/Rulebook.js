@@ -44,7 +44,7 @@ export default class Rulebook extends Component {
   }
 
   async loadData() {
-    const rulebookName = this.props.match.params.rulebookName + '.md';
+    const rulebookName = this.props.match.params.rulebookName;
 
     const response = await fetchRulebookData({
       rulebookName: rulebookName,

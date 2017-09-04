@@ -8,7 +8,7 @@ export const addRoutes = ({ router, redis }) => {
   }
 
   router.route('/rulebooks/:rulebookName').get((req, res) => {
-    const rulebookName = req.params.rulebookName;
+    const rulebookName = req.params.rulebookName + '.md';
 
     getRulebookContent(rulebookName).then(markdownResponse => {
       if (markdownResponse.status === 404) {
@@ -52,6 +52,25 @@ export const addRoutes = ({ router, redis }) => {
       return res.json({
         data: githubResponse.rulebooksArray,
       });
+    });
+  });
+
+  // For now, just search by name
+  router.route('/search').get((req, res) => {
+    const query = req.query.q;
+
+    if (!query) {
+      return res.status(400).json({
+        message: "Query 'q' is required for this action.",
+      });
+    }
+
+    const matchingRulebooks = [];
+
+    redis.setex(req.url, 600, JSON.stringify(matchingRulebooks));
+
+    return res.json({
+      data: matchingRulebooks,
     });
   });
 

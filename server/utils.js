@@ -56,21 +56,26 @@ const isJSON = (string: string): boolean => {
   return true;
 };
 
+export const getFromCache = ({ redis, key }): Object => {
+  redis.get(key, (err, value) => {
+    let data = value;
+
+    if (isJSON(value)) {
+      data = JSON.parse(value);
+    }
+
+    return data;
+  });
+};
+
 export const cacheHandler = ({ redis }) => {
   return (req, res, next) => {
-    redis.get(req.url, (err, value) => {
-      let data = value;
+    let data = getFromCache({ redis: redis, key: req.url });
 
-      if (isJSON(value)) {
-        data = JSON.parse(value);
-      }
-
-      // If the cached value exists, send it
-      if (value) {
-        res.json({ data: data });
-      } else {
-        next();
-      }
-    });
+    if (data) {
+      res.json({ data: data });
+    } else {
+      next();
+    }
   };
 };
