@@ -54,4 +54,8 @@ export const addRoutes = ({ router, redis }) => {
       });
     });
   });
+
+  router.route('/*').get((req, res) => {
+    return res.status(404).send();
+  });
 };
