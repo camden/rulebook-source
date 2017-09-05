@@ -23,6 +23,16 @@ export const getRulebookContent = async (
   };
 };
 
+export const hydrateRulebook = async (
+  rulebookName: string
+): Promise<Object> => {
+  const rulebookTitle = rulebookName;
+
+  return {
+    title: rulebookTitle,
+  };
+};
+
 export const getAllRulebooks = async (): Promise<Object> => {
   const url = GITHUB_ROOT + GITHUB_API_URL + '/rulebooks/';
   const response = await fetch(url, {

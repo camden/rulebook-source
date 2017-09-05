@@ -9,8 +9,11 @@ import { searchByTitle } from 'utils';
 class Search extends Component {
   state: {
     searchText: string,
-    searchResults: Array<string>,
+    searchResults: Array<{ title: string }>,
   };
+
+  handleSearchChange: Function;
+  search: Function;
 
   constructor(props) {
     super(props);
@@ -52,7 +55,7 @@ class Search extends Component {
         {this.state.searchResults.map(result => {
           return (
             <div key={result}>
-              {this.searchResult(result)}
+              {this.searchResult(result.title)}
             </div>
           );
         })}

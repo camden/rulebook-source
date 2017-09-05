@@ -19,7 +19,7 @@ export const searchByTitle = async ({
   query,
 }: {
   query: string,
-}): Promise<Array<string>> => {
+}): Promise<Array<Object>> => {
   const serverUrl = `${SITE_ROOT}/search?q=${query}`;
   const res = await fetch(serverUrl);
   const resJSON = await res.json();

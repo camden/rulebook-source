@@ -1,9 +1,8 @@
 // @flow
 
 import { getAllRulebooks, getRulebookContent, getFromCache } from './utils';
-import { getRulebooks } from './api';
-
-const rulebooksRoute = '/rulebooks';
+import { getRulebooks, searchByTitle } from './api';
+import { rulebooksRoute } from './constants';
 
 export const addRoutes = ({ router, redis }) => {
   if (!redis) {
@@ -47,45 +46,8 @@ export const addRoutes = ({ router, redis }) => {
   });
 
   // For now, just search by name
-  router.route('/search').get(async (req, res) => {
-    let query = req.query.q;
-
-    if (!query) {
-      return res.status(400).json({
-        message: "Query 'q' is required for this action.",
-      });
-    }
-
-    query = query.toLowerCase().trim();
-
-    // TODO Make this not a 'magic route'
-    let data = await getFromCache({ redis, key: rulebooksRoute });
-
-    if (!data) {
-      const githubResponse = await getAllRulebooks();
-      data = githubResponse.rulebooksArray;
-      redis.setex(rulebooksRoute, 3600, JSON.stringify(data));
-    }
-
-    let matchingRulebooks = [];
-
-    if (data && Array.isArray(data)) {
-      matchingRulebooks = data.filter(rulebook => {
-        return (
-          rulebook
-            .toLowerCase()
-            .trim()
-            .replace('/rulebooks/', '')
-            .indexOf(query) > -1
-        );
-      });
-    }
-
-    redis.setex(req.url, 10, JSON.stringify(matchingRulebooks));
-
-    return res.json({
-      data: matchingRulebooks,
-    });
+  router.route('/search').get((req, res) => {
+    return searchByTitle({ req, res, redis });
   });
 
   router.route('/*').get((req, res) => {
