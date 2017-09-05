@@ -15,6 +15,17 @@ export const fetchRulebookData = async ({
   return resJSON;
 };
 
+export const searchByTitle = async ({
+  query,
+}: {
+  query: string,
+}): Promise<Array<string>> => {
+  const serverUrl = `${SITE_ROOT}/search?q=${query}`;
+  const res = await fetch(serverUrl);
+  const resJSON = await res.json();
+  return resJSON.data;
+};
+
 export const fetchAllRulebooks = async (): Promise<*> => {
   const serverUrl = `${SITE_ROOT}/rulebooks/`;
   const res = await fetch(serverUrl);
