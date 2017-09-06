@@ -74,7 +74,7 @@ class Search extends Component {
       <div>
         <div>Search</div>
         <DebounceInput
-          debounceTimeout={500}
+          debounceTimeout={250}
           onChange={this.handleSearchChange}
         />
         <div>
