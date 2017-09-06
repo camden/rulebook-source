@@ -140,6 +140,8 @@ class RulebookPanels extends Component {
       <div
         style={{
           height: window.innerHeight + 'px',
+          // This line is needed to fix stacking issues with progress bar
+          opacity: 0.999,
         }}
       >
         <PageHeader

@@ -29,14 +29,12 @@ class ProgressBar extends Component {
     if (this.props.loading) {
       if (!nextProps.loading) {
         // Was loading, now finished loading, so fill the bar
-        setTimeout(() => {
-          this.setState(
-            {
-              percent: 100,
-            },
-            this.stopAutoIncrement
-          );
-        }, 500);
+        this.setState(
+          {
+            percent: 100,
+          },
+          this.stopAutoIncrement
+        );
       }
     } else {
       // Finished loading, now loading again, so restart bar
@@ -89,16 +87,18 @@ class ProgressBar extends Component {
 
   render() {
     return (
-      <ReactProgress
-        {...this.props}
-        percent={this.state.percent}
-        color={MainTheme.colors.primary}
-        style={{
-          height: '0.5vh',
-          boxShadow: `1px 2px 4px ${MainTheme.colors.primary_transparent}`,
-          zIndex: '100',
-        }}
-      />
+      <div>
+        <ReactProgress
+          {...this.props}
+          percent={this.state.percent}
+          color={MainTheme.colors.primary}
+          style={{
+            height: '0.5vh',
+            boxShadow: `1px 2px 4px ${MainTheme.colors.primary_transparent}`,
+            zIndex: '100',
+          }}
+        />
+      </div>
     );
   }
 }
