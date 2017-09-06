@@ -31,9 +31,12 @@ const glossaryDefinitions = (glossary: GlossaryType) => {
 const Glossary = ({ glossary }: { glossary: GlossaryType }) => {
   return (
     <section>
-      <MarkdownHeader id={'glossary'} level={1}>
-        Glossary
-      </MarkdownHeader>
+      {glossary.length > 0
+        ? // Only render the title "glossary" if the glossary is loaded
+          <MarkdownHeader id={'glossary'} level={1}>
+            Glossary
+          </MarkdownHeader>
+        : null}
       {glossaryDefinitions(glossary)}
     </section>
   );
