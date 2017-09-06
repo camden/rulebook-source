@@ -7,7 +7,7 @@ import styled from 'styled-components';
 import SearchResult from 'components/SearchResult';
 import { searchByTitle } from 'utils';
 
-const SearchResultList = styled.div`width: 600px;`;
+const SearchResultList = styled.div`max-width: 600px;`;
 
 class Search extends Component {
   state: {

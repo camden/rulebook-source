@@ -12,17 +12,9 @@ const TOCLink = styled(({ bold, level, ...rest }) => <Link {...rest} />)`
   padding: 0.5rem 0;
   padding-left: ${props => props.level}rem;
   display: block;
-  color: ${props => props.theme.colors.primary};
-  text-decoration: underline;
-  text-decoration-skip: ink;
-  text-decoration-color: transparent;
   font-weight: ${props => (props.bold ? 'bolder' : 'normal')};
 
   transition: all 150ms linear;
-
-  &:hover {
-    text-decoration-color: ${props => props.theme.colors.primary}
-  }
 `;
 
 const TOCTitle = props => {
