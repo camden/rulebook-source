@@ -1,6 +1,7 @@
 // @flow
 import fetch from 'node-fetch';
 import atob from 'atob';
+import frontMatter from 'front-matter';
 
 const REPO_AUTHOR = 'camden';
 const REPO_NAME = 'rulebooks';
@@ -69,11 +70,12 @@ export const hydrateRulebook = async ({
   });
 
   const rulebookContent = atob(rulebookData.encodedContent);
-  //TODO parse yaml here!!!!!!
+  const rulebookAttributes = frontMatter(rulebookContent).attributes;
 
-  const rulebookTitle = rulebookName;
+  const rulebookTitle = rulebookAttributes.title || rulebookName;
 
   return {
+    name: rulebookName,
     title: rulebookTitle,
   };
 };

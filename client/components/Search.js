@@ -47,10 +47,10 @@ class Search extends Component {
     });
   }
 
-  searchResult(result: string) {
+  searchResult(result: Object) {
     return (
-      <Link to={`/rules/${result}`}>
-        {result}
+      <Link to={`/rules/${result.name}`}>
+        {result.title}
       </Link>
     );
   }
@@ -60,8 +60,8 @@ class Search extends Component {
       <div>
         {this.state.searchResults.map(result => {
           return (
-            <div key={result.title}>
-              {this.searchResult(result.title)}
+            <div key={result.name}>
+              {this.searchResult(result)}
             </div>
           );
         })}
