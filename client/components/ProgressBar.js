@@ -29,12 +29,15 @@ class ProgressBar extends Component {
     if (this.props.loading) {
       if (!nextProps.loading) {
         // Was loading, now finished loading, so fill the bar
-        this.setState(
-          {
-            percent: 100,
-          },
-          this.stopAutoIncrement
-        );
+        // The timeout guarantees a minimum loading time of 500ms
+        setTimeout(() => {
+          this.setState(
+            {
+              percent: 100,
+            },
+            this.stopAutoIncrement
+          );
+        }, 500);
       }
     } else {
       // Finished loading, now loading again, so restart bar
