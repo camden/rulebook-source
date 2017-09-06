@@ -22,7 +22,6 @@ class ProgressBar extends Component {
   }
 
   componentDidMount() {
-    console.log('STARTED LOADING');
     this.startAutoIncrement();
   }
 
@@ -69,7 +68,6 @@ class ProgressBar extends Component {
     }
 
     clearInterval(this.state.intervalId);
-    console.log('DONE LOADING');
 
     this.setState({
       intervalId: null,
@@ -98,7 +96,7 @@ class ProgressBar extends Component {
         style={{
           height: '0.5vh',
           boxShadow: `1px 2px 4px ${MainTheme.colors.primary_transparent}`,
-          zIndex: '10',
+          zIndex: '100',
         }}
       />
     );

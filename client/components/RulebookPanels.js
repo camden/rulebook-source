@@ -35,6 +35,7 @@ const PageContent = styled.div`
 `;
 
 const Overlay = styled.div`
+  pointer-events: none;
   background-color: ${props =>
     props.visible ? 'hsla(0, 0%, 0%, 0.1)' : 'transparent'};
   position: absolute;

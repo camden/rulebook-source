@@ -100,9 +100,9 @@ export default class Rulebook extends Component {
 
   render() {
     return (
-      <div>
-        <RulebookPanels data={this.state.data} />
+      <div style={{ position: 'relative' }}>
         <ProgressBar loading={this.state.loading} />
+        <RulebookPanels data={this.state.data} />
       </div>
     );
   }
