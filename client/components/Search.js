@@ -8,6 +8,7 @@ import { searchByTitle } from 'utils';
 
 class Search extends Component {
   state: {
+    searchLoading: boolean,
     searchText: string,
     searchResults: Array<{ title: string }>,
   };
@@ -18,6 +19,7 @@ class Search extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      searchLoading: false,
       searchText: '',
       searchResults: [],
     };
@@ -27,6 +29,9 @@ class Search extends Component {
   }
 
   handleSearchChange(event) {
+    this.setState({
+      searchLoading: true,
+    });
     this.search(event.target.value);
   }
 
@@ -38,6 +43,7 @@ class Search extends Component {
 
     this.setState({
       searchResults,
+      searchLoading: false,
     });
   }
 
