@@ -2,9 +2,12 @@
 
 import React, { Component } from 'react';
 import DebounceInput from 'react-debounce-input';
+import styled from 'styled-components';
 
 import SearchResult from 'components/SearchResult';
 import { searchByTitle } from 'utils';
+
+const SearchResultList = styled.div`width: 600px;`;
 
 class Search extends Component {
   state: {
@@ -49,11 +52,11 @@ class Search extends Component {
 
   searchResultList() {
     return (
-      <div>
+      <SearchResultList>
         {this.state.searchResults.map(result => {
           return <SearchResult result={result} key={result.name} />;
         })}
-      </div>
+      </SearchResultList>
     );
   }
 
