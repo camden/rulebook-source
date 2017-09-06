@@ -2,8 +2,8 @@
 
 import React, { Component } from 'react';
 import DebounceInput from 'react-debounce-input';
-import { Link } from 'react-router-dom';
 
+import SearchResult from 'components/SearchResult';
 import { searchByTitle } from 'utils';
 
 class Search extends Component {
@@ -47,23 +47,11 @@ class Search extends Component {
     });
   }
 
-  searchResult(result: Object) {
-    return (
-      <Link to={`/rules/${result.name}`}>
-        {result.title}
-      </Link>
-    );
-  }
-
   searchResultList() {
     return (
       <div>
         {this.state.searchResults.map(result => {
-          return (
-            <div key={result.name}>
-              {this.searchResult(result)}
-            </div>
-          );
+          return <SearchResult result={result} key={result.name} />;
         })}
       </div>
     );
