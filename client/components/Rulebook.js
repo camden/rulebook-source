@@ -71,16 +71,17 @@ export default class Rulebook extends Component {
     const toc = compiledMarkdown.toc;
     const markdownData = compiledMarkdown.tree;
 
-    this.finishedLoading();
-
-    this.setState({
-      data: {
-        front_matter: frontMatterData,
-        markdown: markdownData,
-        toc: toc,
+    this.setState(
+      {
+        data: {
+          front_matter: frontMatterData,
+          markdown: markdownData,
+          toc: toc,
+        },
+        loading: false,
       },
-      loading: false,
-    });
+      this.finishedLoading
+    );
   }
 
   finishedLoading() {

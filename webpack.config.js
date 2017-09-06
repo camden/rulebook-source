@@ -36,7 +36,7 @@ module.exports = {
     }),
     new webpack.optimize.UglifyJsPlugin({
       comments: false, // remove comments
-      mangle: false,
+      mangle: process.env.NODE_ENV === 'production',
       compress: {
         booleans: true,
         conditionals: true,

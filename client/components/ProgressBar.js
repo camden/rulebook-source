@@ -22,6 +22,7 @@ class ProgressBar extends Component {
   }
 
   componentDidMount() {
+    console.log('STARTED LOADING');
     this.startAutoIncrement();
   }
 
@@ -29,12 +30,14 @@ class ProgressBar extends Component {
     if (this.props.loading) {
       if (!nextProps.loading) {
         // Was loading, now finished loading, so fill the bar
-        this.setState(
-          {
-            percent: 100,
-          },
-          this.stopAutoIncrement
-        );
+        setTimeout(() => {
+          this.setState(
+            {
+              percent: 100,
+            },
+            this.stopAutoIncrement
+          );
+        }, 500);
       }
     } else {
       // Finished loading, now loading again, so restart bar
@@ -66,6 +69,7 @@ class ProgressBar extends Component {
     }
 
     clearInterval(this.state.intervalId);
+    console.log('DONE LOADING');
 
     this.setState({
       intervalId: null,
@@ -94,12 +98,16 @@ class ProgressBar extends Component {
         style={{
           height: '0.5vh',
           boxShadow: `1px 2px 4px ${MainTheme.colors.primary_transparent}`,
-          zIndex: '10000',
+          zIndex: '10',
         }}
       />
     );
   }
 }
+
+ProgressBar.defaultProps = {
+  loading: true,
+};
 
 ProgressBar.propTypes = {
   loading: PropTypes.bool.isRequired,
