@@ -36,6 +36,7 @@
   },
   "dependencies": {
     "anchorate": "^1.1.0",
+    "atob": "^2.0.3",
     "babel-cli": "^6.24.1",
     "babel-core": "^6.24.1",
     "babel-eslint": "^7.2.3",
@@ -48,6 +49,7 @@
     "body-parser": "^1.17.2",
     "color": "^2.0.0",
     "css-loader": "^0.28.5",
+    "dotenv": "^4.0.0",
     "express": "^4.15.4",
     "front-matter": "^2.1.2",
     "ghrequest": "^1.0.1",

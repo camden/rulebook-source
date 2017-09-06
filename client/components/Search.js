@@ -54,7 +54,7 @@ class Search extends Component {
       <div>
         {this.state.searchResults.map(result => {
           return (
-            <div key={result}>
+            <div key={result.title}>
               {this.searchResult(result.title)}
             </div>
           );

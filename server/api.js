@@ -39,7 +39,7 @@ export const searchByTitle = async ({ req, res, redis }) => {
   }
 
   const hydratedRulebooksArray = await Promise.all(
-    rulebooksArray.map(hydrateRulebook)
+    rulebooksArray.map(rulebookName => hydrateRulebook({ rulebookName, redis }))
   );
 
   let matchingRulebooks = [];

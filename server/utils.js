@@ -1,31 +1,76 @@
 // @flow
 import fetch from 'node-fetch';
+import atob from 'atob';
 
 const REPO_AUTHOR = 'camden';
 const REPO_NAME = 'rulebooks';
 const GITHUB_ROOT = 'https://api.github.com';
 const GITHUB_API_URL = `/repos/${REPO_AUTHOR}/${REPO_NAME}/contents`;
 
-export const getRulebookContent = async (
-  rulebookName: string
-): Promise<Object> => {
-  const url = GITHUB_ROOT + GITHUB_API_URL + '/rulebooks/' + rulebookName;
-  const response = await fetch(url, {
-    headers: {
-      'User-Agent': REPO_AUTHOR + '/' + REPO_NAME,
-    },
+const getGithubAuthParams = () => {
+  const clientId = process.env.GITHUB_CLIENT_ID;
+  const clientSecret = process.env.GITHUB_CLIENT_SECRET;
+
+  if (!clientId || !clientSecret) {
+    throw new Error('Client ID and client secret must be provided.');
+  }
+
+  return `?client_id=${clientId}&client_secret=${clientSecret}`;
+};
+
+// Rulebook name must be the root name - i.e. without filetype
+export const getRulebookContent = async ({
+  rulebookName,
+  redis,
+}: {
+  rulebookName: string,
+  redis: *,
+}): Promise<Object> => {
+  let rulebookData = await getFromCache({
+    key: 'rulebook-' + rulebookName,
+    redis,
   });
-  const rulebookData = await response.json();
+
+  let status = 200;
+
+  if (!rulebookData) {
+    const url =
+      GITHUB_ROOT +
+      GITHUB_API_URL +
+      '/rulebooks/' +
+      rulebookName +
+      '.md' +
+      getGithubAuthParams();
+    const response = await fetch(url, {
+      headers: {
+        'User-Agent': REPO_AUTHOR + '/' + REPO_NAME,
+      },
+    });
+
+    status = response.status;
+    rulebookData = await response.json();
+
+    redis.setex('rulebook-' + rulebookName, 3600, JSON.stringify(rulebookData));
+  }
 
   return {
-    status: response.status,
+    status,
     encodedContent: rulebookData.content,
   };
 };
 
-export const hydrateRulebook = async (
-  rulebookName: string
-): Promise<Object> => {
+export const hydrateRulebook = async ({
+  rulebookName,
+  redis,
+}): Promise<Object> => {
+  const rulebookData = await getRulebookContent({
+    rulebookName,
+    redis,
+  });
+
+  const rulebookContent = atob(rulebookData.encodedContent);
+  //TODO parse yaml here!!!!!!
+
   const rulebookTitle = rulebookName;
 
   return {
@@ -34,7 +79,9 @@ export const hydrateRulebook = async (
 };
 
 export const getAllRulebooks = async (): Promise<Object> => {
-  const url = GITHUB_ROOT + GITHUB_API_URL + '/rulebooks/';
+  const url =
+    GITHUB_ROOT + GITHUB_API_URL + '/rulebooks' + getGithubAuthParams();
+
   const response = await fetch(url, {
     headers: {
       'User-Agent': REPO_AUTHOR + '/' + REPO_NAME,

@@ -10,9 +10,9 @@ export const addRoutes = ({ router, redis }) => {
   }
 
   router.route('/rulebooks/:rulebookName').get((req, res) => {
-    const rulebookName = req.params.rulebookName + '.md';
+    const rulebookName = req.params.rulebookName;
 
-    getRulebookContent(rulebookName).then(markdownResponse => {
+    getRulebookContent({ rulebookName, redis }).then(markdownResponse => {
       if (markdownResponse.status === 404) {
         return res.status(markdownResponse.status).json({
           message: `Rulebook ${rulebookName} not found.`,
@@ -32,8 +32,6 @@ export const addRoutes = ({ router, redis }) => {
       }
 
       const content = markdownResponse.encodedContent.replace(/\n/g, '');
-
-      redis.setex(req.url, 3600, JSON.stringify(content));
 
       return res.json({
         data: content,

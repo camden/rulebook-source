@@ -29,10 +29,12 @@ class ProgressBar extends Component {
     if (this.props.loading) {
       if (!nextProps.loading) {
         // Was loading, now finished loading, so fill the bar
-        this.setState({
-          percent: 100,
-        });
-        this.stopAutoIncrement();
+        this.setState(
+          {
+            percent: 100,
+          },
+          this.stopAutoIncrement
+        );
       }
     } else {
       // Finished loading, now loading again, so restart bar
@@ -92,6 +94,7 @@ class ProgressBar extends Component {
         style={{
           height: '0.5vh',
           boxShadow: `1px 2px 4px ${MainTheme.colors.primary_transparent}`,
+          zIndex: '10000',
         }}
       />
     );

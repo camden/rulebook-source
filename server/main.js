@@ -2,6 +2,7 @@
 
 import 'babel-polyfill';
 
+import dotenv from 'dotenv';
 import express from 'express';
 import bodyParser from 'body-parser';
 import path from 'path';
@@ -9,6 +10,9 @@ import redis from 'redis';
 
 import { cacheHandler } from './utils';
 import { addRoutes } from './routes';
+
+// Setup env vars
+dotenv.config();
 
 process.title = process.argv[2];
 

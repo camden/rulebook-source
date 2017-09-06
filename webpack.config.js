@@ -36,6 +36,7 @@ module.exports = {
     }),
     new webpack.optimize.UglifyJsPlugin({
       comments: false, // remove comments
+      mangle: false,
       compress: {
         booleans: true,
         conditionals: true,
