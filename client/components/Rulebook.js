@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import frontMatter from 'front-matter';
 import { anchorate } from 'anchorate';
+import { Helmet } from 'react-helmet';
 
 import RulebookPanels from 'components/RulebookPanels';
 import ProgressBar from 'components/ProgressBar';
@@ -101,6 +102,12 @@ export default class Rulebook extends Component {
   render() {
     return (
       <div style={{ position: 'relative' }}>
+        <Helmet>
+          <title>
+            {this.state.data.front_matter.title ||
+              this.props.match.params.rulebookName}
+          </title>
+        </Helmet>
         <RulebookPanels data={this.state.data} />
         <ProgressBar loading={this.state.loading} />
       </div>

@@ -3,7 +3,9 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { Helmet } from 'react-helmet';
 
+import config from 'config';
 import ProgressBar from 'components/ProgressBar';
 import Search from 'components/Search';
 
@@ -41,6 +43,11 @@ export default class Home extends Component {
   render() {
     return (
       <HomeWrapper>
+        <Helmet>
+          <title>
+            {config.homeTitle}
+          </title>
+        </Helmet>
         <ProgressBar loading={this.state.loading} />
         <h1>Welcome to Rulebook.io!</h1>
         <Search />
