@@ -99,13 +99,26 @@ export default class Rulebook extends Component {
     });
   }
 
+  title() {
+    return (
+      this.state.data.front_matter.title || this.props.match.params.rulebookName
+    );
+  }
+
+  description() {
+    return (
+      this.state.data.front_matter.description ||
+      `Rulebook for the game ${this.title()}.`
+    );
+  }
+
   render() {
     return (
       <div style={{ position: 'relative' }}>
         <Helmet>
+          <meta name="description" content={this.description()} />
           <title>
-            {this.state.data.front_matter.title ||
-              this.props.match.params.rulebookName}
+            {this.title()}
           </title>
         </Helmet>
         <RulebookPanels data={this.state.data} />
