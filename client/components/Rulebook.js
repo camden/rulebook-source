@@ -105,6 +105,14 @@ export default class Rulebook extends Component {
     );
   }
 
+  ogTitle() {
+    return 'website';
+  }
+
+  ogTitle() {
+    return `${this.title()} - Rulebook.io`;
+  }
+
   description() {
     return (
       this.state.data.front_matter.description ||
@@ -117,6 +125,9 @@ export default class Rulebook extends Component {
       <div style={{ position: 'relative' }}>
         <Helmet>
           <meta name="description" content={this.description()} />
+          <meta property="og:title" content={this.ogTitle()} />
+          <meta property="og:type" content={this.ogType()} />
+          <meta property="og:description" content={this.description()} />
           <title>
             {this.title()}
           </title>
