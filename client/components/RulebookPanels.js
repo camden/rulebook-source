@@ -135,14 +135,14 @@ class RulebookPanels extends Component {
     });
   }
 
-  content() {
+  content(isDesktop: boolean) {
     return (
       <div
         style={{
           height: window.innerHeight + 'px',
           // This line is needed to fix stacking issues with progress bar
           opacity: 0.999,
-          overflow: this.state.sidebarOpen ? 'hidden' : 'visible',
+          overflow: this.state.sidebarOpen && isDesktop ? 'hidden' : 'visible',
         }}
       >
         <PageHeader
@@ -150,16 +150,13 @@ class RulebookPanels extends Component {
           onToggleSidebarClick={this.handleToggleSidebarClick}
           title={this.props.data.front_matter.title}
         />
-        <Media query={'desktop'}>
-          {isDesktop =>
-            <SidebarWrapper style={this.calculateSidebarStyle({ isDesktop })}>
-              <Sidebar
-                glossary={this.props.data.front_matter.glossary}
-                tableOfContents={this.props.data.toc}
-                onCloseSidebarClick={this.closeSidebar}
-              />
-            </SidebarWrapper>}
-        </Media>
+        <SidebarWrapper style={this.calculateSidebarStyle({ isDesktop })}>
+          <Sidebar
+            glossary={this.props.data.front_matter.glossary}
+            tableOfContents={this.props.data.toc}
+            onCloseSidebarClick={this.closeSidebar}
+          />
+        </SidebarWrapper>
         <PageContent>
           <Overlay
             visible={this.state.sidebarOpen}
@@ -177,7 +174,11 @@ class RulebookPanels extends Component {
   }
 
   render() {
-    return this.content();
+    return (
+      <Media query={'desktop'}>
+        {isDesktop => this.content(isDesktop)}
+      </Media>
+    );
   }
 }
 
