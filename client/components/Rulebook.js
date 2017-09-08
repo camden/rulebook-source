@@ -6,6 +6,7 @@ import frontMatter from 'front-matter';
 import { anchorate } from 'anchorate';
 import { Helmet } from 'react-helmet';
 
+import config from 'config';
 import RulebookPanels from 'components/RulebookPanels';
 import ProgressBar from 'components/ProgressBar';
 import { fetchRulebookData } from 'utils';
@@ -45,7 +46,7 @@ export default class Rulebook extends Component {
   }
 
   async loadData() {
-    const rulebookName = this.props.match.params.rulebookName;
+    const rulebookName = this.rulebookName();
 
     const response = await fetchRulebookData({
       rulebookName: rulebookName,
@@ -99,24 +100,30 @@ export default class Rulebook extends Component {
     });
   }
 
+  rulebookName() {
+    return this.props.match.params.rulebookName;
+  }
+
   title() {
-    return (
-      this.state.data.front_matter.title || this.props.match.params.rulebookName
-    );
+    return this.state.data.front_matter.title || this.rulebookName();
   }
 
   ogTitle() {
-    return 'website';
+    return `${this.title()} - Rulebook.io`;
   }
 
   ogType() {
-    return `${this.title()} - Rulebook.io`;
+    return 'website';
+  }
+
+  ogUrl() {
+    return `${config.homeUrl}/rules/${this.rulebookName()}`;
   }
 
   description() {
     return (
       this.state.data.front_matter.description ||
-      `Rulebook for the game ${this.title()}.`
+      `Rulebook for ${this.title()}.`
     );
   }
 
@@ -124,13 +131,14 @@ export default class Rulebook extends Component {
     return (
       <div style={{ position: 'relative' }}>
         <Helmet>
-          <meta name="description" content={this.description()} />
           <meta property="og:title" content={this.ogTitle()} />
           <meta property="og:type" content={this.ogType()} />
           <meta property="og:description" content={this.description()} />
+          <meta property="og:url" content={this.ogUrl()} />
           <title>
             {this.title()}
           </title>
+          <meta name="description" content={this.description()} />
         </Helmet>
         <RulebookPanels data={this.state.data} />
         <ProgressBar loading={this.state.loading} />

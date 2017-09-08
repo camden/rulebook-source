@@ -44,7 +44,10 @@ export default class Home extends Component {
     return (
       <HomeWrapper>
         <Helmet>
+          <meta name="og:url" content={config.homeUrl} />
           <meta name="description" content={config.homeDescription} />
+          <meta name="og:description" content={config.homeDescription} />
+          <meta name="og:title" content={config.homeTitle} />
           <title>
             {config.homeTitle}
           </title>
