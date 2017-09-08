@@ -109,7 +109,7 @@ export default class Rulebook extends Component {
     return 'website';
   }
 
-  ogTitle() {
+  ogType() {
     return `${this.title()} - Rulebook.io`;
   }
 
