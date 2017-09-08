@@ -58,6 +58,7 @@
     "html-webpack-plugin": "^2.30.1",
     "marksy": "^5.0.0",
     "node-fetch": "^1.7.2",
+    "prerender-node": "^2.7.2",
     "prop-types": "^15.5.10",
     "react": "^15.5.4",
     "react-debounce-input": "^3.0.1",
