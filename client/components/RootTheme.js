@@ -5,7 +5,6 @@ import { MainTheme } from 'themes';
 
 import styled, { injectGlobal, ThemeProvider } from 'styled-components';
 
-// TODO remove star selector
 injectGlobal`
   body {
     box-sizing: border-box;

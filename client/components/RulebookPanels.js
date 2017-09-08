@@ -35,7 +35,7 @@ const PageContent = styled.div`
 `;
 
 const Overlay = styled.div`
-  pointer-events: none;
+  pointer-events: ${props => (props.visible ? 'auto' : 'none')};
   background-color: ${props =>
     props.visible ? 'hsla(0, 0%, 0%, 0.1)' : 'transparent'};
   position: absolute;
@@ -142,6 +142,7 @@ class RulebookPanels extends Component {
           height: window.innerHeight + 'px',
           // This line is needed to fix stacking issues with progress bar
           opacity: 0.999,
+          overflow: this.state.sidebarOpen ? 'hidden' : 'visible',
         }}
       >
         <PageHeader
