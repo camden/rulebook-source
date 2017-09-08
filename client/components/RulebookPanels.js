@@ -164,6 +164,7 @@ class RulebookPanels extends Component {
           <Overlay
             visible={this.state.sidebarOpen}
             onClick={this.closeSidebar}
+            onWheel={this.closeSidebar}
           />
           <RulebookContent
             style={this.calculateContentStyle()}
