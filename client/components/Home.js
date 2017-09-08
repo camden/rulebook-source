@@ -48,6 +48,7 @@ export default class Home extends Component {
           <meta property="og:description" content={config.homeDescription} />
           <meta property="og:title" content={config.homeTitle} />
           <meta property="og:url" content={config.homeUrl} />
+          <meta property="og:site_name" content={config.homeTitle} />
           <title>
             {config.homeTitle}
           </title>

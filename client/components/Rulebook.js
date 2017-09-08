@@ -121,10 +121,7 @@ export default class Rulebook extends Component {
   }
 
   description() {
-    return (
-      this.state.data.front_matter.description ||
-      `Rulebook for ${this.title()}.`
-    );
+    return `Rulebook for ${this.title()}.`;
   }
 
   render() {
