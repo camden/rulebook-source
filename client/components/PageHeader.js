@@ -80,11 +80,11 @@ const PageHeader = props => {
           aria-label={'Side menu toggle'}
           onClick={onToggleSidebarClick}
         >
-          <MenuIcon />
+          <MenuIcon size={20} />
         </Icon>
         <Link to="/" tabIndex={1} style={{ height: '100%' }}>
           <Icon aria-label={'Home button'}>
-            <HomeIcon />
+            <HomeIcon size={20} />
           </Icon>
         </Link>
       </HeaderSection>
