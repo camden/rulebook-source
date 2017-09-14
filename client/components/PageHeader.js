@@ -82,7 +82,7 @@ const PageHeader = props => {
         >
           <MenuIcon />
         </Icon>
-        <Link to="/" tabIndex={1}>
+        <Link to="/" tabIndex={1} style={{ height: '100%' }}>
           <Icon aria-label={'Home button'}>
             <HomeIcon />
           </Icon>

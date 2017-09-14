@@ -55,6 +55,11 @@ export default class Home extends Component {
         </Helmet>
         <ProgressBar loading={this.state.loading} />
         <h1>Welcome to Rulebook.io!</h1>
+        <h4>
+          This page is still a work in progress... but the individual pages are
+          pretty much done!
+        </h4>
+        <h4>Try searching for "Catan".</h4>
         <Search />
       </HomeWrapper>
     );
