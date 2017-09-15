@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import React, { Component } from 'react';
 import { anchorate } from 'anchorate';
 
+import Analytics from 'analytics';
 import { getMarkdown } from 'utils';
 import Home from 'components/Home';
 import Rulebook from 'components/Rulebook';
@@ -16,6 +17,7 @@ class App extends Component {
       <RootTheme>
         <BrowserRouter>
           <div>
+            <Route component={Analytics} />
             <Route
               render={() => {
                 anchorate();

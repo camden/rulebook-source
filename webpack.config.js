@@ -1,6 +1,7 @@
 var webpack = require('webpack');
 var path = require('path');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
+var Dotenv = require('dotenv-webpack');
 
 module.exports = {
   devtool: 'cheap-module-source-map',
@@ -29,10 +30,10 @@ module.exports = {
     ],
   },
   plugins: [
-    new webpack.DefinePlugin({
-      'process.env': {
-        NODE_ENV: JSON.stringify(process.env.NODE_ENV || 'production'),
-      },
+    new Dotenv({
+      path: './.env',
+      safe: false,
+      systemvars: true,
     }),
     new webpack.optimize.UglifyJsPlugin({
       comments: false, // remove comments
