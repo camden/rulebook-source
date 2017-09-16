@@ -75,7 +75,7 @@ class MarkdownHeader extends Component {
         <AnchorOffset id={id} />
         <Link to={`#${id}`}>
           <AnchorLink>
-            <LinkIcon size={20} />
+            <LinkIcon size={16} />
           </AnchorLink>
         </Link>
         <GenericHeader size={levelToSizeMap[this.props.level.toString()]}>
