@@ -17,7 +17,6 @@ class App extends Component {
       <RootTheme>
         <BrowserRouter>
           <div>
-            <Route component={Analytics} />
             <Route
               render={() => {
                 anchorate();
@@ -29,6 +28,7 @@ class App extends Component {
               <Route path="/rules/:rulebookName" component={Rulebook} />
               <Route component={PageNotFound} />
             </Switch>
+            <Route component={Analytics} />
           </div>
         </BrowserRouter>
       </RootTheme>
