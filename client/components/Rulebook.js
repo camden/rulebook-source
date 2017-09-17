@@ -127,7 +127,7 @@ export default class Rulebook extends Component {
   render() {
     return (
       <div style={{ position: 'relative' }}>
-        <Helmet>
+        <Helmet defer={false}>
           <meta property="og:title" content={this.ogTitle()} />
           <meta property="og:type" content={this.ogType()} />
           <meta property="og:description" content={this.description()} />

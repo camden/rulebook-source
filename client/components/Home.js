@@ -43,7 +43,7 @@ export default class Home extends Component {
   render() {
     return (
       <HomeWrapper>
-        <Helmet>
+        <Helmet defer={false}>
           <meta name="description" content={config.homeDescription} />
           <meta property="og:description" content={config.homeDescription} />
           <meta property="og:title" content={config.homeTitle} />
