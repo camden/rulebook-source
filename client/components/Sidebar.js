@@ -12,6 +12,8 @@ import TableOfContents from 'components/TableOfContents';
 const TopMenu = styled.div`
   border-bottom: 1px solid ${props => props.theme.colors.border};
   display: flex;
+  justify-content: center;
+  justify-content: space-around;
   justify-content: space-evenly;
 `;
 

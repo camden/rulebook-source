@@ -31,7 +31,7 @@ GenericIcon.propTypes = {
 
 GenericIcon.defaultProps = {
   color: 'currentColor',
-  size: '24',
+  size: '30',
 };
 
 export default GenericIcon;

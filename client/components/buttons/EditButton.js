@@ -14,8 +14,8 @@ const EditButton = props => {
       style={{ height: '100%', textDecoration: 'none' }}
       {...props}
     >
-      <Icon aria-label={'Edit button'}>
-        <EditIcon size={20} />
+      <Icon aria-label={'Edit button'} label={'Edit'}>
+        <EditIcon size={24} />
       </Icon>
     </Link>
   );

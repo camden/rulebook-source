@@ -14,8 +14,8 @@ const HomeButton = props => {
       style={{ height: '100%', textDecoration: 'none' }}
       {...props}
     >
-      <Icon aria-label={'Home button'}>
-        <HomeIcon size={20} />
+      <Icon aria-label={'Home button'} label={'Home'}>
+        <HomeIcon size={24} />
       </Icon>
     </Link>
   );

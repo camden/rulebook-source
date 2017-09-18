@@ -53,9 +53,10 @@ const PageHeader = props => {
         <Icon
           tabIndex={1}
           aria-label={'Side menu toggle'}
+          label={'Menu'}
           onClick={onToggleSidebarClick}
         >
-          <MenuIcon size={20} />
+          <MenuIcon size={24} />
         </Icon>
         <Media query={'desktop'}>
           {isDesktop => (isDesktop ? <HomeButton /> : null)}

@@ -20,8 +20,6 @@ const IconWrapper = styled.div`
   flex-wrap: wrap;
 
   width: auto;
-  width: fit-content;
-
   height: 100%;
 
   user-select: none;
@@ -43,11 +41,18 @@ const IconWrapper = styled.div`
 
 const Icon = props => {
   return (
-    <IconWrapper>
+    <IconWrapper {...props}>
       {props.children}
-      <IconLabel>Edit</IconLabel>
+      <IconLabel>
+        {props.label}
+      </IconLabel>
     </IconWrapper>
   );
+};
+
+Icon.propTypes = {
+  children: PropTypes.node.isRequired,
+  label: PropTypes.string.isRequired,
 };
 
 export default Icon;
