@@ -4,11 +4,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
+import Media from 'components/Media';
+import HomeButton from 'components/buttons/HomeButton';
 import TableOfContents from 'components/TableOfContents';
 
 const TopMenu = styled.div`
   border-bottom: 1px solid ${props => props.theme.colors.border};
-  padding: 2rem;
 `;
 
 const TOCWrapper = styled.div`padding: 1rem 2rem;`;
@@ -21,7 +22,14 @@ const SidebarBody = styled.nav`
 const Sidebar = props => {
   return (
     <SidebarBody>
-      <TopMenu>Menu!</TopMenu>
+      <Media query={'desktop'}>
+        {isDesktop =>
+          isDesktop
+            ? null
+            : <TopMenu>
+                <HomeButton />
+              </TopMenu>}
+      </Media>
       <TOCWrapper>
         <TableOfContents
           {...props}

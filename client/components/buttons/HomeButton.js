@@ -1,0 +1,19 @@
+// @flow
+
+import React from 'react';
+import { Link } from 'react-router-dom';
+
+import { default as HomeIcon } from 'components/icons/Home';
+import Icon from 'components/Icon';
+
+const HomeButton = props => {
+  return (
+    <Link to="/" tabIndex={1} style={{ height: '100%' }}>
+      <Icon aria-label={'Home button'}>
+        <HomeIcon size={20} />
+      </Icon>
+    </Link>
+  );
+};
+
+export default HomeButton;

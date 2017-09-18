@@ -3,14 +3,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
 
-import { default as HomeIcon } from 'components/icons/Home';
+import Media from 'components/Media';
+import HomeButton from 'components/buttons/HomeButton';
+import Icon from 'components/Icon';
 import { default as MenuIcon } from 'components/icons/Menu';
 
 const Header = styled.div`
   background-color: white;
-  border-bottom: 1px solid ${props => props.theme.colors.border};
 
   position: fixed;
   top: 0;
@@ -31,34 +31,6 @@ const HeaderSection = styled.div`
   flex: 1;
   display: flex;
   height: 100%;
-`;
-
-const Icon = styled.div`
-  // To center align the icon
-  display: flex;
-  align-items: center;
-  -webkit-tap-highlight-color: ${props => props.theme.colors.webkitTapDefault};
-
-  width: auto;
-  width: fit-content;
-
-  height: 100%;
-
-  user-select: none;
-
-  cursor: pointer;
-  padding: 1.5rem;
-  transition: all 150ms linear;
-  color: ${props => props.theme.colors.icon.default};
-
-  &:hover {
-    color: ${props => props.theme.colors.icon.hover};
-  }
-
-  &:focus {
-    background-color: ${props => props.theme.colors.icon.focus};
-    outline: none;
-  }
 `;
 
 const RulebookTitle = styled.span`
@@ -82,11 +54,9 @@ const PageHeader = props => {
         >
           <MenuIcon size={20} />
         </Icon>
-        <Link to="/" tabIndex={1} style={{ height: '100%' }}>
-          <Icon aria-label={'Home button'}>
-            <HomeIcon size={20} />
-          </Icon>
-        </Link>
+        <Media query={'desktop'}>
+          {isDesktop => (isDesktop ? <HomeButton /> : null)}
+        </Media>
       </HeaderSection>
       <RulebookTitle>
         {title}
