@@ -5,11 +5,14 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 import Media from 'components/Media';
+import EditButton from 'components/buttons/EditButton';
 import HomeButton from 'components/buttons/HomeButton';
 import TableOfContents from 'components/TableOfContents';
 
 const TopMenu = styled.div`
   border-bottom: 1px solid ${props => props.theme.colors.border};
+  display: flex;
+  justify-content: space-evenly;
 `;
 
 const TOCWrapper = styled.div`padding: 1rem 2rem;`;
@@ -28,6 +31,7 @@ const Sidebar = props => {
             ? null
             : <TopMenu>
                 <HomeButton />
+                <EditButton to={'#'} />
               </TopMenu>}
       </Media>
       <TOCWrapper>

@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 import Media from 'components/Media';
+import EditButton from 'components/buttons/EditButton';
 import HomeButton from 'components/buttons/HomeButton';
 import Icon from 'components/Icon';
 import { default as MenuIcon } from 'components/icons/Menu';
@@ -31,6 +32,8 @@ const HeaderSection = styled.div`
   flex: 1;
   display: flex;
   height: 100%;
+  justify-content: ${props =>
+    props.justifyContent ? props.justifyContent : 'flex-start'};
 `;
 
 const RulebookTitle = styled.span`
@@ -61,7 +64,11 @@ const PageHeader = props => {
       <RulebookTitle>
         {title}
       </RulebookTitle>
-      <HeaderSection />
+      <HeaderSection justifyContent={'flex-end'}>
+        <Media query={'desktop'}>
+          {isDesktop => (isDesktop ? <EditButton to={'#'} /> : null)}
+        </Media>
+      </HeaderSection>
     </Header>
   );
 };
