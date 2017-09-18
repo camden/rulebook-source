@@ -8,7 +8,12 @@ import Icon from 'components/Icon';
 
 const HomeButton = props => {
   return (
-    <Link to="/" tabIndex={1} style={{ height: '100%' }} {...props}>
+    <Link
+      to="/"
+      tabIndex={1}
+      style={{ height: '100%', textDecoration: 'none' }}
+      {...props}
+    >
       <Icon aria-label={'Home button'}>
         <HomeIcon size={20} />
       </Icon>

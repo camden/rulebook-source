@@ -1,10 +1,23 @@
+import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-const Icon = styled.div`
+const IconLabel = styled.label`
+  text-decoration: none;
+  text-align: center;
+  font-size: 0.875rem;
+  flex-basis: 100%;
+  cursor: pointer;
+`;
+
+const IconWrapper = styled.div`
   // To center align the icon
   display: flex;
   align-items: center;
+  justify-content: center;
   -webkit-tap-highlight-color: ${props => props.theme.colors.webkitTapDefault};
+
+  flex-wrap: wrap;
 
   width: auto;
   width: fit-content;
@@ -27,5 +40,14 @@ const Icon = styled.div`
     outline: none;
   }
 `;
+
+const Icon = props => {
+  return (
+    <IconWrapper>
+      {props.children}
+      <IconLabel>Edit</IconLabel>
+    </IconWrapper>
+  );
+};
 
 export default Icon;

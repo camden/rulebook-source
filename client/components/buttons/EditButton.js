@@ -9,7 +9,11 @@ import Icon from 'components/Icon';
 
 const EditButton = props => {
   return (
-    <Link tabIndex={1} style={{ height: '100%' }} {...props}>
+    <Link
+      tabIndex={1}
+      style={{ height: '100%', textDecoration: 'none' }}
+      {...props}
+    >
       <Icon aria-label={'Edit button'}>
         <EditIcon size={20} />
       </Icon>
