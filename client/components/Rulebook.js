@@ -137,7 +137,10 @@ export default class Rulebook extends Component {
           </title>
           <meta name="description" content={this.description()} />
         </Helmet>
-        <RulebookPanels data={this.state.data} />
+        <RulebookPanels
+          data={this.state.data}
+          rulebookName={this.rulebookName()}
+        />
         <ProgressBar loading={this.state.loading} />
       </div>
     );

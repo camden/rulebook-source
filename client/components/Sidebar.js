@@ -9,6 +9,8 @@ import EditButton from 'components/buttons/EditButton';
 import HomeButton from 'components/buttons/HomeButton';
 import TableOfContents from 'components/TableOfContents';
 
+import { editLink } from 'utils';
+
 const TopMenu = styled.div`
   border-bottom: 1px solid ${props => props.theme.colors.border};
   display: flex;
@@ -33,7 +35,9 @@ const Sidebar = props => {
             ? null
             : <TopMenu>
                 <HomeButton />
-                <EditButton to={'#'} />
+                <EditButton
+                  to={editLink({ rulebookName: props.rulebookName })}
+                />
               </TopMenu>}
       </Media>
       <TOCWrapper>
@@ -52,6 +56,7 @@ Sidebar.defaultProps = {
 };
 
 Sidebar.propTypes = {
+  rulebookName: PropTypes.string.isRequired,
   glossary: PropTypes.array.isRequired,
   onCloseSidebarClick: PropTypes.func.isRequired,
   tableOfContents: PropTypes.array.isRequired,

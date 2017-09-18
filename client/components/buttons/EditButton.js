@@ -12,6 +12,7 @@ const EditButton = props => {
     <Link
       tabIndex={1}
       style={{ height: '100%', textDecoration: 'none' }}
+      target={'_blank'}
       {...props}
     >
       <Icon aria-label={'Edit button'} label={'Edit'}>

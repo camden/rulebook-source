@@ -10,6 +10,8 @@ import HomeButton from 'components/buttons/HomeButton';
 import Icon from 'components/Icon';
 import { default as MenuIcon } from 'components/icons/Menu';
 
+import { editLink } from 'utils';
+
 const Header = styled.div`
   background-color: white;
 
@@ -45,7 +47,7 @@ const RulebookTitle = styled.span`
 `;
 
 const PageHeader = props => {
-  const { onToggleSidebarClick, title, height } = props;
+  const { rulebookName, onToggleSidebarClick, title, height } = props;
 
   return (
     <Header height={height}>
@@ -67,7 +69,8 @@ const PageHeader = props => {
       </RulebookTitle>
       <HeaderSection justifyContent={'flex-end'}>
         <Media query={'desktop'}>
-          {isDesktop => (isDesktop ? <EditButton to={'#'} /> : null)}
+          {isDesktop =>
+            isDesktop ? <EditButton to={editLink({ rulebookName })} /> : null}
         </Media>
       </HeaderSection>
     </Header>
@@ -81,6 +84,7 @@ PageHeader.defaultProps = {
 };
 
 PageHeader.propTypes = {
+  rulebookName: PropTypes.string.isRequired,
   onToggleSidebarClick: PropTypes.func.isRequired,
   title: PropTypes.string.isRequired,
   height: PropTypes.string.isRequired,

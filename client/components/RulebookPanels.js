@@ -146,12 +146,14 @@ class RulebookPanels extends Component {
         }}
       >
         <PageHeader
+          rulebookName={this.props.rulebookName}
           height={HEADER_HEIGHT}
           onToggleSidebarClick={this.handleToggleSidebarClick}
           title={this.props.data.front_matter.title}
         />
         <SidebarWrapper style={this.calculateSidebarStyle({ isDesktop })}>
           <Sidebar
+            rulebookName={this.props.rulebookName}
             glossary={this.props.data.front_matter.glossary}
             tableOfContents={this.props.data.toc}
             onCloseSidebarClick={this.closeSidebar}
@@ -183,6 +185,7 @@ class RulebookPanels extends Component {
 }
 
 RulebookPanels.propTypes = {
+  rulebookName: PropTypes.string.isRequired,
   data: PropTypes.shape({
     front_matter: PropTypes.object.isRequired,
     markdown: PropTypes.array.isRequired,

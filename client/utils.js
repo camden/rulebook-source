@@ -4,6 +4,10 @@ import { decode as decodeHTMLEntities } from 'he';
 
 const SITE_ROOT = '/api';
 
+export const editLink = ({ rulebookName }): string => {
+  return `https://github.com/camden/rulebooks/edit/master/rulebooks/${rulebookName}.md`;
+};
+
 export const fetchRulebookData = async ({
   rulebookName,
 }: {
