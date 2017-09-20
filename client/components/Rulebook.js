@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import frontMatter from 'front-matter';
 import { anchorate } from 'anchorate';
 import { Helmet } from 'react-helmet';
+import { Base64 } from 'js-base64';
 
 import config from 'config';
 import RulebookPanels from 'components/RulebookPanels';
@@ -59,7 +60,7 @@ export default class Rulebook extends Component {
     }
 
     // Base64 string decoding
-    const content = atob(rulebookData);
+    const content = Base64.decode(rulebookData);
 
     const markdown = frontMatter(content);
 
