@@ -2,6 +2,7 @@
 
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 import Link from 'components/Link';
 
@@ -13,15 +14,23 @@ const ResultWrapper = styled.div`
 `;
 
 const SearchResult = props => {
-  const { result } = props;
+  const { title, name, linkTo } = props;
+
+  const url = name ? `/rules/${name}` : linkTo;
 
   return (
-    <Link to={`/rules/${result.name}`}>
+    <Link to={url}>
       <ResultWrapper>
-        {result.title}
+        {title}
       </ResultWrapper>
     </Link>
   );
+};
+
+SearchResult.propTypes = {
+  title: PropTypes.string.isRequired,
+  name: PropTypes.string,
+  linkTo: PropTypes.string,
 };
 
 export default SearchResult;
