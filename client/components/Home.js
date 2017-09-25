@@ -23,7 +23,7 @@ const HomeMain = styled.div`
 `;
 
 const HomeHeader = styled.div`
-  margin-bottom: 2rem;
+  margin-bottom: 3rem;
   @media (min-width: ${props => props.theme.media.desktop}) {
     margin-bottom: 3rem;
   }
