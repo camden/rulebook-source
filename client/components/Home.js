@@ -22,7 +22,7 @@ const HomeMain = styled.div`
 const HomeHeader = styled.div`
   margin-bottom: 2rem;
   @media (min-width: ${props => props.theme.media.desktop}) {
-    margin-bottom: 5rem;
+    margin-bottom: 3rem;
   }
 
   display: flex;
