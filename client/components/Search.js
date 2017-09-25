@@ -16,6 +16,9 @@ const SearchBar = styled(DebounceInput)`
   box-shadow: ${props => props.theme.shadows.light};
   transition: all 250ms ease;
 
+  -webkit-appearance: none;
+  border-radius: 0;
+
   &:hover,
   &:focus {
     outline: none;
