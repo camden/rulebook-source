@@ -9,7 +9,11 @@ import config from 'config';
 import ProgressBar from 'components/ProgressBar';
 import Search from 'components/Search';
 
-const HomeWrapper = styled.div`padding: 0 2rem;`;
+const HomeMain = styled.div`padding: 2rem;`;
+const HomeHeader = styled.div`margin-bottom: 2rem;`;
+const HomeBody = styled.div``;
+
+const LogoTitle = styled.div`font-size: 2.5rem;`;
 
 export default class Home extends Component {
   state: {
@@ -40,28 +44,35 @@ export default class Home extends Component {
     );
   }
 
+  header() {
+    return (
+      <Helmet defer={false}>
+        <meta name="description" content={config.homeDescription} />
+        <meta property="og:description" content={config.homeDescription} />
+        <meta property="og:title" content={config.homeTitle} />
+        <meta property="og:url" content={config.homeUrl} />
+        <meta property="og:site_name" content={config.homeTitle} />
+        <title>
+          {config.homeTitle}
+        </title>
+      </Helmet>
+    );
+  }
+
   render() {
     return (
-      <HomeWrapper>
-        <Helmet defer={false}>
-          <meta name="description" content={config.homeDescription} />
-          <meta property="og:description" content={config.homeDescription} />
-          <meta property="og:title" content={config.homeTitle} />
-          <meta property="og:url" content={config.homeUrl} />
-          <meta property="og:site_name" content={config.homeTitle} />
-          <title>
-            {config.homeTitle}
-          </title>
-        </Helmet>
+      <div>
+        {this.header()}
         <ProgressBar loading={this.state.loading} />
-        <h1>Welcome to Rulebook.io!</h1>
-        <h4>
-          This page is still a work in progress... but the individual pages are
-          pretty much done!
-        </h4>
-        <h4>Try searching for "Catan".</h4>
-        <Search />
-      </HomeWrapper>
+        <HomeMain>
+          <HomeHeader>
+            <LogoTitle>Rulebook.io</LogoTitle>
+          </HomeHeader>
+          <HomeBody>
+            <Search />
+          </HomeBody>
+        </HomeMain>
+      </div>
     );
   }
 }

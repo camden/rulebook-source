@@ -7,6 +7,14 @@ import styled from 'styled-components';
 import SearchResult from 'components/SearchResult';
 import { searchByTitle } from 'utils';
 
+const SearchBar = styled(DebounceInput)`
+  border: none;
+  width: 100%;
+  padding: 0.5rem;
+  font-size: 1rem;
+  box-shadow: ${props => props.theme.shadows.light}
+`;
+
 const SearchResultList = styled.div`max-width: 600px;`;
 
 class Search extends Component {
@@ -63,11 +71,7 @@ class Search extends Component {
   render() {
     return (
       <div>
-        <div>Search</div>
-        <DebounceInput
-          debounceTimeout={250}
-          onChange={this.handleSearchChange}
-        />
+        <SearchBar debounceTimeout={250} onChange={this.handleSearchChange} />
         <div>
           {this.searchResultList()}
         </div>
