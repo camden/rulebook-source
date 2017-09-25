@@ -26,7 +26,7 @@ const SearchBar = styled(DebounceInput)`
   }
 `;
 
-const SearchResultList = styled.div`max-width: 600px;`;
+const SearchResultList = styled.div``;
 
 class Search extends Component {
   state: {
@@ -103,7 +103,7 @@ class Search extends Component {
         <ProgressBar
           loading={this.state.searchLoading}
           relative={true}
-          height={'0.1rem'}
+          height={'0.2rem'}
         />
         <SearchBar
           placeholder={'Search for rulebooks'}

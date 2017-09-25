@@ -82,7 +82,6 @@ class ProgressBar extends Component {
 
     const remainingPercent = 100 - this.state.percent;
     const toAdd = remainingPercent * 0.3 * Math.random();
-    console.log(remainingPercent, toAdd);
 
     this.setState({
       percent: this.state.percent + toAdd,
