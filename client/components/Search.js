@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import DebounceInput from 'react-debounce-input';
 import styled from 'styled-components';
 
+import ProgressBar from 'components/ProgressBar';
 import SearchResult from 'components/SearchResult';
 import { searchByTitle } from 'utils';
 
@@ -15,6 +16,7 @@ const SearchBar = styled(DebounceInput)`
   box-shadow: ${props => props.theme.shadows.light};
   transition: all 250ms ease;
 
+  &:hover,
   &:focus {
     outline: none;
     box-shadow: ${props => props.theme.shadows.medium};
@@ -28,6 +30,7 @@ class Search extends Component {
     searchLoading: boolean,
     searchText: string,
     searchResults: Array<{ title: string, name: string }>,
+    finishedSearching: boolean,
   };
 
   handleSearchChange: Function;
@@ -39,6 +42,7 @@ class Search extends Component {
       searchLoading: false,
       searchText: '',
       searchResults: [],
+      finishedSearching: false,
     };
 
     this.handleSearchChange = this.handleSearchChange.bind(this);
@@ -61,6 +65,7 @@ class Search extends Component {
     this.setState({
       searchResults,
       searchLoading: false,
+      finishedSearching: true,
     });
   }
 
@@ -76,12 +81,14 @@ class Search extends Component {
             />
           );
         })}
-        <SearchResult
-          title={
-            "Don't see what you're looking for? Contribute a new rulebook!"
-          }
-          linkTo={'#'}
-        />
+        {this.state.finishedSearching
+          ? <SearchResult
+              title={
+                "Don't see what you're looking for? Contribute a new rulebook!"
+              }
+              linkTo={'#'}
+            />
+          : null}
       </SearchResultList>
     );
   }
@@ -90,10 +97,11 @@ class Search extends Component {
     return (
       <div>
         <SearchBar
-          placeholder={'Search'}
+          placeholder={'Search for rulebooks'}
           debounceTimeout={250}
           onChange={this.handleSearchChange}
         />
+        <ProgressBar loading={true} relative={true} />
         <div>
           {this.searchResultList()}
         </div>

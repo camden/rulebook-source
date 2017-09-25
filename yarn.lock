@@ -4605,6 +4605,12 @@ react-helmet@^5.2.0:
     prop-types "^15.5.4"
     react-side-effect "^1.1.0"
 
+react-hold@^0.2.1:
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/react-hold/-/react-hold-0.2.1.tgz#23dc180fc7445c8c271d18dd8e3fcfdce1c7c32c"
+  dependencies:
+    hoist-non-react-statics "^1.2.0"
+
 react-media@^1.6.1:
   version "1.6.1"
   resolved "https://registry.yarnpkg.com/react-media/-/react-media-1.6.1.tgz#84e7986a92356b106dca026363f8f5c88054fe72"

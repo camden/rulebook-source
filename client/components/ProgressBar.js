@@ -86,6 +86,21 @@ class ProgressBar extends Component {
     });
   }
 
+  style(relative: boolean) {
+    let styleObj = {
+      height: '0.5vh',
+      boxShadow: `1px 2px 4px ${MainTheme.colors.primary_transparent}`,
+      zIndex: '100',
+    };
+
+    if (relative) {
+      styleObj.position = 'relative';
+      styleObj.display = 'block';
+    }
+
+    return styleObj;
+  }
+
   render() {
     return (
       <div>
@@ -93,11 +108,7 @@ class ProgressBar extends Component {
           {...this.props}
           percent={this.state.percent}
           color={MainTheme.colors.primary}
-          style={{
-            height: '0.5vh',
-            boxShadow: `1px 2px 4px ${MainTheme.colors.primary_transparent}`,
-            zIndex: '100',
-          }}
+          style={this.style(this.props.relative)}
         />
       </div>
     );
@@ -106,10 +117,12 @@ class ProgressBar extends Component {
 
 ProgressBar.defaultProps = {
   loading: true,
+  relative: false,
 };
 
 ProgressBar.propTypes = {
   loading: PropTypes.bool.isRequired,
+  relative: PropTypes.bool,
 };
 
 export default ProgressBar;
