@@ -22,7 +22,9 @@ class ProgressBar extends Component {
   }
 
   componentDidMount() {
-    this.startAutoIncrement();
+    if (this.props.loading) {
+      this.startAutoIncrement();
+    }
   }
 
   componentWillReceiveProps(nextProps) {
@@ -79,16 +81,17 @@ class ProgressBar extends Component {
     }
 
     const remainingPercent = 100 - this.state.percent;
-    const toAdd = remainingPercent * 0.5 * Math.random();
+    const toAdd = remainingPercent * 0.3 * Math.random();
+    console.log(remainingPercent, toAdd);
 
     this.setState({
       percent: this.state.percent + toAdd,
     });
   }
 
-  style(relative: boolean) {
+  style({ relative, height }) {
     let styleObj = {
-      height: '0.5vh',
+      height: '0.4vh',
       boxShadow: `1px 2px 4px ${MainTheme.colors.primary_transparent}`,
       zIndex: '100',
     };
@@ -96,6 +99,10 @@ class ProgressBar extends Component {
     if (relative) {
       styleObj.position = 'relative';
       styleObj.display = 'block';
+    }
+
+    if (height) {
+      styleObj.height = height;
     }
 
     return styleObj;
@@ -108,7 +115,10 @@ class ProgressBar extends Component {
           {...this.props}
           percent={this.state.percent}
           color={MainTheme.colors.primary}
-          style={this.style(this.props.relative)}
+          style={this.style({
+            relative: this.props.relative,
+            height: this.props.height,
+          })}
         />
       </div>
     );
@@ -118,11 +128,13 @@ class ProgressBar extends Component {
 ProgressBar.defaultProps = {
   loading: true,
   relative: false,
+  height: '',
 };
 
 ProgressBar.propTypes = {
   loading: PropTypes.bool.isRequired,
   relative: PropTypes.bool,
+  height: PropTypes.string,
 };
 
 export default ProgressBar;

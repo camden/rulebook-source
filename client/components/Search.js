@@ -53,6 +53,7 @@ class Search extends Component {
     this.setState({
       searchLoading: true,
     });
+
     this.search(event.target.value);
   }
 
@@ -96,12 +97,16 @@ class Search extends Component {
   render() {
     return (
       <div>
+        <ProgressBar
+          loading={this.state.searchLoading}
+          relative={true}
+          height={'0.1rem'}
+        />
         <SearchBar
           placeholder={'Search for rulebooks'}
           debounceTimeout={250}
           onChange={this.handleSearchChange}
         />
-        <ProgressBar loading={true} relative={true} />
         <div>
           {this.searchResultList()}
         </div>
