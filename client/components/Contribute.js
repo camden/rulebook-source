@@ -3,7 +3,12 @@
 import React from 'react';
 
 const Contribute = () => {
-  return <h1>Contribute goes here</h1>;
+  return (
+    <div>
+      <h2>How to Help</h2>
+      <p>This section is coming soon!</p>
+    </div>
+  );
 };
 
 export default Contribute;

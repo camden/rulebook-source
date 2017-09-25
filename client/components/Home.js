@@ -3,7 +3,7 @@
 import React, { Component } from 'react';
 import styled, { keyframes } from 'styled-components';
 import { Helmet } from 'react-helmet';
-import { Route, Switch } from 'react-router-dom';
+import { Link as ReactRouterLink, Route, Switch } from 'react-router-dom';
 
 import config from 'config';
 import About from 'components/About';
@@ -57,6 +57,11 @@ const HeaderLinks = styled.div`
 `;
 
 const HeaderLink = styled(NavLink)`margin: 0 1rem; padding: 0.5rem`;
+
+const LogoTitleLink = styled(ReactRouterLink)`
+text-decoration: none;
+color: ${props => props.theme.colors.black};
+`;
 
 const LogoTitle = styled.div`font-size: 2.5rem;`;
 const LogoSubtitle = styled.div`font-size: 1.5rem;`;
@@ -140,7 +145,9 @@ export default class Home extends Component {
         <HomeMain>
           <HomeHeader>
             <HeaderLogo>
-              <LogoTitle>Rulebook.io</LogoTitle>
+              <LogoTitleLink to="/">
+                <LogoTitle>Rulebook.io</LogoTitle>
+              </LogoTitleLink>
               <LogoSubtitle>Community-curated Rulebooks</LogoSubtitle>
             </HeaderLogo>
             <HeaderLinks>
