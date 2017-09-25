@@ -1,9 +1,12 @@
 // @flow
 
-import { Link as ReactRouterLink } from 'react-router-dom';
+import {
+  Link as ReactRouterLink,
+  NavLink as ReactRouterNavLink,
+} from 'react-router-dom';
 import styled from 'styled-components';
 
-const Link = styled(ReactRouterLink)`
+const styling = fn => fn`
   -webkit-tap-highlight-color: ${props => props.theme.colors.webkitTapDefault};
 
   color: ${props => props.theme.colors.primary};
@@ -22,5 +25,9 @@ const Link = styled(ReactRouterLink)`
     -webkit-text-decoration-color: ${props => props.theme.colors.primary};
   }
 `;
+
+const Link = styling(styled(ReactRouterLink));
+
+export const NavLink = styling(styled(ReactRouterNavLink));
 
 export default Link;

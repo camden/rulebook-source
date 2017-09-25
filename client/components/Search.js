@@ -90,7 +90,7 @@ class Search extends Component {
               title={
                 "Don't see what you're looking for? Contribute a new rulebook!"
               }
-              linkTo={'#'}
+              linkTo={'/contribute'}
             />
           : null}
       </SearchResultList>

@@ -3,9 +3,12 @@
 import React, { Component } from 'react';
 import styled, { keyframes } from 'styled-components';
 import { Helmet } from 'react-helmet';
+import { Route, Switch } from 'react-router-dom';
 
 import config from 'config';
-import Link from 'components/Link';
+import About from 'components/About';
+import Contribute from 'components/Contribute';
+import Link, { NavLink } from 'components/Link';
 import ProgressBar from 'components/ProgressBar';
 import Search from 'components/Search';
 
@@ -53,7 +56,7 @@ const HeaderLinks = styled.div`
   }
 `;
 
-const HeaderLink = styled(Link)`margin: 0 1rem; padding: 0.5rem`;
+const HeaderLink = styled(NavLink)`margin: 0 1rem; padding: 0.5rem`;
 
 const LogoTitle = styled.div`font-size: 2.5rem;`;
 const LogoSubtitle = styled.div`font-size: 1.5rem;`;
@@ -141,12 +144,16 @@ export default class Home extends Component {
               <LogoSubtitle>Community-curated Rulebooks</LogoSubtitle>
             </HeaderLogo>
             <HeaderLinks>
-              <HeaderLink to="#">About</HeaderLink>
-              <HeaderLink to="#">Contribute</HeaderLink>
+              <HeaderLink to="/about">About</HeaderLink>
+              <HeaderLink to="/contribute">Contribute</HeaderLink>
             </HeaderLinks>
           </HomeHeader>
           <HomeBody>
-            <Search />
+            <Switch>
+              <Route path="/" exact component={Search} />
+              <Route path="/about" exact component={About} />
+              <Route path="/contribute" exact component={Contribute} />
+            </Switch>
           </HomeBody>
           <HomeFooter>
             Made with <AnimatedEmoji>💛</AnimatedEmoji> by{' '}

@@ -24,8 +24,8 @@ class App extends Component {
               }}
             />
             <Switch>
-              <Route exact path="/" component={Home} />
               <Route path="/rules/:rulebookName" component={Rulebook} />
+              <Route path="/" component={Home} />
               <Route component={PageNotFound} />
             </Switch>
             <Route component={Analytics} />
