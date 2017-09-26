@@ -8,7 +8,6 @@ import Analytics from 'analytics';
 import { getMarkdown } from 'utils';
 import Home from 'components/Home';
 import Rulebook from 'components/Rulebook';
-import PageNotFound from 'components/PageNotFound';
 import RootTheme from 'components/RootTheme';
 
 class App extends Component {
@@ -25,8 +24,7 @@ class App extends Component {
             />
             <Switch>
               <Route path="/rules/:rulebookName" component={Rulebook} />
-              <Route exact path="/(about|contribute)?" component={Home} />
-              <Route component={PageNotFound} />
+              <Route path="/" component={Home} />
             </Switch>
             <Route component={Analytics} />
           </div>

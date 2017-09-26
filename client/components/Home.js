@@ -9,6 +9,7 @@ import config from 'config';
 import About from 'components/About';
 import Contribute from 'components/Contribute';
 import Link, { NavLink } from 'components/Link';
+import PageNotFound from 'components/PageNotFound';
 import ProgressBar from 'components/ProgressBar';
 import Search from 'components/Search';
 
@@ -171,6 +172,7 @@ export default class Home extends Component {
               <Route path="/" exact component={Search} />
               <Route path="/about" exact component={About} />
               <Route path="/contribute" exact component={Contribute} />
+              <Route component={PageNotFound} />
             </Switch>
           </HomeBody>
           <HomeFooter>
