@@ -56,11 +56,17 @@ const HeaderLinks = styled.div`
   }
 `;
 
-const HeaderLink = styled(NavLink)`margin: 0 1rem; padding: 0.5rem`;
+const HeaderLink = styled(NavLink)`
+  margin: 0 1rem;
+  padding: 0.5rem;
+  &.active {
+    font-weight: bolder;
+  }
+`;
 
 const LogoTitleLink = styled(ReactRouterLink)`
-text-decoration: none;
-color: ${props => props.theme.colors.black};
+  text-decoration: none;
+  color: ${props => props.theme.colors.black};
 `;
 
 const LogoTitle = styled.div`font-size: 2.5rem;`;
@@ -130,9 +136,7 @@ export default class Home extends Component {
         <meta property="og:title" content={config.homeTitle} />
         <meta property="og:url" content={config.homeUrl} />
         <meta property="og:site_name" content={config.homeTitle} />
-        <title>
-          {config.homeTitle}
-        </title>
+        <title>{config.homeTitle}</title>
       </Helmet>
     );
   }
@@ -151,8 +155,15 @@ export default class Home extends Component {
               <LogoSubtitle>Community-curated Rulebooks</LogoSubtitle>
             </HeaderLogo>
             <HeaderLinks>
-              <HeaderLink to="/about">About</HeaderLink>
-              <HeaderLink to="/contribute">Contribute</HeaderLink>
+              <HeaderLink exact to="/">
+                Home
+              </HeaderLink>
+              <HeaderLink exact to="/about">
+                About
+              </HeaderLink>
+              <HeaderLink exact to="/contribute">
+                Contribute
+              </HeaderLink>
             </HeaderLinks>
           </HomeHeader>
           <HomeBody>
