@@ -7,9 +7,9 @@ module.exports = {
   devtool: 'cheap-module-source-map',
   entry: ['babel-polyfill', 'whatwg-fetch', './client/index.js'],
   output: {
-    path: path.join(__dirname, 'dist/client/static/js'),
+    path: path.join(__dirname, 'dist/client'),
     publicPath: '/',
-    filename: '[name].[chunkhash].js',
+    filename: 'static/js/[name].[chunkhash].js',
   },
   resolve: {
     modules: [path.resolve(__dirname, 'client'), 'node_modules'],
