@@ -31,14 +31,12 @@ const Sidebar = props => {
     <SidebarBody>
       <Media query={'desktop'}>
         {isDesktop =>
-          isDesktop
-            ? null
-            : <TopMenu>
-                <HomeButton />
-                <EditButton
-                  to={editLink({ rulebookName: props.rulebookName })}
-                />
-              </TopMenu>}
+          isDesktop ? null : (
+            <TopMenu>
+              <HomeButton />
+              <EditButton to={editLink({ rulebookName: props.rulebookName })} />
+            </TopMenu>
+          )}
       </Media>
       <TOCWrapper>
         <TableOfContents

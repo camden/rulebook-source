@@ -43,9 +43,7 @@ const Icon = props => {
   return (
     <IconWrapper {...props}>
       {props.children}
-      <IconLabel>
-        {props.label}
-      </IconLabel>
+      <IconLabel>{props.label}</IconLabel>
     </IconWrapper>
   );
 };

@@ -13,30 +13,24 @@ const glossaryItem = entry => {
       <MarkdownHeader id={`glossary-${entry.name}`} level={2}>
         {entry.name}
       </MarkdownHeader>
-      <MarkdownParagraph>
-        {entry.definition}
-      </MarkdownParagraph>
+      <MarkdownParagraph>{entry.definition}</MarkdownParagraph>
     </section>
   );
 };
 
 const glossaryDefinitions = (glossary: GlossaryType) => {
-  return (
-    <div>
-      {glossary.map(glossaryItem)}
-    </div>
-  );
+  return <div>{glossary.map(glossaryItem)}</div>;
 };
 
 const Glossary = ({ glossary }: { glossary: GlossaryType }) => {
   return (
     <section>
-      {glossary.length > 0
-        ? // Only render the title "glossary" if the glossary is loaded
-          <MarkdownHeader id={'glossary'} level={1}>
-            Glossary
-          </MarkdownHeader>
-        : null}
+      {glossary.length > 0 ? (
+        // Only render the title "glossary" if the glossary is loaded
+        <MarkdownHeader id={'glossary'} level={1}>
+          Glossary
+        </MarkdownHeader>
+      ) : null}
       {glossaryDefinitions(glossary)}
     </section>
   );

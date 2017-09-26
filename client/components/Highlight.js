@@ -43,11 +43,7 @@ const Highlight = ({
   glossary: Glossary,
 }) => {
   if (!glossary) {
-    return (
-      <span>
-        {text}
-      </span>
-    );
+    return <span>{text}</span>;
   }
 
   const highlightedText = highlightText({
@@ -56,11 +52,7 @@ const Highlight = ({
     wrapper,
   });
 
-  return (
-    <span>
-      {highlightedText}
-    </span>
-  );
+  return <span>{highlightedText}</span>;
 };
 
 Highlight.propTypes = {

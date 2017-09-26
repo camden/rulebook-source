@@ -27,9 +27,7 @@ const GlobalStyles = styled.div`color: ${props => props.theme.colors.black};`;
 const RootTheme = ({ children }) => {
   return (
     <ThemeProvider theme={MainTheme}>
-      <GlobalStyles>
-        {children}
-      </GlobalStyles>
+      <GlobalStyles>{children}</GlobalStyles>
     </ThemeProvider>
   );
 };

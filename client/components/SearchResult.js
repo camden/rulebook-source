@@ -20,9 +20,7 @@ const SearchResult = props => {
 
   return (
     <Link to={url}>
-      <ResultWrapper>
-        {title}
-      </ResultWrapper>
+      <ResultWrapper>{title}</ResultWrapper>
     </Link>
   );
 };

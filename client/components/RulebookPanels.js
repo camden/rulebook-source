@@ -177,9 +177,7 @@ class RulebookPanels extends Component {
 
   render() {
     return (
-      <Media query={'desktop'}>
-        {isDesktop => this.content(isDesktop)}
-      </Media>
+      <Media query={'desktop'}>{isDesktop => this.content(isDesktop)}</Media>
     );
   }
 }

@@ -18,9 +18,13 @@ MainTheme.colors.primary_transparent = Color(MainTheme.colors.primary)
   .string();
 
 MainTheme.colors.icon = {
-  default: Color(MainTheme.colors.primary).lighten(0.35).string(),
+  default: Color(MainTheme.colors.primary)
+    .lighten(0.35)
+    .string(),
   hover: Color(MainTheme.colors.primary).string(),
-  focus: Color(MainTheme.colors.primary).lighten(0.85).string(),
+  focus: Color(MainTheme.colors.primary)
+    .lighten(0.85)
+    .string(),
 };
 
 MainTheme.shadows = {

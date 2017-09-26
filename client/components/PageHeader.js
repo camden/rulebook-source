@@ -64,9 +64,7 @@ const PageHeader = props => {
           {isDesktop => (isDesktop ? <HomeButton /> : null)}
         </Media>
       </HeaderSection>
-      <RulebookTitle>
-        {title}
-      </RulebookTitle>
+      <RulebookTitle>{title}</RulebookTitle>
       <HeaderSection justifyContent={'flex-end'}>
         <Media query={'desktop'}>
           {isDesktop =>

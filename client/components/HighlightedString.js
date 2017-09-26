@@ -34,12 +34,8 @@ const DefinitionPopup = ({
 }) => {
   return (
     <Definition>
-      <DefinitionTitle>
-        {glossaryItem.name}
-      </DefinitionTitle>
-      <DefinitionBody>
-        {glossaryItem.definition}
-      </DefinitionBody>
+      <DefinitionTitle>{glossaryItem.name}</DefinitionTitle>
+      <DefinitionBody>{glossaryItem.definition}</DefinitionBody>
     </Definition>
   );
 };
@@ -64,9 +60,7 @@ const HighlightedString = ({
       html={<DefinitionPopup match={match} glossaryItem={glossaryItem} />}
       theme={'light'}
     >
-      <HighlightedWord tabIndex={0}>
-        {match}
-      </HighlightedWord>
+      <HighlightedWord tabIndex={0}>{match}</HighlightedWord>
     </Tooltip>
   );
 };

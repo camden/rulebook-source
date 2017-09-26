@@ -85,14 +85,14 @@ class Search extends Component {
             />
           );
         })}
-        {this.state.finishedSearching
-          ? <SearchResult
-              title={
-                "Don't see what you're looking for? Contribute a new rulebook!"
-              }
-              linkTo={'/contribute'}
-            />
-          : null}
+        {this.state.finishedSearching ? (
+          <SearchResult
+            title={
+              "Don't see what you're looking for? Contribute a new rulebook!"
+            }
+            linkTo={'/contribute'}
+          />
+        ) : null}
       </SearchResultList>
     );
   }
@@ -110,9 +110,7 @@ class Search extends Component {
           debounceTimeout={250}
           onChange={this.handleSearchChange}
         />
-        <div>
-          {this.searchResultList()}
-        </div>
+        <div>{this.searchResultList()}</div>
       </div>
     );
   }
