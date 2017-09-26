@@ -72,7 +72,7 @@ const LogoTitleLink = styled(ReactRouterLink)`
 const LogoTitle = styled.div`font-size: 2.5rem;`;
 const LogoSubtitle = styled.div`font-size: 1.5rem;`;
 
-const HomeBody = styled.div``;
+const HomeBody = styled.div`min-height: 45vh;`;
 
 const HomeFooter = styled.div`
   margin-top: 5rem;

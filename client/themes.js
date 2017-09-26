@@ -6,7 +6,7 @@ import Color from 'color';
 export const MainTheme = {};
 
 MainTheme.colors = {
-  primary: 'hsl(340, 60%, 65%)',
+  primary: 'hsl(340, 70%, 60%)',
   black: '#333',
   border: '#efefef',
   webkitTapDefault: 'transparent',
