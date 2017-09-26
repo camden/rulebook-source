@@ -7,9 +7,9 @@ module.exports = {
   devtool: 'cheap-module-source-map',
   entry: ['babel-polyfill', 'whatwg-fetch', './client/index.js'],
   output: {
-    path: path.join(__dirname, 'dist/client'),
+    path: path.join(__dirname, 'dist/client/static/js'),
     publicPath: '/',
-    filename: 'static/js/bundle.js',
+    filename: '[name].[chunkhash].js',
   },
   resolve: {
     modules: [path.resolve(__dirname, 'client'), 'node_modules'],
@@ -48,6 +48,11 @@ module.exports = {
         unused: true,
         warnings: false, // good for prod apps so users can't peek behind curtain
       },
+    }),
+    // https://webpack.js.org/guides/caching/
+    // This plugin extracts webpack's boilerplate and manifest which can change with every build
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'runtime',
     }),
     new HtmlWebpackPlugin({
       template: 'client/index.html',
