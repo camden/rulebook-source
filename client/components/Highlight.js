@@ -57,7 +57,7 @@ const Highlight = ({
 
 Highlight.propTypes = {
   text: PropTypes.array.isRequired,
-  glossary: PropTypes.array.isRequired,
+  glossary: PropTypes.array,
 };
 
 export default Highlight;
