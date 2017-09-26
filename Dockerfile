@@ -13,8 +13,7 @@ WORKDIR ${workdir}
 # Copy dependency definitions
 COPY package.json ${workdir}
 
-# Copy .env
-COPY ./.env ${workdir}
+RUN touch ${workdir}/.env
 
 RUN mkdir /app
 
