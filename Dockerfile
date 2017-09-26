@@ -2,7 +2,7 @@
 FROM node:8
 
 # Set up our env variables
-ENV workdir /usr/rulebook-source
+ENV workdir /rulebook-source
 
 # Create a directory where our app will be placed
 RUN mkdir -p ${workdir}
@@ -12,6 +12,8 @@ WORKDIR ${workdir}
 
 # Copy dependency definitions
 COPY package.json ${workdir}
+
+ADD ./CHECKS /app
 
 # Install dependencies
 RUN yarn install --production
