@@ -64,6 +64,8 @@ class RulebookPanels extends Component {
   handleToggleSidebarClick: Function;
   closeSidebar: Function;
   content: Function;
+  pageTitle: Function;
+  pageMarkdown: Function;
 
   constructor(props) {
     super(props);
@@ -75,6 +77,8 @@ class RulebookPanels extends Component {
     this.handleToggleSidebarClick = this.handleToggleSidebarClick.bind(this);
     this.closeSidebar = this.closeSidebar.bind(this);
     this.content = this.content.bind(this);
+    this.pageTitle = this.pageTitle.bind(this);
+    this.pageMarkdown = this.pageMarkdown.bind(this);
   }
 
   calculateSidebarWidth({ isDesktop }): string {
@@ -135,6 +139,26 @@ class RulebookPanels extends Component {
     });
   }
 
+  pageTitle(): string {
+    let title = this.props.data.front_matter.title;
+    if (this.props.not_found) {
+      title = 'Not Found';
+    }
+    return title;
+  }
+
+  pageMarkdown(): Object {
+    let markdown = this.props.data.markdown;
+    if (this.props.not_found) {
+      markdown = (
+        <div style={{ textAlign: 'center' }}>
+          <h2>{`Rulebook '${this.props.rulebookName}' doesn't exist.`}</h2>
+        </div>
+      );
+    }
+    return markdown;
+  }
+
   content(isDesktop: boolean) {
     return (
       <div
@@ -149,12 +173,16 @@ class RulebookPanels extends Component {
           rulebookName={this.props.rulebookName}
           height={HEADER_HEIGHT}
           onToggleSidebarClick={this.handleToggleSidebarClick}
-          title={this.props.data.front_matter.title}
+          title={this.pageTitle()}
         />
         <SidebarWrapper style={this.calculateSidebarStyle({ isDesktop })}>
           <Sidebar
             rulebookName={this.props.rulebookName}
-            glossary={this.props.data.front_matter.glossary}
+            glossary={
+              this.props.not_found
+                ? null
+                : this.props.data.front_matter.glossary
+            }
             tableOfContents={this.props.data.toc}
             onCloseSidebarClick={this.closeSidebar}
           />
@@ -167,8 +195,12 @@ class RulebookPanels extends Component {
           />
           <RulebookContent
             style={this.calculateContentStyle()}
-            glossary={this.props.data.front_matter.glossary}
-            markdown={this.props.data.markdown}
+            glossary={
+              this.props.not_found
+                ? null
+                : this.props.data.front_matter.glossary
+            }
+            markdown={this.pageMarkdown()}
           />
         </PageContent>
       </div>
@@ -189,6 +221,7 @@ RulebookPanels.propTypes = {
     markdown: PropTypes.array.isRequired,
     toc: PropTypes.arrayOf(PropTypes.object).isRequired,
   }).isRequired,
+  not_found: PropTypes.bool,
 };
 
 export default RulebookPanels;

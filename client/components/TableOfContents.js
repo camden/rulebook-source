@@ -61,10 +61,18 @@ const TableOfContents = props => {
   return (
     <div>
       {renderedTOC}
-      <TOCTitle level={1} id={'glossary'} onClick={onCloseTableOfContentsClick}>
-        Glossary
-      </TOCTitle>
-      {glossaryItems(glossary, onCloseTableOfContentsClick)}
+      {glossary && glossary.length > 0 ? (
+        <div>
+          <TOCTitle
+            level={1}
+            id={'glossary'}
+            onClick={onCloseTableOfContentsClick}
+          >
+            Glossary
+          </TOCTitle>
+          {glossaryItems(glossary, onCloseTableOfContentsClick)}
+        </div>
+      ) : null}
     </div>
   );
 };
@@ -75,7 +83,7 @@ TableOfContents.defaultProps = {
 };
 
 TableOfContents.propTypes = {
-  glossary: PropTypes.array.isRequired,
+  glossary: PropTypes.array,
   onCloseTableOfContentsClick: PropTypes.func.isRequired,
   tableOfContents: PropTypes.array.isRequired,
 };

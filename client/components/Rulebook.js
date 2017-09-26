@@ -23,6 +23,7 @@ export default class Rulebook extends Component {
       markdown: Array<Object>,
       toc: Array<Object>,
     },
+    not_found: boolean,
     loading: boolean,
   };
 
@@ -38,6 +39,7 @@ export default class Rulebook extends Component {
         markdown: [],
         toc: [],
       },
+      not_found: false,
       loading: true,
     };
   }
@@ -52,6 +54,14 @@ export default class Rulebook extends Component {
     const response = await fetchRulebookData({
       rulebookName: rulebookName,
     });
+
+    if (response.status === 404) {
+      this.setState({
+        loading: false,
+        not_found: true,
+      });
+      return;
+    }
 
     const rulebookData = response.data;
 
@@ -106,7 +116,11 @@ export default class Rulebook extends Component {
   }
 
   title() {
-    return this.state.data.front_matter.title || this.rulebookName();
+    let title = this.state.data.front_matter.title || this.rulebookName();
+    if (this.state.not_found) {
+      title = 'Rulebook Not Found';
+    }
+    return title;
   }
 
   ogTitle() {
@@ -122,7 +136,11 @@ export default class Rulebook extends Component {
   }
 
   description() {
-    return `Rulebook for ${this.title()}.`;
+    let description = `Rulebook for ${this.title()}.`;
+    if (this.state.not_found) {
+      description = `Rulebook ${this.rulebookName()} not found.`;
+    }
+    return description;
   }
 
   render() {
@@ -139,6 +157,7 @@ export default class Rulebook extends Component {
         <RulebookPanels
           data={this.state.data}
           rulebookName={this.rulebookName()}
+          not_found={this.state.not_found}
         />
         <ProgressBar loading={this.state.loading} />
       </div>

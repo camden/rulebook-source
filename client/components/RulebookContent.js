@@ -27,7 +27,9 @@ const RulebookContent = ({
   return (
     <RulebookBody>
       {markdown}
-      <Glossary glossary={glossary} />
+      {glossary && glossary.length > 0 ? (
+        <Glossary glossary={glossary} />
+      ) : null}
     </RulebookBody>
   );
 };
@@ -39,7 +41,7 @@ RulebookContent.defaultProps = {
 
 RulebookContent.propTypes = {
   markdown: PropTypes.node.isRequired,
-  glossary: PropTypes.array.isRequired,
+  glossary: PropTypes.array,
 };
 
 export default RulebookContent;

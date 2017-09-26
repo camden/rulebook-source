@@ -55,7 +55,7 @@ Sidebar.defaultProps = {
 
 Sidebar.propTypes = {
   rulebookName: PropTypes.string.isRequired,
-  glossary: PropTypes.array.isRequired,
+  glossary: PropTypes.array,
   onCloseSidebarClick: PropTypes.func.isRequired,
   tableOfContents: PropTypes.array.isRequired,
 };
