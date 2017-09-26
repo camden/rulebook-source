@@ -1,1 +1,4 @@
+WAIT=30
+ATTEMPTS=10
+
 /api/checks/live true
