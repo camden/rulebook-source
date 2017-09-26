@@ -32,8 +32,13 @@ export const getRulebookContent = async ({
     redis,
   });
 
-  let status = rulebookData.status || 200;
+  let status = 200;
 
+  if (rulebookData && rulebookData.status) {
+    status = rulebookData.status;
+  }
+
+  // Nothing was found in the cache for this rulebook
   if (!rulebookData) {
     const url =
       GITHUB_ROOT +
