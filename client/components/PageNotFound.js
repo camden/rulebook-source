@@ -8,12 +8,23 @@ const Wrapper = styled.div`
   align-items: center;
   justify-content: center;
   min-height: inherit;
+  text-align: center;
 `;
+
+const ErrorTitle = styled.h1`
+  font-size: 5rem;
+  margin: 0;
+`;
+
+const ErrorDescription = styled.h1`margin: 0;`;
 
 const PageNotFound = () => {
   return (
     <Wrapper>
-      <h1>Page not found! Try something else!</h1>
+      <div>
+        <ErrorTitle>404</ErrorTitle>
+        <ErrorDescription>Page not found!</ErrorDescription>
+      </div>
     </Wrapper>
   );
 };
