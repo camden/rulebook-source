@@ -16,6 +16,7 @@ export const fetchRulebookData = async ({
   const serverUrl = `${SITE_ROOT}/rulebooks/${rulebookName}`;
   const res = await fetch(serverUrl);
   const resJSON = await res.json();
+  resJSON.status = res.status;
   return resJSON;
 };
 

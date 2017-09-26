@@ -32,7 +32,7 @@ export const getRulebookContent = async ({
     redis,
   });
 
-  let status = 200;
+  let status = rulebookData.status || 200;
 
   if (!rulebookData) {
     const url =
@@ -50,6 +50,7 @@ export const getRulebookContent = async ({
 
     status = response.status;
     rulebookData = await response.json();
+    rulebookData.status = status;
 
     redis.setex('rulebook-' + rulebookName, 3600, JSON.stringify(rulebookData));
   }
