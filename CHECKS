@@ -2,3 +2,6 @@ WAIT=30
 ATTEMPTS=10
 
 /api/checks/live true
+/
+/api/search?q=e
+/api/search?q=a
