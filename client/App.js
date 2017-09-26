@@ -25,7 +25,7 @@ class App extends Component {
             />
             <Switch>
               <Route path="/rules/:rulebookName" component={Rulebook} />
-              <Route path="/" component={Home} />
+              <Route exact path="/(about|contribute)?" component={Home} />
               <Route component={PageNotFound} />
             </Switch>
             <Route component={Analytics} />
