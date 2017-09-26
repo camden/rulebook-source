@@ -48,6 +48,10 @@ export const addRoutes = ({ router, redis }) => {
     return searchByTitle({ req, res, redis });
   });
 
+  router.route('/checks/live').get((req, res) => {
+    return res.send('true');
+  });
+
   router.route('/*').get((req, res) => {
     return res.status(404).send();
   });
