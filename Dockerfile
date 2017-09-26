@@ -13,6 +13,8 @@ WORKDIR ${workdir}
 # Copy dependency definitions
 COPY package.json ${workdir}
 
+RUN mkdir /app
+
 ADD ./CHECKS /app
 
 # Install dependencies
