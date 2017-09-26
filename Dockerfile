@@ -13,6 +13,9 @@ WORKDIR ${workdir}
 # Copy dependency definitions
 COPY package.json ${workdir}
 
+# Copy .env
+COPY ./.env ${workdir}
+
 RUN mkdir /app
 
 ADD ./CHECKS /app
