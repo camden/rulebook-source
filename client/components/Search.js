@@ -8,6 +8,14 @@ import ProgressBar from 'components/ProgressBar';
 import SearchResult from 'components/SearchResult';
 import { searchByTitle } from 'utils';
 
+const SearchWrapper = styled.div`
+  margin: 0 auto;
+
+  @media (min-width: ${props => props.theme.media.desktop}) {
+    width: 50%;
+  }
+`;
+
 const SearchBar = styled(DebounceInput)`
   border: none;
   width: 100%;
@@ -99,7 +107,7 @@ class Search extends Component {
 
   render() {
     return (
-      <div>
+      <SearchWrapper>
         <ProgressBar
           loading={this.state.searchLoading}
           relative={true}
@@ -111,7 +119,7 @@ class Search extends Component {
           onChange={this.handleSearchChange}
         />
         <div>{this.searchResultList()}</div>
-      </div>
+      </SearchWrapper>
     );
   }
 }

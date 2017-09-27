@@ -73,10 +73,10 @@ const LogoTitleLink = styled(ReactRouterLink)`
 const LogoTitle = styled.div`font-size: 2.5rem;`;
 const LogoSubtitle = styled.div`font-size: 1.5rem;`;
 
-const HomeBody = styled.div`min-height: 45vh;`;
+const HomeBody = styled.div`min-height: 35vh;`;
 
 const HomeFooter = styled.div`
-  margin-top: 5rem;
+  margin-top: 4rem;
   padding: 1rem;
   text-align: center;
 `;
@@ -174,13 +174,13 @@ export default class Home extends Component {
               <Route path="/contribute" exact component={Contribute} />
               <Route component={PageNotFound} />
             </Switch>
+            <HomeFooter>
+              Made with <AnimatedEmoji>💛</AnimatedEmoji> by{' '}
+              <Link to="http://cam.bickel.io" target={'_blank'}>
+                Camden Bickel
+              </Link>
+            </HomeFooter>
           </HomeBody>
-          <HomeFooter>
-            Made with <AnimatedEmoji>💛</AnimatedEmoji> by{' '}
-            <Link to="http://cam.bickel.io" target={'_blank'}>
-              Camden Bickel
-            </Link>
-          </HomeFooter>
         </HomeMain>
       </div>
     );
