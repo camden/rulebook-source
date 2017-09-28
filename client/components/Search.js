@@ -66,11 +66,22 @@ class Search extends Component {
   }
 
   handleSearchChange(event) {
+    const query = event.target.value;
+
     this.setState({
       searchLoading: true,
     });
 
-    this.search(event.target.value);
+    if (query === '') {
+      this.setState({
+        searchLoading: false,
+        finishedSearching: false,
+        searchResults: [],
+      });
+      return;
+    }
+
+    this.search(query);
   }
 
   async search(query: string) {
