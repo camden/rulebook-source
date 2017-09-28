@@ -140,7 +140,7 @@ class Search extends Component {
         />
         <SearchBar
           placeholder={'Search for rulebooks'}
-          debounceTimeout={250}
+          debounceTimeout={config.localSearch ? 0 : 250}
           onChange={this.handleSearchChange}
         />
         <div>{this.searchResultList()}</div>
