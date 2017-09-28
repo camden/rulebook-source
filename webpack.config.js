@@ -35,6 +35,8 @@ module.exports = {
       safe: false,
       systemvars: true,
     }),
+    // https://webpack.js.org/plugins/module-concatenation-plugin/
+    new webpack.optimize.ModuleConcatenationPlugin(),
     new webpack.optimize.UglifyJsPlugin({
       comments: false, // remove comments
       mangle: process.env.NODE_ENV === 'production',
