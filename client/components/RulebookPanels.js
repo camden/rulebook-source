@@ -3,6 +3,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import FixedPage from 'react-fixed-page';
 
 import Media from 'components/Media';
 import RulebookContent from 'components/RulebookContent';
@@ -54,6 +55,7 @@ const SidebarWrapper = styled.div`
   left: 0;
   overflow-y: auto;
   z-index: 1;
+  -webkit-overflow-scrolling: touch;
 `;
 
 class RulebookPanels extends Component {
@@ -166,7 +168,6 @@ class RulebookPanels extends Component {
           height: window.innerHeight + 'px',
           // This line is needed to fix stacking issues with progress bar
           opacity: 0.999,
-          overflow: this.state.sidebarOpen && isDesktop ? 'hidden' : 'visible',
         }}
       >
         <PageHeader
@@ -202,6 +203,7 @@ class RulebookPanels extends Component {
             }
             markdown={this.pageMarkdown()}
           />
+          <FixedPage fixed={this.state.sidebarOpen} />
         </PageContent>
       </div>
     );

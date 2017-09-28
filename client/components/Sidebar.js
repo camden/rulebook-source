@@ -19,7 +19,12 @@ const TopMenu = styled.div`
   justify-content: space-evenly;
 `;
 
-const TOCWrapper = styled.div`padding: 1rem 2rem;`;
+const TOCWrapper = styled.div`
+  padding: 1rem 0.5rem 1rem 1rem;
+  @media (min-width: ${props => props.theme.media.desktop}) {
+    padding: 1rem 2rem;
+  }
+`;
 
 const SidebarBody = styled.nav`
   background-color: white;

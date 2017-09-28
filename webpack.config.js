@@ -4,7 +4,7 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 var Dotenv = require('dotenv-webpack');
 
 module.exports = {
-  devtool: 'cheap-module-source-map',
+  devtool: 'source-map',
   entry: ['babel-polyfill', 'whatwg-fetch', './client/index.js'],
   output: {
     path: path.join(__dirname, 'dist/client'),

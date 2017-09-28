@@ -117,6 +117,7 @@ export default class Rulebook extends Component {
 
   title() {
     let title = this.state.data.front_matter.title || this.rulebookName();
+    title = title + ' - Rulebook.io';
     if (this.state.not_found) {
       title = 'Rulebook Not Found';
     }
