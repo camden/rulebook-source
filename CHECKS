@@ -1,5 +1,5 @@
-WAIT=15
-ATTEMPTS=15
+WAIT=12
+ATTEMPTS=10
 
 /api/checks/live true
 /api/rulebooks
