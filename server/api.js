@@ -4,7 +4,7 @@ import { rulebooksRoute } from './constants';
 import { getAllRulebooks, getFromCache, hydrateRulebook } from './utils';
 
 export const getRulebooks = ({ req, res, redis }) => {
-  getAllRulebooks().then(githubResponse => {
+  getAllRulebooks({ redis }).then(githubResponse => {
     if (githubResponse.status !== 200) {
       return res.status(githubResponse.status).json({
         message: 'Unknown error.',
@@ -33,7 +33,7 @@ export const searchByTitle = async ({ req, res, redis }) => {
   let rulebooksArray = await getFromCache({ redis, key: rulebooksRoute });
 
   if (!rulebooksArray) {
-    const githubResponse = await getAllRulebooks();
+    const githubResponse = await getAllRulebooks({ redis });
     rulebooksArray = githubResponse.rulebooksArray;
     redis.setex(rulebooksRoute, 3600, JSON.stringify(rulebooksArray));
   }
