@@ -38,13 +38,9 @@ export const searchByTitle = async ({ req, res, redis }) => {
     redis.setex(rulebooksRoute, 3600, JSON.stringify(rulebooksArray));
   }
 
-  const hydratedRulebooksArray = await Promise.all(
-    rulebooksArray.map(rulebookName => hydrateRulebook({ rulebookName, redis }))
-  );
-
   let matchingRulebooks = [];
 
-  matchingRulebooks = hydratedRulebooksArray.filter(rulebook => {
+  matchingRulebooks = rulebooksArray.filter(rulebook => {
     return (
       rulebook.title
         .toLowerCase()

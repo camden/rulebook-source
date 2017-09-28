@@ -7,6 +7,7 @@ const config = {
   homeUrl: 'https://rulebook.io',
 
   localSearch: true,
+  maxSearchResults: 5,
 };
 
 export default config;

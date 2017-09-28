@@ -4,9 +4,10 @@ import React, { Component } from 'react';
 import DebounceInput from 'react-debounce-input';
 import styled from 'styled-components';
 
+import config from 'config';
 import ProgressBar from 'components/ProgressBar';
 import SearchResult from 'components/SearchResult';
-import { searchByTitle } from 'utils';
+import { fetchAllRulebooks, searchByTitle } from 'utils';
 
 const SearchWrapper = styled.div`
   margin: 0 auto;
@@ -36,11 +37,14 @@ const SearchBar = styled(DebounceInput)`
 
 const SearchResultList = styled.div``;
 
+type RulebookType = { title: string, name: string };
+
 class Search extends Component {
   state: {
+    allRulebooks: ?Array<Rulebook>,
     searchLoading: boolean,
     searchText: string,
-    searchResults: Array<{ title: string, name: string }>,
+    searchResults: Array<Rulebook>,
     finishedSearching: boolean,
   };
 
@@ -50,6 +54,7 @@ class Search extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      allRulebooks: null,
       searchLoading: false,
       searchText: '',
       searchResults: [],
@@ -69,16 +74,36 @@ class Search extends Component {
   }
 
   async search(query: string) {
-    let searchResults = [];
-    if (query !== '') {
-      searchResults = await searchByTitle({ query });
-    }
+    if (config.localSearch) {
+      let allRulebooks = this.state.allRulebooks;
+      if (!allRulebooks) {
+        const response = await fetchAllRulebooks();
+        allRulebooks = response.data;
+        this.setState({ allRulebooks });
+      }
 
-    this.setState({
-      searchResults,
-      searchLoading: false,
-      finishedSearching: true,
-    });
+      const filteredRulebooks = allRulebooks.filter(
+        rulebook =>
+          rulebook.title.includes(query) || rulebook.name.includes(query)
+      );
+
+      this.setState({
+        searchResults: filteredRulebooks,
+        searchLoading: false,
+        finishedSearching: true,
+      });
+    } else {
+      let searchResults = [];
+      if (query !== '') {
+        searchResults = await searchByTitle({ query });
+      }
+
+      this.setState({
+        searchResults,
+        searchLoading: false,
+        finishedSearching: true,
+      });
+    }
   }
 
   searchResultList() {
