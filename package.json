@@ -25,7 +25,6 @@
   "author": "Camden Bickel <cam@bickel.io>",
   "devDependencies": {
     "chokidar-cli": "^1.2.0",
-    "clean-webpack-plugin": "^0.1.17",
     "cli-real-favicon": "^0.0.6",
     "eslint": "^3.19.0",
     "eslint-plugin-flowtype": "^2.35.0",
@@ -52,6 +51,7 @@
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
     "body-parser": "^1.17.2",
+    "clean-webpack-plugin": "^0.1.17",
     "color": "^2.0.0",
     "css-loader": "^0.28.5",
     "dotenv": "^4.0.0",
