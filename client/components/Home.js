@@ -5,7 +5,7 @@ import styled, { keyframes } from 'styled-components';
 import { Helmet } from 'react-helmet';
 import { Link as ReactRouterLink, Route, Switch } from 'react-router-dom';
 
-import TestImg from 'assets/images/testimg.png';
+import LogoImageSource from 'assets/images/master_favicon.svg';
 
 import config from 'config';
 import About from 'components/About';
@@ -70,6 +70,13 @@ const HeaderLink = styled(NavLink)`
 const LogoTitleLink = styled(ReactRouterLink)`
   text-decoration: none;
   color: ${props => props.theme.colors.black};
+  display: flex;
+  align-items: center;
+`;
+
+const LogoImage = styled.img`
+  width: 2.5rem;
+  margin-right: 1rem;
 `;
 
 const LogoTitle = styled.div`font-size: 2.5rem;`;
@@ -152,8 +159,8 @@ export default class Home extends Component {
         <HomeMain>
           <HomeHeader>
             <HeaderLogo>
-              <img src={TestImg} />
               <LogoTitleLink to="/">
+                <LogoImage src={LogoImageSource} />
                 <LogoTitle>Rulebook.io</LogoTitle>
               </LogoTitleLink>
               <LogoSubtitle>Community-curated Rulebooks</LogoSubtitle>
