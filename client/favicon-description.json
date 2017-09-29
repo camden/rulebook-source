@@ -1,6 +1,6 @@
 {
-	"masterPicture": "assets/images/master_favicon.svg",
-	"iconsPath": "/favicons/",
+	"masterPicture": "client/assets/images/master_favicon.svg",
+	"iconsPath": "static/favicons/",
 	"design": {
 		"ios": {
 			"pictureAspect": "backgroundAndMargin",

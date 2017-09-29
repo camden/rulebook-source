@@ -55,11 +55,6 @@ const main = () => {
     express.static(path.resolve(__dirname, '../../', 'dist/client/static'))
   );
 
-  app.use(
-    '/favicons',
-    express.static(path.resolve(__dirname, '../../', 'dist/client/favicons'))
-  );
-
   app.get('*', (req, res) => {
     res.sendFile(
       path.resolve(__dirname, '../../', 'dist/client/', 'index.html')

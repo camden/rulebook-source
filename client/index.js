@@ -7,7 +7,7 @@ import App from './App';
 import initReactFastClick from 'react-fastclick';
 import WebFont from 'webfontloader';
 
-import '../assets/favicons/**/!(*.html)';
+import 'assets/favicons/**/!(*.html)';
 
 WebFont.load({
   google: {

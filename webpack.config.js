@@ -10,7 +10,7 @@ module.exports = {
   output: {
     path: path.join(__dirname, 'dist/client/'),
     publicPath: '/',
-    filename: 'static/[name].[chunkhash].js',
+    filename: 'static/js/[name].[chunkhash].js',
   },
   resolve: {
     modules: [path.resolve(__dirname, 'client'), 'node_modules'],
@@ -36,15 +36,27 @@ module.exports = {
         test: /\.css$/,
         use: [{ loader: 'style-loader' }, { loader: 'css-loader' }],
       },
-      // Load files for the favicons
+      // Load image files
       {
-        test: /\.jpe?g$|\.ico$|\.png$|\.svg$|\.xml$/,
+        test: /\.jpe?g$|\.png$|\.svg$/,
+        include: path.join(__dirname, 'client/assets/images'),
         use: {
           loader: 'file-loader',
           options: {
-            context: path.join(__dirname, 'assets/favicons'),
+            name: '[name].[hash].[ext]',
+            outputPath: 'static/images/',
+          },
+        },
+      },
+      // Load files for the favicons
+      {
+        test: /\.jpe?g$|\.ico$|\.png$|\.svg$|\.xml$/,
+        include: path.join(__dirname, 'client/assets/favicons'),
+        use: {
+          loader: 'file-loader',
+          options: {
             name: '[name].[ext]',
-            outputPath: 'favicons/',
+            outputPath: 'static/favicons/',
           },
         },
       },

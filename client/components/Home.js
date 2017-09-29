@@ -5,6 +5,8 @@ import styled, { keyframes } from 'styled-components';
 import { Helmet } from 'react-helmet';
 import { Link as ReactRouterLink, Route, Switch } from 'react-router-dom';
 
+import TestImg from 'assets/images/testimg.png';
+
 import config from 'config';
 import About from 'components/About';
 import Contribute from 'components/Contribute';
@@ -150,6 +152,7 @@ export default class Home extends Component {
         <HomeMain>
           <HomeHeader>
             <HeaderLogo>
+              <img src={TestImg} />
               <LogoTitleLink to="/">
                 <LogoTitle>Rulebook.io</LogoTitle>
               </LogoTitleLink>

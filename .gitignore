@@ -4,6 +4,7 @@ npm-debug.log
 dist
 tmp
 dump.rdb
-assets/favicons
+client/assets/favicons
+client/index.old.html
 
 .env
