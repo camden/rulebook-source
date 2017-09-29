@@ -42,6 +42,7 @@ module.exports = {
         use: {
           loader: 'file-loader',
           options: {
+            context: path.join(__dirname, 'assets/favicons'),
             name: '[name].[ext]',
             outputPath: 'favicons/',
           },
