@@ -1,21 +1,30 @@
 var webpack = require('webpack');
 var path = require('path');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
+var CleanWebpackPlugin = require('clean-webpack-plugin');
 var Dotenv = require('dotenv-webpack');
 
 module.exports = {
   devtool: 'source-map',
   entry: ['babel-polyfill', 'whatwg-fetch', './client/index.js'],
   output: {
-    path: path.join(__dirname, 'dist/client'),
+    path: path.join(__dirname, 'dist/client/'),
     publicPath: '/',
-    filename: 'static/js/[name].[chunkhash].js',
+    filename: 'static/[name].[chunkhash].js',
   },
   resolve: {
     modules: [path.resolve(__dirname, 'client'), 'node_modules'],
   },
   module: {
     rules: [
+      {
+        test: /\.jsx?$/,
+        enforce: 'pre',
+        include: path.join(__dirname, 'client'),
+        use: {
+          loader: 'import-glob',
+        },
+      },
       {
         test: /\.jsx?$/,
         include: path.join(__dirname, 'client'),
@@ -27,9 +36,21 @@ module.exports = {
         test: /\.css$/,
         use: [{ loader: 'style-loader' }, { loader: 'css-loader' }],
       },
+      // Load files for the favicons
+      {
+        test: /\.jpe?g$|\.ico$|\.png$|\.svg$|\.xml$/,
+        use: {
+          loader: 'file-loader',
+          options: {
+            name: '[name].[ext]',
+            outputPath: 'favicons/',
+          },
+        },
+      },
     ],
   },
   plugins: [
+    new CleanWebpackPlugin(['dist']),
     new Dotenv({
       path: './.env',
       safe: false,
@@ -57,7 +78,7 @@ module.exports = {
       name: 'runtime',
     }),
     new HtmlWebpackPlugin({
-      template: 'client/index.html',
+      template: 'tmp/favicons/index.html',
     }),
   ],
 };

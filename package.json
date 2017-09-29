@@ -12,7 +12,8 @@
     "start-server": "yarn run build-server && node dist/server/main.js rulebook-server",
     "stop-server": "killall -SIGINT rulebook-server",
     "watch-server": "chokidar 'server/**.js' -c 'yarn run stop-server; yarn run start-server' --initial",
-    "start": "yarn run build-client && yarn run start-server"
+    "start": "yarn run build-client && yarn run start-server",
+    "generate-favicon": "echo 'Deleting tmp dir...'; rm -rf tmp && mkdir -p tmp/favicons && real-favicon generate client/favicon-description.json tmp/favicon-data.json tmp/favicons && real-favicon inject tmp/favicon-data.json tmp/favicons client/index.html"
   },
   "lint-staged": {
     "*.{js,jsx}": [
@@ -24,12 +25,16 @@
   "author": "Camden Bickel <cam@bickel.io>",
   "devDependencies": {
     "chokidar-cli": "^1.2.0",
+    "clean-webpack-plugin": "^0.1.17",
+    "cli-real-favicon": "^0.0.6",
     "eslint": "^3.19.0",
     "eslint-plugin-flowtype": "^2.35.0",
     "eslint-plugin-react": "^6.10.3",
+    "file-loader": "^0.11.2",
     "flow-bin": "^0.52.0",
     "flow-result-checker": "^0.2.0",
     "husky": "^0.14.3",
+    "import-glob": "^1.5.0",
     "lint-staged": "^4.0.3",
     "prettier": "^1.7.0",
     "webpack-dev-server": "^2.4.4"
