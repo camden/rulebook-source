@@ -1,5 +1,5 @@
-WAIT=12
-ATTEMPTS=5
+WAIT=10
+ATTEMPTS=18
 TIMEOUT=10
 
 /api/checks/live true
