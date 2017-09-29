@@ -1,5 +1,6 @@
 WAIT=12
-ATTEMPTS=10
+ATTEMPTS=5
+TIMEOUT=10
 
 /api/checks/live true
 /api/rulebooks
