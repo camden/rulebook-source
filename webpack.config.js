@@ -50,7 +50,7 @@ module.exports = {
     ],
   },
   plugins: [
-    new CleanWebpackPlugin(['dist']),
+    new CleanWebpackPlugin(['dist', 'tmp']),
     new Dotenv({
       path: './.env',
       safe: false,
@@ -78,7 +78,7 @@ module.exports = {
       name: 'runtime',
     }),
     new HtmlWebpackPlugin({
-      template: 'tmp/favicons/index.html',
+      template: 'client/index.html',
     }),
   ],
 };

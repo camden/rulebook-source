@@ -13,7 +13,7 @@
     "stop-server": "killall -SIGINT rulebook-server",
     "watch-server": "chokidar 'server/**.js' -c 'yarn run stop-server; yarn run start-server' --initial",
     "start": "yarn run build-client && yarn run start-server",
-    "generate-favicon": "echo 'Deleting tmp dir...'; rm -rf tmp && mkdir -p tmp/favicons && real-favicon generate client/favicon-description.json tmp/favicon-data.json tmp/favicons && real-favicon inject tmp/favicon-data.json tmp/favicons client/index.html"
+    "generate-favicon": "echo 'Deleting tmp dir...'; rm -rf tmp && mkdir -p tmp/favicons && real-favicon generate client/favicon-description.json tmp/favicon-data.json tmp/favicons && real-favicon inject tmp/favicon-data.json tmp/favicons client/index.html && mv client/index.html client/index.old.html && mv tmp/favicons/index.html client/index.html"
   },
   "lint-staged": {
     "*.{js,jsx}": [
