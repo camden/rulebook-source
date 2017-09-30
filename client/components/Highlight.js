@@ -27,8 +27,14 @@ const highlightText = ({
       currentWord = currentGlossaryItem.matches[0];
     }
 
-    return reactStringReplace(prev, currentWord, (match, index) => {
-      return wrapper({ match, glossaryItem: currentGlossaryItem, index });
+    return reactStringReplace(prev, currentWord, (match, index, offset) => {
+      console.log(prev, currentWord, match, index, offset);
+      return wrapper({
+        match,
+        glossaryItem: currentGlossaryItem,
+        index,
+        offset,
+      });
     });
   }, textToReplace);
 

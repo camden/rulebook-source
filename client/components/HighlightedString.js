@@ -44,14 +44,16 @@ const HighlightedString = ({
   match,
   glossaryItem,
   index,
+  offset,
 }: {
   match: string,
   glossaryItem: GlossaryItem,
   index: number,
+  offset: number,
 }) => {
   return (
     <Tooltip
-      key={`${match}-${index}`}
+      key={`${match}-${index}-${offset}`}
       interactive
       position="top"
       trigger="focus click"
