@@ -56,7 +56,7 @@
     "dotenv-webpack": "^1.5.4",
     "express": "^4.15.4",
     "file-loader": "^0.11.2",
-    "front-matter": "^2.1.2",
+    "front-matter": "camden/front-matter#patch-1",
     "ghrequest": "^1.0.1",
     "he": "^1.1.1",
     "hedron": "^0.7.1",
