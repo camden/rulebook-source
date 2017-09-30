@@ -48,25 +48,35 @@ export default class Rulebook extends Component {
     this.loadData();
   }
 
-  async loadData() {
-    const rulebookName = this.rulebookName();
-
-    const response = await fetchRulebookData({
-      rulebookName: rulebookName,
-    });
-
-    if (response.status === 404) {
-      this.setState({
-        loading: false,
-        not_found: true,
-      });
-      return;
+  componentWillReceiveProps(nextProps) {
+    if (this.props.customBase64 !== nextProps.customBase64) {
+      this.loadData();
     }
+  }
 
-    const rulebookData = response.data;
+  async loadData() {
+    let rulebookData = this.props.customBase64;
 
-    if (!rulebookData) {
-      throw new Error('response must have data property.');
+    if (rulebookData === undefined || rulebookData === null) {
+      const rulebookName = this.rulebookName();
+
+      const response = await fetchRulebookData({
+        rulebookName: rulebookName,
+      });
+
+      if (response.status === 404) {
+        this.setState({
+          loading: false,
+          not_found: true,
+        });
+        return;
+      }
+
+      rulebookData = response.data;
+
+      if (!rulebookData) {
+        throw new Error('response must have data property.');
+      }
     }
 
     // Base64 string decoding
@@ -172,4 +182,5 @@ Rulebook.propTypes = {
       rulebookName: PropTypes.string,
     }),
   }).isRequired,
+  customBase64: PropTypes.string,
 };

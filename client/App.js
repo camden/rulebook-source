@@ -8,6 +8,7 @@ import Analytics from 'analytics';
 import { getMarkdown } from 'utils';
 import Home from 'components/Home';
 import Rulebook from 'components/Rulebook';
+import CustomRulebook from 'components/CustomRulebook';
 import RootTheme from 'components/RootTheme';
 
 class App extends Component {
@@ -23,6 +24,7 @@ class App extends Component {
               }}
             />
             <Switch>
+              <Route path="/custom-rules" component={CustomRulebook} />
               <Route path="/rules/:rulebookName" component={Rulebook} />
               <Route path="/" component={Home} />
             </Switch>
