@@ -1,6 +1,6 @@
 // @flow
 import fetch from 'node-fetch';
-import atob from 'atob';
+import { Base64 } from 'js-base64';
 import frontMatter from 'front-matter';
 
 const REPO_AUTHOR = 'camden';
@@ -75,7 +75,7 @@ export const hydrateRulebook = async ({
     redis,
   });
 
-  const rulebookContent = atob(rulebookData.encodedContent);
+  const rulebookContent = Base64.decode(rulebookData.encodedContent);
   const rulebookAttributes = frontMatter(rulebookContent).attributes;
 
   const rulebookTitle = rulebookAttributes.title || rulebookName;
