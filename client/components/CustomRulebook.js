@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import Rulebook from 'components/Rulebook';
 
 const Input = styled.textarea`
-  position: absolute;
+  position: relative;
   border: none;
   box-shadow: ${props => props.theme.shadows.light};
   top: 10px;
@@ -22,7 +22,7 @@ class CustomRulebook extends Component {
     super(props);
 
     this.state = {
-      customBase64: '',
+      customMarkdown: '',
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -30,7 +30,7 @@ class CustomRulebook extends Component {
 
   handleInputChange(event) {
     this.setState({
-      customBase64: event.target.value,
+      customMarkdown: event.target.value,
     });
   }
 
@@ -38,12 +38,12 @@ class CustomRulebook extends Component {
     return (
       <div>
         <Input
-          name="custom-base-64"
+          name="custom-markdown"
           type="text"
-          value={this.state.customBase64}
+          value={this.state.customMarkdown}
           onChange={this.handleInputChange}
         />
-        <Rulebook customBase64={this.state.customBase64} {...this.props} />
+        <Rulebook customMarkdown={this.state.customMarkdown} {...this.props} />
       </div>
     );
   }

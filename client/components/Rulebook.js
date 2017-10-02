@@ -49,15 +49,15 @@ export default class Rulebook extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (this.props.customBase64 !== nextProps.customBase64) {
+    if (this.props.customMarkdown !== nextProps.customMarkdown) {
       this.loadData();
     }
   }
 
   async loadData() {
-    let rulebookData = this.props.customBase64;
+    let rulebookContent = this.props.customMarkdown;
 
-    if (rulebookData === undefined || rulebookData === null) {
+    if (rulebookContent === undefined || rulebookContent === null) {
       const rulebookName = this.rulebookName();
 
       const response = await fetchRulebookData({
@@ -72,17 +72,17 @@ export default class Rulebook extends Component {
         return;
       }
 
-      rulebookData = response.data;
+      let rulebookData = response.data;
 
       if (!rulebookData) {
         throw new Error('response must have data property.');
       }
+
+      // Base64 string decoding
+      rulebookContent = Base64.decode(rulebookData);
     }
 
-    // Base64 string decoding
-    const content = Base64.decode(rulebookData);
-
-    const markdown = frontMatter(content);
+    const markdown = frontMatter(rulebookContent);
 
     const frontMatterData = markdown.attributes;
 
@@ -182,5 +182,5 @@ Rulebook.propTypes = {
       rulebookName: PropTypes.string,
     }),
   }).isRequired,
-  customBase64: PropTypes.string,
+  customMarkdown: PropTypes.string,
 };
