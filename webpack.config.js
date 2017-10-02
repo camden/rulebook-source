@@ -64,6 +64,11 @@ module.exports = {
   },
   plugins: [
     new CleanWebpackPlugin(['dist', 'tmp']),
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: process.env.NODE_ENV,
+      },
+    }),
     new Dotenv({
       path: './.env',
       safe: false,
@@ -78,6 +83,7 @@ module.exports = {
         booleans: true,
         conditionals: true,
         dead_code: true, // big one--strip code that will never execute
+        drop_console: process.env.NODE_ENV === 'production',
         drop_debugger: false,
         evaluate: true,
         sequences: true,
