@@ -14,7 +14,9 @@ const HighlightedWord = styled.span`
   text-decoration: underline;
   text-decoration-skip: ink;
   color: ${props => props.theme.colors.primary};
+  cursor: help;
 `;
+
 const Definition = styled.div`
   text-align: left;
   padding: 1rem;
