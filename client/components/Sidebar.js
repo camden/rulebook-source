@@ -29,6 +29,7 @@ const TOCWrapper = styled.div`
 const SidebarBody = styled.nav`
   background-color: white;
   width: 100%;
+  height: 100%;
 `;
 
 const Sidebar = props => {
