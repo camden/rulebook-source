@@ -8,6 +8,7 @@ export const MainTheme = {};
 MainTheme.colors = {
   primary: 'hsl(340, 70%, 60%)',
   black: '#333',
+  quote: '#888',
   border: '#efefef',
   webkitTapDefault: 'transparent',
   icon: {},

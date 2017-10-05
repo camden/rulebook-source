@@ -17,6 +17,13 @@ const Image = styled.img`
   padding: 1.5rem;
 `;
 
+const BlockQuote = styled.blockquote`
+  margin: 0.25rem 0;
+  padding-left: 1rem;
+  border-left: 0.25rem solid ${props => props.theme.colors.border};
+  color: ${props => props.theme.colors.quote};
+`;
+
 const highlightWrapper = HighlightedString;
 
 export const compileMarkdown = ({
@@ -85,6 +92,9 @@ export const compileMarkdown = ({
             <Highlight text={children} glossary={glossary} />
           </MarkdownParagraph>
         );
+      },
+      blockquote({ children }) {
+        return <BlockQuote>{children}</BlockQuote>;
       },
     },
   })(markdown);
