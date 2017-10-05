@@ -18,10 +18,25 @@ const Image = styled.img`
 `;
 
 const BlockQuote = styled.blockquote`
-  margin: 0.25rem 0;
+  margin: 0.5rem 0;
   padding-left: 1rem;
   border-left: 0.25rem solid ${props => props.theme.colors.border};
   color: ${props => props.theme.colors.quote};
+`;
+
+const Table = styled.table`
+  display: block;
+  width: 100%;
+  overflow: auto;
+  margin: 1rem 0;
+  border-collapse: collapse;
+`;
+
+const TD = styled.td`
+  text-align: center;
+  padding: 1rem;
+  font-weight: ${props => (props.bold ? 'bold' : 'normal')};
+  border: 1px solid ${props => props.theme.colors.border};
 `;
 
 const highlightWrapper = HighlightedString;
@@ -95,6 +110,15 @@ export const compileMarkdown = ({
       },
       blockquote({ children }) {
         return <BlockQuote>{children}</BlockQuote>;
+      },
+      table({ children }) {
+        return <Table>{children}</Table>;
+      },
+      th({ children }) {
+        return <TD bold>{children}</TD>;
+      },
+      td({ children }) {
+        return <TD>{children}</TD>;
       },
     },
   })(markdown);
