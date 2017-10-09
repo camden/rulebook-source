@@ -41,10 +41,10 @@ type RulebookType = { title: string, name: string };
 
 class Search extends Component {
   state: {
-    allRulebooks: ?Array<Rulebook>,
+    allRulebooks: ?Array<RulebookType>,
     searchLoading: boolean,
     searchText: string,
-    searchResults: Array<Rulebook>,
+    searchResults: Array<RulebookType>,
     finishedSearching: boolean,
   };
 
@@ -63,6 +63,10 @@ class Search extends Component {
 
     this.handleSearchChange = this.handleSearchChange.bind(this);
     this.search = this.search.bind(this);
+  }
+
+  componentDidMount() {
+    this.fetchSearchData();
   }
 
   handleSearchChange(event) {
@@ -84,13 +88,21 @@ class Search extends Component {
     this.search(query);
   }
 
+  async fetchSearchData(): Promise<Array<RulebookType>> {
+    const response = await fetchAllRulebooks();
+    const allRulebooks = response.data;
+
+    this.setState({ allRulebooks });
+
+    return allRulebooks;
+  }
+
   async search(query: string) {
     if (config.localSearch) {
       let allRulebooks = this.state.allRulebooks;
+
       if (!allRulebooks) {
-        const response = await fetchAllRulebooks();
-        allRulebooks = response.data;
-        this.setState({ allRulebooks });
+        allRulebooks = await this.fetchSearchData();
       }
 
       const filteredRulebooks = allRulebooks.filter(
@@ -151,7 +163,9 @@ class Search extends Component {
         />
         <SearchBar
           placeholder={'Search for rulebooks'}
-          debounceTimeout={config.localSearch ? 0 : 250}
+          debounceTimeout={
+            config.localSearch && this.state.allRulebooks ? 0 : 250
+          }
           onChange={this.handleSearchChange}
         />
         <div>{this.searchResultList()}</div>

@@ -13,7 +13,7 @@ import Contribute from 'components/Contribute';
 import Link, { NavLink } from 'components/Link';
 import PageNotFound from 'components/PageNotFound';
 import ProgressBar from 'components/ProgressBar';
-import Search from 'components/Search';
+import HomeInner from 'components/HomeInner';
 
 const HomeMain = styled.div`
   max-width: 1000px;
@@ -179,7 +179,7 @@ export default class Home extends Component {
           </HomeHeader>
           <HomeBody>
             <Switch>
-              <Route path="/" exact component={Search} />
+              <Route path="/" exact component={HomeInner} />
               <Route path="/about" exact component={About} />
               <Route path="/contribute" exact component={Contribute} />
               <Route component={PageNotFound} />
