@@ -4,6 +4,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import Search from 'components/Search';
+import SearchResult from 'components/SearchResult';
 
 const SUGGESTION_MARGIN = '1rem';
 
@@ -21,12 +22,7 @@ const SuggestionCategory = styled.h3`
 
 const SuggestionCards = styled.div`display: flex;`;
 
-const RulebookCard = styled.div`
-  padding: 1rem 1.5rem;
-  margin: ${SUGGESTION_MARGIN};
-  box-shadow: ${props => props.theme.shadows.light};
-  background-color: white;
-`;
+const RulebookCard = styled.div`margin: 0 ${SUGGESTION_MARGIN};`;
 
 const HomeInner = props => {
   return (
@@ -35,9 +31,15 @@ const HomeInner = props => {
       <Suggestions>
         <SuggestionCategory>Featured</SuggestionCategory>
         <SuggestionCards>
-          <RulebookCard>The Resistance</RulebookCard>
-          <RulebookCard>One Night Ultimate Werewolf</RulebookCard>
-          <RulebookCard>Spikeball</RulebookCard>
+          <RulebookCard>
+            <SearchResult title="The Resistance" linkTo="#" />
+          </RulebookCard>
+          <RulebookCard>
+            <SearchResult title="One Night Ultimate Werewolf" linkTo="#" />
+          </RulebookCard>
+          <RulebookCard>
+            <SearchResult title="Spikeball" linkTo="#" />
+          </RulebookCard>
         </SuggestionCards>
       </Suggestions>
     </div>

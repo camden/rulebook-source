@@ -11,6 +11,12 @@ const ResultWrapper = styled.div`
   padding: 1rem;
   margin: 1rem 0;
   box-shadow: ${props => props.theme.shadows.light};
+  transition: all 250ms ease;
+
+  &:hover,
+  &:focus {
+    box-shadow: ${props => props.theme.shadows.medium};
+  }
 `;
 
 const SearchResult = props => {
