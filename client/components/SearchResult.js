@@ -19,20 +19,36 @@ const ResultWrapper = styled.div`
   }
 `;
 
+const getTags = tags => {
+  return (
+    <div>
+      {tags.map(tag => {
+        <div>{tag}</div>;
+      })}
+    </div>
+  );
+};
+
 const SearchResult = props => {
   const { title, name, linkTo } = props;
+
+  const tags = props.tags || [];
 
   const url = name ? `/rules/${name}` : linkTo;
 
   return (
     <Link to={url}>
-      <ResultWrapper>{title}</ResultWrapper>
+      <ResultWrapper>
+        {title}
+        {getTags(tags)}
+      </ResultWrapper>
     </Link>
   );
 };
 
 SearchResult.propTypes = {
   title: PropTypes.string.isRequired,
+  tags: PropTypes.arrayOf(PropTypes.string),
   name: PropTypes.string,
   linkTo: PropTypes.string,
 };

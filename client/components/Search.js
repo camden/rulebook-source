@@ -37,7 +37,7 @@ const SearchBar = styled(DebounceInput)`
 
 const SearchResultList = styled.div``;
 
-type RulebookType = { title: string, name: string };
+type RulebookType = { title: string, name: string, tags: [] };
 
 class Search extends Component {
   state: {
@@ -138,6 +138,7 @@ class Search extends Component {
               title={result.title}
               name={result.name}
               key={result.name}
+              tags={result.tags}
             />
           );
         })}

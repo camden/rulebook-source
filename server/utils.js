@@ -83,6 +83,7 @@ export const hydrateRulebook = async ({
   return {
     name: rulebookName,
     title: rulebookTitle,
+    tags: rulebookAttributes.tags || [],
   };
 };
 
