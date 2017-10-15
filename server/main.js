@@ -50,8 +50,18 @@ const main = () => {
 
   app.use('/api', apiRouter);
 
+  const cacheClient = (req, res, next) => {
+    // 14 days
+    const expiryTime = 1209600;
+
+    res.setHeader('Cache-Control', `public, max-age=${expiryTime}`);
+    res.setHeader('Expires', new Date(Date.now() + expiryTime).toUTCString());
+    next();
+  };
+
   app.use(
     '/static',
+    cacheClient,
     express.static(path.resolve(__dirname, '../../', 'dist/client/static'))
   );
 
