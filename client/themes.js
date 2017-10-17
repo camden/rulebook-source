@@ -20,7 +20,7 @@ MainTheme.colors.primary_transparent = Color(MainTheme.colors.primary)
 
 MainTheme.colors.icon = {
   default: Color(MainTheme.colors.primary)
-    .lighten(0.35)
+    .lighten(0.2)
     .string(),
   hover: Color(MainTheme.colors.primary).string(),
   focus: Color(MainTheme.colors.primary)

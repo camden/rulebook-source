@@ -3,6 +3,7 @@
 import React, { Component } from 'react';
 import DebounceInput from 'react-debounce-input';
 import styled from 'styled-components';
+import FlipMove from 'react-flip-move';
 
 import config from 'config';
 import ProgressBar from 'components/ProgressBar';
@@ -132,24 +133,38 @@ class Search extends Component {
   searchResultList() {
     return (
       <SearchResultList>
-        {this.state.searchResults.map(result => {
-          return (
-            <SearchResult
-              title={result.title}
-              name={result.name}
-              key={result.name}
-              tags={result.tags}
-            />
-          );
-        })}
-        {this.state.finishedSearching ? (
-          <SearchResult
-            title={
-              "Don't see what you're looking for? Contribute a new rulebook!"
-            }
-            linkTo={'/contribute'}
-          />
-        ) : null}
+        <FlipMove
+          duration={250}
+          staggerDurationBy={15}
+          staggerDelayBy={20}
+          easing="ease"
+          appearAnimation="fade"
+          enterAnimation="fade"
+          leaveAnimation="fade"
+          maintainContainerHeight={true}
+        >
+          {this.state.searchResults.map(result => {
+            return (
+              <div key={result.name}>
+                <SearchResult
+                  title={result.title}
+                  name={result.name}
+                  tags={result.tags}
+                />
+              </div>
+            );
+          })}
+          {this.state.finishedSearching ? (
+            <div key={'rulebook-not-found'}>
+              <SearchResult
+                title={
+                  "Don't see what you're looking for? Contribute a new rulebook!"
+                }
+                linkTo={'/contribute'}
+              />
+            </div>
+          ) : null}
+        </FlipMove>
       </SearchResultList>
     );
   }
@@ -165,7 +180,7 @@ class Search extends Component {
         <SearchBar
           placeholder={'Search for rulebooks'}
           debounceTimeout={
-            config.localSearch && this.state.allRulebooks ? 0 : 250
+            config.localSearch && this.state.allRulebooks ? 250 : 250
           }
           onChange={this.handleSearchChange}
         />

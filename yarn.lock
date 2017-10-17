@@ -249,10 +249,6 @@ asynckit@^0.4.0:
   version "0.4.0"
   resolved "https://registry.yarnpkg.com/asynckit/-/asynckit-0.4.0.tgz#c79ed97f7f34cb8f2ba1bc9790bcc366474b4b79"
 
-atob@^2.0.3:
-  version "2.0.3"
-  resolved "https://registry.yarnpkg.com/atob/-/atob-2.0.3.tgz#19c7a760473774468f20b2d2d03372ad7d4cbf5d"
-
 autoprefixer@^6.3.1:
   version "6.7.7"
   resolved "https://registry.yarnpkg.com/autoprefixer/-/autoprefixer-6.7.7.tgz#1dbd1c835658e35ce3f9984099db00585c782014"
@@ -4874,6 +4870,10 @@ react-fastclick@^3.0.2:
 react-fixed-page@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/react-fixed-page/-/react-fixed-page-1.0.1.tgz#4a946ea92937cf1104986d14d9a625e38138beac"
+
+react-flip-move@^2.9.17:
+  version "2.9.17"
+  resolved "https://registry.yarnpkg.com/react-flip-move/-/react-flip-move-2.9.17.tgz#849dc41f614a3d26dc229f4c930a0fb3a8f39441"
 
 react-ga@2.2.0:
   version "2.2.0"
