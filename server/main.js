@@ -48,10 +48,41 @@ const main = () => {
     redis: redisClient,
   });
 
-  app.use('/api', apiRouter);
+  const cacheClient = options => {
+    return (req, res, next) => {
+      if (!options) {
+        options = {};
+      }
+
+      if (options.match && req.url.indexOf(options.match) === -1) {
+        return next();
+      }
+
+      // 14 days default
+      let expiryTime = 1209600;
+
+      if (options.expiryDays) {
+        expiryTime = options.expiryDays * 86400;
+      }
+
+      res.setHeader('Cache-Control', `public, max-age=${expiryTime}`);
+      res.setHeader(
+        'Expires',
+        new Date(Date.now() + expiryTime * 1000).toUTCString()
+      );
+      next();
+    };
+  };
+
+  app.use(
+    '/api',
+    cacheClient({ match: '/rulebooks', expiryDays: 1 }),
+    apiRouter
+  );
 
   app.use(
     '/static',
+    cacheClient(),
     express.static(path.resolve(__dirname, '../../', 'dist/client/static'))
   );
 
