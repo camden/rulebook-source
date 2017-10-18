@@ -106,9 +106,11 @@ class Search extends Component {
         allRulebooks = await this.fetchSearchData();
       }
 
+      const lowercaseQuery = query.toLowerCase();
       const filteredRulebooks = allRulebooks.filter(
         rulebook =>
-          rulebook.title.includes(query) || rulebook.name.includes(query)
+          rulebook.title.toLowerCase().includes(lowercaseQuery) ||
+          rulebook.name.toLowerCase().includes(lowercaseQuery)
       );
 
       this.setState({
@@ -145,24 +147,22 @@ class Search extends Component {
         >
           {this.state.searchResults.map(result => {
             return (
-              <div key={result.name}>
-                <SearchResult
-                  title={result.title}
-                  name={result.name}
-                  tags={result.tags}
-                />
-              </div>
+              <SearchResult
+                key={result.name}
+                title={result.title}
+                name={result.name}
+                tags={result.tags}
+              />
             );
           })}
           {this.state.finishedSearching ? (
-            <div key={'rulebook-not-found'}>
-              <SearchResult
-                title={
-                  "Don't see what you're looking for? Contribute a new rulebook!"
-                }
-                linkTo={'/contribute'}
-              />
-            </div>
+            <SearchResult
+              key={'rulebook-not-found'}
+              title={
+                "Don't see what you're looking for? Contribute a new rulebook!"
+              }
+              linkTo={'/contribute'}
+            />
           ) : null}
         </FlipMove>
       </SearchResultList>

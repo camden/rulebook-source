@@ -9,7 +9,7 @@ import Link from 'components/Link';
 const ResultWrapper = styled.div`
   width: 100%;
   padding: 1rem;
-  margin: 1rem 0;
+  margin: ${props => (props.card ? '0' : '1rem 0')};
   box-shadow: ${props => props.theme.shadows.light};
   transition: all 250ms ease;
 
@@ -39,7 +39,7 @@ const getTags = tags => {
   return (
     <ResultTags>
       {tags.map(tag => {
-        return <Tag key={tag}>{tag}</Tag>;
+        return <Tag key={tag}>{tag.replace('-', ' ')}</Tag>;
       })}
     </ResultTags>
   );
@@ -50,19 +50,23 @@ class SearchResult extends Component {
     const url = this.props.name
       ? `/rules/${this.props.name}`
       : this.props.linkTo;
+
     return (
-      <Link to={url}>
-        <ResultWrapper>
-          {this.props.title}
-          {getTags(this.props.tags)}
-        </ResultWrapper>
-      </Link>
+      <div>
+        <Link to={url}>
+          <ResultWrapper card={this.props.card}>
+            {this.props.title}
+            {getTags(this.props.tags)}
+          </ResultWrapper>
+        </Link>
+      </div>
     );
   }
 }
 
 SearchResult.defaultProps = {
   tags: [],
+  card: false,
 };
 
 SearchResult.propTypes = {
@@ -70,6 +74,7 @@ SearchResult.propTypes = {
   tags: PropTypes.arrayOf(PropTypes.string),
   name: PropTypes.string,
   linkTo: PropTypes.string,
+  card: PropTypes.bool,
 };
 
 export default SearchResult;
