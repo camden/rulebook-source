@@ -31,37 +31,6 @@ const HomeInner = props => {
   return (
     <div>
       <Search {...props} />
-      <Suggestions>
-        <SuggestionCategory>Featured</SuggestionCategory>
-        <SuggestionCards>
-          <RulebookCard>
-            <SearchResult title="The Resistance" linkTo="#" card={true} />
-          </RulebookCard>
-          <RulebookCard>
-            <SearchResult
-              title="One Night Ultimate Werewolf"
-              linkTo="#"
-              card={true}
-            />
-          </RulebookCard>
-          <RulebookCard>
-            <SearchResult title="Spikeball" linkTo="#" card={true} />
-          </RulebookCard>
-          <RulebookCard>
-            <SearchResult title="The Resistance" linkTo="#" card={true} />
-          </RulebookCard>
-          <RulebookCard>
-            <SearchResult
-              title="One Night Ultimate Werewolf"
-              linkTo="#"
-              card={true}
-            />
-          </RulebookCard>
-          <RulebookCard>
-            <SearchResult title="Spikeball" linkTo="#" card={true} />
-          </RulebookCard>
-        </SuggestionCards>
-      </Suggestions>
     </div>
   );
 };

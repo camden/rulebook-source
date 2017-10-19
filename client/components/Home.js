@@ -9,6 +9,7 @@ import LogoImageSource from 'assets/images/master_favicon.svg';
 
 import config from 'config';
 import About from 'components/About';
+import Browse from 'components/Browse';
 import Contribute from 'components/Contribute';
 import Link, { NavLink } from 'components/Link';
 import PageNotFound from 'components/PageNotFound';
@@ -175,6 +176,9 @@ export default class Home extends Component {
               <HeaderLink exact to="/contribute">
                 Contribute
               </HeaderLink>
+              <HeaderLink exact to="/browse">
+                Browse
+              </HeaderLink>
             </HeaderLinks>
           </HomeHeader>
           <HomeBody>
@@ -182,6 +186,7 @@ export default class Home extends Component {
               <Route path="/" exact component={HomeInner} />
               <Route path="/about" exact component={About} />
               <Route path="/contribute" exact component={Contribute} />
+              <Route path="/browse" exact component={Browse} />
               <Route component={PageNotFound} />
             </Switch>
             <HomeFooter>

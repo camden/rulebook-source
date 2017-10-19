@@ -2,79 +2,15 @@
 
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import PropTypes from 'prop-types';
 
-import Link from 'components/Link';
+import RulebookCard from 'components/RulebookCard';
 
-const ResultWrapper = styled.div`
-  width: 100%;
-  padding: 1rem;
-  margin: ${props => (props.card ? '0' : '1rem 0')};
-  box-shadow: ${props => props.theme.shadows.light};
-  transition: all 250ms ease;
-
-  &:hover,
-  &:focus {
-    box-shadow: ${props => props.theme.shadows.medium};
-  }
-`;
-
-const ResultTags = styled.div``;
-
-const Tag = styled.span`
-  background-color: ${props => props.theme.colors.border};
-  color: ${props => props.theme.colors.black};
-
-  font-size: 0.75rem;
-  border-radius: 4px;
-  padding: 0.25rem 0.5rem;
-  margin-right: 0.75rem;
-  margin-top: 0.5rem;
-  cursor: pointer;
-  display: inline-block;
-  text-transform: capitalize;
-`;
-
-const getTags = tags => {
-  return (
-    <ResultTags>
-      {tags.map(tag => {
-        return <Tag key={tag}>{tag.replace('-', ' ')}</Tag>;
-      })}
-    </ResultTags>
-  );
-};
+const Result = styled(RulebookCard)`margin: 1rem 0;`;
 
 class SearchResult extends Component {
   render() {
-    const url = this.props.name
-      ? `/rules/${this.props.name}`
-      : this.props.linkTo;
-
-    return (
-      <div>
-        <Link to={url}>
-          <ResultWrapper card={this.props.card}>
-            {this.props.title}
-            {getTags(this.props.tags)}
-          </ResultWrapper>
-        </Link>
-      </div>
-    );
+    return <Result {...this.props} />;
   }
 }
-
-SearchResult.defaultProps = {
-  tags: [],
-  card: false,
-};
-
-SearchResult.propTypes = {
-  title: PropTypes.string.isRequired,
-  tags: PropTypes.arrayOf(PropTypes.string),
-  name: PropTypes.string,
-  linkTo: PropTypes.string,
-  card: PropTypes.bool,
-};
 
 export default SearchResult;
