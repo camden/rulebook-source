@@ -5,11 +5,15 @@ import styled from 'styled-components';
 
 import RulebookCard from 'components/RulebookCard';
 
-const Result = styled(RulebookCard)`margin: 1rem 0;`;
+const Result = styled.div`margin: 1rem 0;`;
 
 class SearchResult extends Component {
   render() {
-    return <Result {...this.props} />;
+    return (
+      <Result>
+        <RulebookCard {...this.props} />
+      </Result>
+    );
   }
 }
 
