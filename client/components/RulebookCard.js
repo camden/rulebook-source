@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
-import Link from 'components/Link';
+import { default as InlineLink } from 'components/Link';
 
 const ResultWrapper = styled.div`
   width: 100%;
@@ -35,6 +35,8 @@ const Tag = styled.span`
   text-transform: capitalize;
 `;
 
+const Link = InlineLink.extend`display: block;`;
+
 const getTags = tags => {
   return (
     <ResultTags>
@@ -52,19 +54,18 @@ class RulebookCard extends Component {
       : this.props.linkTo;
 
     return (
-      <div>
-        <Link to={url}>
-          <ResultWrapper>
-            {this.props.title}
-            {getTags(this.props.tags)}
-          </ResultWrapper>
-        </Link>
-      </div>
+      <Link className={this.props.className} to={url}>
+        <ResultWrapper>
+          {this.props.title}
+          {getTags(this.props.tags)}
+        </ResultWrapper>
+      </Link>
     );
   }
 }
 
 RulebookCard.defaultProps = {
+  className: '',
   tags: [],
 };
 
@@ -73,6 +74,7 @@ RulebookCard.propTypes = {
   tags: PropTypes.arrayOf(PropTypes.string),
   name: PropTypes.string,
   linkTo: PropTypes.string,
+  className: PropTypes.string,
 };
 
 export default RulebookCard;

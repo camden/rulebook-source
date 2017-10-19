@@ -6,9 +6,10 @@ import {
 } from 'react-router-dom';
 import styled from 'styled-components';
 
-const styling = fn => fn`
+const styling = styleFn => styleFn`
   -webkit-tap-highlight-color: ${props => props.theme.colors.webkitTapDefault};
 
+  display: ${props => (props.block ? 'block' : 'inline')};
   color: ${props => props.theme.colors.primary};
 
   text-decoration: none;

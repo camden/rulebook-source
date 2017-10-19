@@ -4,7 +4,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import Search from 'components/Search';
-import SearchResult from 'components/SearchResult';
+import RulebookCard from 'components/RulebookCard';
 
 const SUGGESTION_MARGIN = '0.5rem';
 
@@ -25,7 +25,23 @@ const SuggestionCards = styled.div`
   flex-wrap: wrap;
 `;
 
-const RulebookCard = styled.div`margin: 0.5rem ${SUGGESTION_MARGIN};`;
+const Suggestion = styled(RulebookCard)`margin: 0.5rem ${SUGGESTION_MARGIN};`;
+
+const suggestions = props => {
+  return (
+    <Suggestions>
+      <SuggestionCategory>Featured</SuggestionCategory>
+      <SuggestionCards>
+        <Suggestion title="The Resistance" linkTo="#" />
+        <Suggestion title="One Night Ultimate Werewolf" linkTo="#" />
+        <Suggestion title="Spikeball" linkTo="#" />
+        <Suggestion title="The Resistance" linkTo="#" />
+        <Suggestion title="One Night Ultimate Werewolf" linkTo="#" />
+        <Suggestion title="Spikeball" linkTo="#" />
+      </SuggestionCards>
+    </Suggestions>
+  );
+};
 
 const HomeInner = props => {
   return (
