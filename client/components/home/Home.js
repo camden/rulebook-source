@@ -7,6 +7,8 @@ import { Link as ReactRouterLink, Route, Switch } from 'react-router-dom';
 
 import LogoImageSource from 'assets/images/master_favicon.svg';
 
+import type { RulebookType } from 'types';
+
 import config from 'config';
 import About from 'components/home/About';
 import Browse from 'components/home/Browse';
@@ -15,6 +17,7 @@ import Link, { NavLink } from 'components/shared/Link';
 import PageNotFound from 'components/home/PageNotFound';
 import ProgressBar from 'components/shared/ProgressBar';
 import HomeInner from 'components/home/HomeInner';
+import { fetchAllRulebooks } from 'utils';
 
 const HomeMain = styled.div`
   max-width: 1000px;
@@ -130,12 +133,26 @@ export default class Home extends Component {
 
     this.state = {
       loading: true,
+      data: {
+        allRulebooks: [],
+      },
     };
   }
 
   componentDidMount() {
+    this.fetchData();
+  }
+
+  async fetchData(): Promise<Array<RulebookType>> {
+    const response = await fetchAllRulebooks();
+    const allRulebooks = response.data;
+
     this.setState({
       loading: false,
+      data: {
+        ...this.state.data,
+        allRulebooks,
+      },
     });
   }
 
@@ -183,7 +200,13 @@ export default class Home extends Component {
           </HomeHeader>
           <HomeBody>
             <Switch>
-              <Route path="/" exact component={HomeInner} />
+              <Route
+                path="/"
+                exact
+                render={props => (
+                  <HomeInner allRulebooks={this.state.data.allRulebooks} />
+                )}
+              />
               <Route path="/about" exact component={About} />
               <Route path="/contribute" exact component={Contribute} />
               <Route path="/browse" exact component={Browse} />

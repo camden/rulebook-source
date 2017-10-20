@@ -1,9 +1,12 @@
 // @flow
 
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import DebounceInput from 'react-debounce-input';
 import styled from 'styled-components';
 import FlipMove from 'react-flip-move';
+
+import type { RulebookType } from 'types';
 
 import config from 'config';
 import ProgressBar from 'components/shared/ProgressBar';
@@ -38,11 +41,8 @@ const SearchBar = styled(DebounceInput)`
 
 const SearchResultList = styled.div``;
 
-type RulebookType = { title: string, name: string, tags: [] };
-
 class Search extends Component {
   state: {
-    allRulebooks: ?Array<RulebookType>,
     searchLoading: boolean,
     searchText: string,
     searchResults: Array<RulebookType>,
@@ -55,7 +55,6 @@ class Search extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      allRulebooks: null,
       searchLoading: false,
       searchText: '',
       searchResults: [],
@@ -64,10 +63,6 @@ class Search extends Component {
 
     this.handleSearchChange = this.handleSearchChange.bind(this);
     this.search = this.search.bind(this);
-  }
-
-  componentDidMount() {
-    this.fetchSearchData();
   }
 
   handleSearchChange(event) {
@@ -89,22 +84,9 @@ class Search extends Component {
     this.search(query);
   }
 
-  async fetchSearchData(): Promise<Array<RulebookType>> {
-    const response = await fetchAllRulebooks();
-    const allRulebooks = response.data;
-
-    this.setState({ allRulebooks });
-
-    return allRulebooks;
-  }
-
   async search(query: string) {
     if (config.localSearch) {
-      let allRulebooks = this.state.allRulebooks;
-
-      if (!allRulebooks) {
-        allRulebooks = await this.fetchSearchData();
-      }
+      let allRulebooks = this.props.allRulebooks;
 
       const lowercaseQuery = query.toLowerCase();
       const filteredRulebooks = allRulebooks.filter(
@@ -179,9 +161,7 @@ class Search extends Component {
         />
         <SearchBar
           placeholder={'Search for rulebooks'}
-          debounceTimeout={
-            config.localSearch && this.state.allRulebooks ? 250 : 250
-          }
+          debounceTimeout={config.localSearch ? 250 : 250}
           onChange={this.handleSearchChange}
         />
         <div>{this.searchResultList()}</div>
@@ -189,5 +169,9 @@ class Search extends Component {
     );
   }
 }
+
+Search.propTypes = {
+  allRulebooks: PropTypes.array.isRequired,
+};
 
 export default Search;

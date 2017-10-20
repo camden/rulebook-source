@@ -5,7 +5,13 @@ var CleanWebpackPlugin = require('clean-webpack-plugin');
 var Dotenv = require('dotenv-webpack');
 
 const webpackConfig = {
-  stats: 'minimal',
+  stats: {
+    chunks: false,
+    hash: false,
+    version: false,
+    timings: false,
+    assets: false,
+  },
   entry: ['babel-polyfill', 'whatwg-fetch', './client/index.js'],
   output: {
     path: path.join(__dirname, 'dist/client/'),
