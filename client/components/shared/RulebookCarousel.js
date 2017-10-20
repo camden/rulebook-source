@@ -23,6 +23,7 @@ const RulebookCarousel = props => {
 const ITEM_MARGIN = '0.5rem';
 
 const Carousel = styled.div`
+  margin-top: 1rem;
   display: flex;
   flex-direction: column;
 `;
