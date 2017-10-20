@@ -156,7 +156,7 @@ export default class Home extends Component {
     });
   }
 
-  header() {
+  pageHead() {
     return (
       <Helmet defer={false}>
         <meta name="description" content={config.homeDescription} />
@@ -169,41 +169,58 @@ export default class Home extends Component {
     );
   }
 
+  header() {
+    return (
+      <HomeHeader>
+        <HeaderLogo>
+          <LogoTitleLink to="/">
+            <LogoImage src={LogoImageSource} />
+            <LogoTitle>Rulebook.io</LogoTitle>
+          </LogoTitleLink>
+          <LogoSubtitle>Community-curated Rulebooks</LogoSubtitle>
+        </HeaderLogo>
+        <HeaderLinks>
+          <HeaderLink exact to="/">
+            Home
+          </HeaderLink>
+          <HeaderLink exact to="/about">
+            About
+          </HeaderLink>
+          <HeaderLink exact to="/contribute">
+            Contribute
+          </HeaderLink>
+          <HeaderLink exact to="/browse">
+            Browse
+          </HeaderLink>
+        </HeaderLinks>
+      </HomeHeader>
+    );
+  }
+
+  footer() {
+    return (
+      <HomeFooter>
+        Made with <AnimatedEmoji>💛</AnimatedEmoji> by{' '}
+        <Link to="http://cam.bickel.io" target={'_blank'}>
+          Camden Bickel
+        </Link>
+      </HomeFooter>
+    );
+  }
+
   render() {
     return (
       <div>
-        {this.header()}
+        {this.pageHead()}
         <ProgressBar loading={this.state.loading} />
         <HomeMain>
-          <HomeHeader>
-            <HeaderLogo>
-              <LogoTitleLink to="/">
-                <LogoImage src={LogoImageSource} />
-                <LogoTitle>Rulebook.io</LogoTitle>
-              </LogoTitleLink>
-              <LogoSubtitle>Community-curated Rulebooks</LogoSubtitle>
-            </HeaderLogo>
-            <HeaderLinks>
-              <HeaderLink exact to="/">
-                Home
-              </HeaderLink>
-              <HeaderLink exact to="/about">
-                About
-              </HeaderLink>
-              <HeaderLink exact to="/contribute">
-                Contribute
-              </HeaderLink>
-              <HeaderLink exact to="/browse">
-                Browse
-              </HeaderLink>
-            </HeaderLinks>
-          </HomeHeader>
+          {this.header()}
           <HomeBody>
             <Switch>
               <Route
                 path="/"
                 exact
-                render={props => (
+                render={() => (
                   <HomeInner allRulebooks={this.state.data.allRulebooks} />
                 )}
               />
@@ -212,12 +229,7 @@ export default class Home extends Component {
               <Route path="/browse" exact component={Browse} />
               <Route component={PageNotFound} />
             </Switch>
-            <HomeFooter>
-              Made with <AnimatedEmoji>💛</AnimatedEmoji> by{' '}
-              <Link to="http://cam.bickel.io" target={'_blank'}>
-                Camden Bickel
-              </Link>
-            </HomeFooter>
+            {this.footer()}
           </HomeBody>
         </HomeMain>
       </div>
