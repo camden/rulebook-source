@@ -35,7 +35,10 @@ const Tag = styled.span`
   text-transform: capitalize;
 `;
 
-const Link = InlineLink.extend`display: block;`;
+const Link = InlineLink.extend`
+  display: block;
+  text-decoration: none;
+`;
 
 const getTags = tags => {
   return (
@@ -49,15 +52,22 @@ const getTags = tags => {
 
 class RulebookCard extends Component {
   render() {
-    const url = this.props.name
-      ? `/rules/${this.props.name}`
-      : this.props.linkTo;
+    let { name, title, tags } = this.props;
+
+    if (this.props.rulebook) {
+      const rulebook = this.props.rulebook;
+      name = rulebook.name;
+      title = rulebook.title;
+      tags = rulebook.tags;
+    }
+
+    const url = name ? `/rules/${name}` : this.props.linkTo;
 
     return (
       <Link className={this.props.className} to={url}>
         <ResultWrapper>
-          {this.props.title}
-          {getTags(this.props.tags)}
+          {title}
+          {getTags(tags)}
         </ResultWrapper>
       </Link>
     );
@@ -70,9 +80,14 @@ RulebookCard.defaultProps = {
 };
 
 RulebookCard.propTypes = {
-  title: PropTypes.string.isRequired,
-  tags: PropTypes.arrayOf(PropTypes.string),
+  rulebook: PropTypes.shape({
+    name: PropTypes.string,
+    title: PropTypes.string,
+    tags: PropTypes.arrayOf(PropTypes.string),
+  }),
   name: PropTypes.string,
+  title: PropTypes.string,
+  tags: PropTypes.arrayOf(PropTypes.string),
   linkTo: PropTypes.string,
   className: PropTypes.string,
 };

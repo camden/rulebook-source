@@ -11,7 +11,7 @@ import type { RulebookType } from 'types';
 import config from 'config';
 import ProgressBar from 'components/shared/ProgressBar';
 import SearchResult from 'components/home/SearchResult';
-import { fetchAllRulebooks, searchByTitle } from 'utils';
+import { searchByTitle } from 'utils';
 
 const SearchWrapper = styled.div`
   margin: 0 auto;

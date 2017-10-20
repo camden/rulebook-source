@@ -226,7 +226,13 @@ export default class Home extends Component {
               />
               <Route path="/about" exact component={About} />
               <Route path="/contribute" exact component={Contribute} />
-              <Route path="/browse" exact component={Browse} />
+              <Route
+                path="/browse"
+                exact
+                render={() => (
+                  <Browse allRulebooks={this.state.data.allRulebooks} />
+                )}
+              />
               <Route component={PageNotFound} />
             </Switch>
             {this.footer()}
