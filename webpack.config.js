@@ -4,8 +4,8 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 var CleanWebpackPlugin = require('clean-webpack-plugin');
 var Dotenv = require('dotenv-webpack');
 
-module.exports = {
-  devtool: 'source-map',
+const webpackConfig = {
+  stats: 'minimal',
   entry: ['babel-polyfill', 'whatwg-fetch', './client/index.js'],
   output: {
     path: path.join(__dirname, 'dist/client/'),
@@ -99,3 +99,10 @@ module.exports = {
     }),
   ],
 };
+
+if (process.env.NODE_ENV !== 'production') {
+  // DEV OPTIONS
+  webpackConfig.devtool = 'eval-source-map';
+}
+
+module.exports = webpackConfig;

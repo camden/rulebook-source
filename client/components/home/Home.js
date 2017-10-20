@@ -8,13 +8,13 @@ import { Link as ReactRouterLink, Route, Switch } from 'react-router-dom';
 import LogoImageSource from 'assets/images/master_favicon.svg';
 
 import config from 'config';
-import About from 'components/About';
-import Browse from 'components/Browse';
-import Contribute from 'components/Contribute';
-import Link, { NavLink } from 'components/Link';
-import PageNotFound from 'components/PageNotFound';
-import ProgressBar from 'components/ProgressBar';
-import HomeInner from 'components/HomeInner';
+import About from 'components/home/About';
+import Browse from 'components/home/Browse';
+import Contribute from 'components/home/Contribute';
+import Link, { NavLink } from 'components/shared/Link';
+import PageNotFound from 'components/home/PageNotFound';
+import ProgressBar from 'components/shared/ProgressBar';
+import HomeInner from 'components/home/HomeInner';
 
 const HomeMain = styled.div`
   max-width: 1000px;

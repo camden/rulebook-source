@@ -4,7 +4,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import reactStringReplace from 'react-string-replace';
 
-import HighlightedString from 'components/HighlightedString';
+import HighlightedString from 'components/rulebook/HighlightedString';
 
 import type { Glossary } from 'types';
 

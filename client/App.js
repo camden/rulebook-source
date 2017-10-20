@@ -4,12 +4,12 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import React, { Component } from 'react';
 import { anchorate } from 'anchorate';
 
-import Analytics from 'analytics';
+import Analytics from 'components/shared/Analytics';
 import { getMarkdown } from 'utils';
-import Home from 'components/Home';
-import Rulebook from 'components/Rulebook';
-import CustomRulebook from 'components/CustomRulebook';
-import RootTheme from 'components/RootTheme';
+import Home from 'components/home/Home';
+import Rulebook from 'components/rulebook/Rulebook';
+import CustomRulebook from 'components/rulebook/CustomRulebook';
+import RootTheme from 'components/shared/RootTheme';
 
 class App extends Component {
   render() {

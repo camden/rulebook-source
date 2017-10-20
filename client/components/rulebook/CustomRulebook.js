@@ -3,7 +3,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 
-import Rulebook from 'components/Rulebook';
+import Rulebook from 'components/rulebook/Rulebook';
 
 const Input = styled.textarea`
   position: relative;

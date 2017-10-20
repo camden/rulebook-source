@@ -3,8 +3,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import MarkdownParagraph from 'components/MarkdownParagraph';
-import MarkdownHeader from 'components/MarkdownHeader';
+import MarkdownParagraph from 'components/rulebook/MarkdownParagraph';
+import MarkdownHeader from 'components/rulebook/MarkdownHeader';
 import type { Glossary as GlossaryType } from 'types';
 
 const glossaryItem = entry => {

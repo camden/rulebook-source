@@ -4,11 +4,11 @@ import React, { createElement } from 'react';
 import marksy from 'marksy';
 import styled from 'styled-components';
 
-import Link from 'components/Link';
-import HighlightedString from 'components/HighlightedString';
-import Highlight from 'components/Highlight';
-import MarkdownHeader from 'components/MarkdownHeader';
-import MarkdownParagraph from 'components/MarkdownParagraph';
+import Link from 'components/shared/Link';
+import HighlightedString from 'components/rulebook/HighlightedString';
+import Highlight from 'components/rulebook/Highlight';
+import MarkdownHeader from 'components/rulebook/MarkdownHeader';
+import MarkdownParagraph from 'components/rulebook/MarkdownParagraph';
 
 import type { Glossary } from 'types';
 

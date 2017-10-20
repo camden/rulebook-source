@@ -6,7 +6,7 @@ import styled from 'styled-components';
 
 import { generateId } from 'utils';
 import { default as LinkIcon } from 'components/icons/Link';
-import Link from 'components/Link';
+import Link from 'components/shared/Link';
 
 const AnchorLink = styled.span`
   padding-right: 0.5rem;

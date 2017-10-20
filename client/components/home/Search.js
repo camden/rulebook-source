@@ -6,8 +6,8 @@ import styled from 'styled-components';
 import FlipMove from 'react-flip-move';
 
 import config from 'config';
-import ProgressBar from 'components/ProgressBar';
-import SearchResult from 'components/SearchResult';
+import ProgressBar from 'components/shared/ProgressBar';
+import SearchResult from 'components/home/SearchResult';
 import { fetchAllRulebooks, searchByTitle } from 'utils';
 
 const SearchWrapper = styled.div`

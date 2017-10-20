@@ -4,7 +4,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-import Glossary from 'components/Glossary';
+import Glossary from 'components/rulebook/Glossary';
 import type { Glossary as GlossaryType } from 'types';
 
 const RulebookBody = styled.div`

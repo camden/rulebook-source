@@ -8,8 +8,8 @@ import { Helmet } from 'react-helmet';
 import { Base64 } from 'js-base64';
 
 import config from 'config';
-import RulebookPanels from 'components/RulebookPanels';
-import ProgressBar from 'components/ProgressBar';
+import RulebookPanels from 'components/rulebook/RulebookPanels';
+import ProgressBar from 'components/shared/ProgressBar';
 import { fetchRulebookData } from 'utils';
 import { compileMarkdown } from 'markdown-utils';
 

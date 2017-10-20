@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 import { default as EditIcon } from 'components/icons/Edit';
-import Icon from 'components/Icon';
+import Icon from 'components/shared/Icon';
 
 const EditButton = props => {
   return (

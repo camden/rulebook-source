@@ -3,8 +3,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import Search from 'components/Search';
-import RulebookCard from 'components/RulebookCard';
+import Search from 'components/home/Search';
+import RulebookCard from 'components/shared/RulebookCard';
 
 const SUGGESTION_MARGIN = '0.5rem';
 

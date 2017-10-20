@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
-import { default as InlineLink } from 'components/Link';
+import { default as InlineLink } from 'components/shared/Link';
 
 const ResultWrapper = styled.div`
   width: 100%;

@@ -4,10 +4,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-import Media from 'components/Media';
+import Media from 'components/shared/Media';
 import EditButton from 'components/buttons/EditButton';
 import HomeButton from 'components/buttons/HomeButton';
-import Icon from 'components/Icon';
+import Icon from 'components/shared/Icon';
 import { default as MenuIcon } from 'components/icons/Menu';
 
 import { editLink } from 'utils';

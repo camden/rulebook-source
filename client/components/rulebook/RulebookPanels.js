@@ -5,10 +5,10 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import FixedPage from 'react-fixed-page';
 
-import Media from 'components/Media';
-import RulebookContent from 'components/RulebookContent';
-import Sidebar from 'components/Sidebar';
-import PageHeader from 'components/PageHeader';
+import Media from 'components/shared/Media';
+import RulebookContent from 'components/rulebook/RulebookContent';
+import Sidebar from 'components/rulebook/Sidebar';
+import PageHeader from 'components/rulebook/PageHeader';
 
 type SidebarValue = {
   width: number,

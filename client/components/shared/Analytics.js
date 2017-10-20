@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
 import GoogleAnalytics from 'react-ga';
 
 // Code from https://github.com/react-ga/react-ga/issues/122#issuecomment-320436578

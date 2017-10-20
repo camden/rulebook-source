@@ -4,7 +4,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import { default as HomeIcon } from 'components/icons/Home';
-import Icon from 'components/Icon';
+import Icon from 'components/shared/Icon';
 
 const HomeButton = props => {
   return (

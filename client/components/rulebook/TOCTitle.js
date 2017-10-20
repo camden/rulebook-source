@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import { decode as decodeHTMLEntities } from 'he';
 
 import { generateId } from 'utils';
-import Link from 'components/Link';
+import Link from 'components/shared/Link';
 
 const TOCLink = styled(({ bold, level, ...rest }) => <Link {...rest} />)`
   padding: 0.5rem 0;
