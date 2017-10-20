@@ -12,7 +12,7 @@ const Browse = props => {
 
   return (
     <div>
-      <h2>Browse</h2>
+      <h2>Browse All Rulebooks</h2>
       {listRulebooks(allRulebooks)}
     </div>
   );

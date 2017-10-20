@@ -19,110 +19,6 @@ import ProgressBar from 'components/shared/ProgressBar';
 import HomeInner from 'components/home/HomeInner';
 import { fetchAllRulebooks } from 'utils';
 
-const HomeMain = styled.div`
-  max-width: 1000px;
-  margin: 0 auto;
-
-  padding: 1rem;
-  @media (min-width: ${props => props.theme.media.desktop}) {
-    padding: 3rem 4rem;
-  }
-`;
-
-const HomeHeader = styled.div`
-  margin-bottom: 3rem;
-  @media (min-width: ${props => props.theme.media.desktop}) {
-    margin-bottom: 3rem;
-  }
-
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-`;
-
-const HeaderLogo = styled.div`
-  flex: 1 0 100%;
-
-  @media (min-width: ${props => props.theme.media.desktop}) {
-    flex: 1;
-  }
-`;
-
-const HeaderLinks = styled.div`
-  padding-top: 1rem;
-
-  text-align: center;
-  margin-top: 2rem;
-  flex: 1;
-  flex-basis: 100%;
-
-  @media (min-width: ${props => props.theme.media.desktop}) {
-    text-align: right;
-    margin-top: 0;
-    flex: 1;
-  }
-`;
-
-const HeaderLink = styled(NavLink)`
-  margin: 0 1rem;
-  padding: 0.5rem;
-  &.active {
-    font-weight: bolder;
-  }
-`;
-
-const LogoTitleLink = styled(ReactRouterLink)`
-  text-decoration: none;
-  color: ${props => props.theme.colors.black};
-  display: flex;
-  align-items: center;
-`;
-
-const LogoImage = styled.img`
-  width: 2.5rem;
-  margin-right: 1rem;
-`;
-
-const LogoTitle = styled.div`font-size: 2.5rem;`;
-const LogoSubtitle = styled.div`font-size: 1.5rem;`;
-
-const HomeBody = styled.div`min-height: 35vh;`;
-
-const HomeFooter = styled.div`
-  margin-top: 4rem;
-  padding: 1rem;
-  text-align: center;
-`;
-
-const pulse = keyframes`
-  0% {
-    transform: scale(1);
-  }
-
-  50% {
-    transform: scale(1.2);
-  }
-
-  100% {
-    transform: scale(1);
-  }
-`;
-
-const rainbow = keyframes`
-  from {
-    filter: hue-rotate(0deg);
-  }
-
-  to {
-    filter: hue-rotate(360deg);
-  }
-`;
-
-const AnimatedEmoji = styled.div`
-  animation: ${pulse} 1s ease infinite, ${rainbow} 5s linear infinite;
-  display: inline-block;
-`;
-
 export default class Home extends Component {
   state: {
     loading: boolean,
@@ -187,7 +83,7 @@ export default class Home extends Component {
             About
           </HeaderLink>
           <HeaderLink exact to="/contribute">
-            Contribute
+            How to Help
           </HeaderLink>
           <HeaderLink exact to="/browse">
             Browse
@@ -242,3 +138,108 @@ export default class Home extends Component {
     );
   }
 }
+
+const HomeMain = styled.div`
+  max-width: 1000px;
+  margin: 0 auto;
+
+  padding: 1rem;
+  @media (min-width: ${props => props.theme.media.desktop}) {
+    padding: 3rem 4rem;
+  }
+`;
+
+const HomeHeader = styled.div`
+  margin-bottom: 3rem;
+  @media (min-width: ${props => props.theme.media.desktop}) {
+    margin-bottom: 3rem;
+  }
+
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+`;
+
+const HeaderLogo = styled.div`
+  flex: 1 0 100%;
+
+  @media (min-width: ${props => props.theme.media.desktop}) {
+    flex: 1;
+  }
+`;
+
+const HeaderLinks = styled.div`
+  padding-top: 1rem;
+
+  display: flex;
+  flex-wrap: wrap;
+
+  margin-top: 2rem;
+  flex: 1;
+  flex-basis: 100%;
+
+  @media (min-width: ${props => props.theme.media.desktop}) {
+    margin-top: 0;
+    flex: 1;
+  }
+`;
+
+const HeaderLink = styled(NavLink)`
+  margin: 0 1rem;
+  padding: 0.5rem;
+  &.active {
+    font-weight: bolder;
+  }
+`;
+
+const LogoTitleLink = styled(ReactRouterLink)`
+  text-decoration: none;
+  color: ${props => props.theme.colors.black};
+  display: flex;
+  align-items: center;
+`;
+
+const LogoImage = styled.img`
+  width: 2.5rem;
+  margin-right: 1rem;
+`;
+
+const LogoTitle = styled.div`font-size: 2.5rem;`;
+const LogoSubtitle = styled.div`font-size: 1.5rem;`;
+
+const HomeBody = styled.div`min-height: 35vh;`;
+
+const HomeFooter = styled.div`
+  margin-top: 4rem;
+  padding: 1rem;
+  text-align: center;
+`;
+
+const pulse = keyframes`
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.2);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+`;
+
+const rainbow = keyframes`
+  from {
+    filter: hue-rotate(0deg);
+  }
+
+  to {
+    filter: hue-rotate(360deg);
+  }
+`;
+
+const AnimatedEmoji = styled.div`
+  animation: ${pulse} 1s ease infinite, ${rainbow} 5s linear infinite;
+  display: inline-block;
+`;
