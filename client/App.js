@@ -19,6 +19,7 @@ class App extends Component {
           <div>
             <Route
               render={() => {
+                window.scrollTo(0, 0);
                 anchorate();
                 return null;
               }}
