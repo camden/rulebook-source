@@ -10,6 +10,8 @@ import WebFont from 'webfontloader';
 import 'assets/favicons/**/!(*.html)';
 
 WebFont.load({
+  classes: false,
+  events: false,
   google: {
     families: ['Open Sans:400,400i,700,700i'],
   },
