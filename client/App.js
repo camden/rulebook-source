@@ -1,6 +1,6 @@
 // @flow
 
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 import React, { Component } from 'react';
 import { anchorate } from 'anchorate';
 
@@ -26,6 +26,12 @@ class App extends Component {
             />
             <Switch>
               <Route path="/custom-rules" component={CustomRulebook} />
+              <Route
+                path="/r/:rulebookName"
+                render={props => (
+                  <Redirect to={`/rules/${props.match.params.rulebookName}`} />
+                )}
+              />
               <Route path="/rules/:rulebookName" component={Rulebook} />
               <Route path="/" component={Home} />
             </Switch>
