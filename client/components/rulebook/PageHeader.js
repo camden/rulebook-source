@@ -52,14 +52,18 @@ const PageHeader = props => {
   return (
     <Header height={height}>
       <HeaderSection>
-        <Icon
-          tabIndex={1}
-          aria-label={'Side menu toggle'}
-          label={'Menu'}
-          onClick={onToggleSidebarClick}
-        >
-          <MenuIcon size={24} />
-        </Icon>
+        <Media query={'desktop'}>
+          {isDesktop => (
+            <Icon
+              tabIndex={1}
+              aria-label={'Side menu toggle'}
+              label={isDesktop ? 'Contents' : 'Menu'}
+              onClick={onToggleSidebarClick}
+            >
+              <MenuIcon size={24} />
+            </Icon>
+          )}
+        </Media>
         <Media query={'desktop'}>
           {isDesktop => (isDesktop ? <HomeButton /> : null)}
         </Media>
