@@ -27,7 +27,6 @@ const TOCWrapper = styled.div`
 `;
 
 const SidebarBody = styled.nav`
-  background-color: white;
   width: 100%;
 `;
 

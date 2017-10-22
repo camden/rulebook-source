@@ -48,6 +48,7 @@ const Overlay = styled.div`
 `;
 
 const SidebarWrapper = styled.div`
+  background-color: white;
   transition: all ${transitionTime} ease;
   position: fixed;
   top: ${HEADER_HEIGHT};
