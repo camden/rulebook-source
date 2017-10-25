@@ -18,7 +18,9 @@ const Browse = props => {
   );
 };
 
-const RulebookCard = styled(RulebookCardNoMargin)`margin: 1rem 0;`;
+const RulebookCard = styled(RulebookCardNoMargin)`
+  margin: 1rem 0;
+`;
 
 const SectionHeader = styled.h4`
   margin-top: 2.5rem;

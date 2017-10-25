@@ -29,8 +29,24 @@ export const getPage = async ({ req, res, redis }) => {
 
   const pageUrl = `/pages/${pageName}.md`;
 
-  return getGithubContent({ urlSuffix: pageUrl, json: true }).then(pageData => {
-    return res.json(pageData);
+  let pageData = await getFromCache({
+    key: 'page-' + pageName,
+    redis,
+  });
+
+  // Nothing was found in the cache for this rulebook
+  if (!pageData) {
+    const githubData = await getGithubContent({
+      urlSuffix: pageUrl,
+      json: true,
+    });
+    const content = githubData.content.replace(/\n/g, '');
+    pageData = content;
+    redis.setex('page-' + pageName, 3600, JSON.stringify(pageData));
+  }
+
+  return res.json({
+    data: pageData,
   });
 };
 

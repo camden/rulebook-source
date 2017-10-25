@@ -8,16 +8,24 @@ export const editLink = ({ rulebookName }): string => {
   return `https://github.com/camden/rulebooks/edit/master/rulebooks/${rulebookName}.md`;
 };
 
+const fetchData = async ({ urlSuffix }) => {
+  const serverUrl = `${SITE_ROOT}/${urlSuffix}`;
+  const res = await fetch(serverUrl);
+  const resJSON = await res.json();
+  resJSON.status = res.status;
+  return resJSON;
+};
+
 export const fetchRulebookData = async ({
   rulebookName,
 }: {
   rulebookName: string,
 }): Promise<*> => {
-  const serverUrl = `${SITE_ROOT}/rulebooks/${rulebookName}`;
-  const res = await fetch(serverUrl);
-  const resJSON = await res.json();
-  resJSON.status = res.status;
-  return resJSON;
+  return fetchData({ urlSuffix: `rulebooks/${rulebookName}` });
+};
+
+export const fetchPageData = async ({ pageName }): Promise<*> => {
+  return fetchData({ urlSuffix: `pages/${pageName}` });
 };
 
 export const searchByTitle = async ({

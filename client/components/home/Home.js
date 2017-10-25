@@ -10,14 +10,13 @@ import LogoImageSource from 'assets/images/master_favicon.svg';
 import type { RulebookType } from 'types';
 
 import config from 'config';
-import About from 'components/home/About';
 import Browse from 'components/home/Browse';
-import Contribute from 'components/home/Contribute';
+import Page from 'components/home/Page';
 import Link, { NavLink } from 'components/shared/Link';
 import PageNotFound from 'components/home/PageNotFound';
 import ProgressBar from 'components/shared/ProgressBar';
 import HomeInner from 'components/home/HomeInner';
-import { fetchAllRulebooks } from 'utils';
+import { fetchAllRulebooks, fetchPageData } from 'utils';
 
 export default class Home extends Component {
   state: {
@@ -30,6 +29,10 @@ export default class Home extends Component {
     this.state = {
       loading: true,
       data: {
+        pages: {
+          about: '',
+          howToHelp: '',
+        },
         allRulebooks: [],
       },
     };
@@ -39,14 +42,28 @@ export default class Home extends Component {
     this.fetchData();
   }
 
-  async fetchData(): Promise<Array<RulebookType>> {
+  async fetchData() {
     const response = await fetchAllRulebooks();
     const allRulebooks = response.data;
+
+    const aboutRes = await fetchPageData({
+      pageName: 'about',
+    });
+    const about = aboutRes.data;
+
+    const howToHelpRes = await fetchPageData({
+      pageName: 'how-to-help',
+    });
+    const howToHelp = howToHelpRes.data;
 
     this.setState({
       loading: false,
       data: {
         ...this.state.data,
+        pages: {
+          about,
+          howToHelp,
+        },
         allRulebooks,
       },
     });
@@ -82,7 +99,7 @@ export default class Home extends Component {
           <HeaderLink exact to="/about">
             About
           </HeaderLink>
-          <HeaderLink exact to="/contribute">
+          <HeaderLink exact to="/how-to-help">
             How to Help
           </HeaderLink>
           <HeaderLink exact to="/browse">
@@ -120,8 +137,16 @@ export default class Home extends Component {
                   <HomeInner allRulebooks={this.state.data.allRulebooks} />
                 )}
               />
-              <Route path="/about" exact component={About} />
-              <Route path="/contribute" exact component={Contribute} />
+              <Route
+                path="/about"
+                exact
+                render={() => <Page data={this.state.data.pages.about} />}
+              />
+              <Route
+                path="/how-to-help"
+                exact
+                render={() => <Page data={this.state.data.pages.howToHelp} />}
+              />
               <Route
                 path="/browse"
                 exact
@@ -204,10 +229,16 @@ const LogoImage = styled.img`
   margin-right: 1rem;
 `;
 
-const LogoTitle = styled.div`font-size: 2.5rem;`;
-const LogoSubtitle = styled.div`font-size: 1.5rem;`;
+const LogoTitle = styled.div`
+  font-size: 2.5rem;
+`;
+const LogoSubtitle = styled.div`
+  font-size: 1.5rem;
+`;
 
-const HomeBody = styled.div`min-height: 35vh;`;
+const HomeBody = styled.div`
+  min-height: 35vh;
+`;
 
 const HomeFooter = styled.div`
   margin-top: 4rem;

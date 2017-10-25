@@ -47,7 +47,7 @@ export const compileMarkdown = ({
   glossary,
 }: {
   markdown: string,
-  glossary: Glossary,
+  glossary: ?Glossary,
 }) => {
   return marksy({
     // Pass in whatever creates elements for your
@@ -103,11 +103,15 @@ export const compileMarkdown = ({
         return <Image src={src} alt={alt} />;
       },
       p({ children }) {
-        return (
-          <MarkdownParagraph>
-            <Highlight text={children} glossary={glossary} />
-          </MarkdownParagraph>
-        );
+        if (glossary) {
+          return (
+            <MarkdownParagraph>
+              <Highlight text={children} glossary={glossary} />
+            </MarkdownParagraph>
+          );
+        } else {
+          return <MarkdownParagraph>{children}</MarkdownParagraph>;
+        }
       },
       blockquote({ children }) {
         return <BlockQuote>{children}</BlockQuote>;
