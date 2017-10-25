@@ -1,7 +1,12 @@
 // @flow
 
 import { rulebooksRoute } from './constants';
-import { getAllRulebooks, getFromCache, hydrateRulebook } from './utils';
+import {
+  getAllRulebooks,
+  getGithubContent,
+  getFromCache,
+  hydrateRulebook,
+} from './utils';
 
 export const getRulebooks = ({ req, res, redis }) => {
   getAllRulebooks({ redis }).then(githubResponse => {
@@ -16,6 +21,16 @@ export const getRulebooks = ({ req, res, redis }) => {
     return res.json({
       data: githubResponse.rulebooksArray,
     });
+  });
+};
+
+export const getPage = async ({ req, res, redis }) => {
+  const pageName = req.params.pageName;
+
+  const pageUrl = `/pages/${pageName}.md`;
+
+  return getGithubContent({ urlSuffix: pageUrl, json: true }).then(pageData => {
+    return res.json(pageData);
   });
 };
 

@@ -87,9 +87,11 @@ export const hydrateRulebook = async ({
   };
 };
 
-export const getAllRulebooks = async ({ redis }): Promise<Object> => {
-  const url =
-    GITHUB_ROOT + GITHUB_API_URL + '/rulebooks' + getGithubAuthParams();
+export const getGithubContent = async ({
+  urlSuffix,
+  json,
+}): Promise<Object> => {
+  const url = GITHUB_ROOT + GITHUB_API_URL + urlSuffix + getGithubAuthParams();
 
   const response = await fetch(url, {
     headers: {
@@ -97,7 +99,20 @@ export const getAllRulebooks = async ({ redis }): Promise<Object> => {
     },
   });
 
-  const rulebookData = await response.json();
+  if (json) {
+    const jsonRes = await response.json();
+    return jsonRes;
+  } else {
+    return response;
+  }
+};
+
+export const getAllRulebooks = async ({ redis }): Promise<Object> => {
+  const rulebookData = await getGithubContent({
+    urlSuffix: '/rulebooks',
+    json: true,
+  });
+
   let rulebookNameArray = rulebookData.map(rulebookObj => {
     return rulebookObj.name.split('.')[0];
   });
