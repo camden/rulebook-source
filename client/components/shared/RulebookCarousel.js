@@ -23,7 +23,7 @@ const RulebookCarousel = props => {
 const ITEM_MARGIN = '0.5rem';
 
 const Carousel = styled.div`
-  margin-top: 1rem;
+  margin-top: 1.5rem;
   display: flex;
   flex-direction: column;
 `;
@@ -39,7 +39,9 @@ const CarouselCards = styled.div`
   flex-wrap: wrap;
 `;
 
-const CarouselItem = styled(RulebookCard)`margin: 0.5rem ${ITEM_MARGIN};`;
+const CarouselItem = styled(RulebookCard)`
+  margin: 0.5rem ${ITEM_MARGIN};
+`;
 
 RulebookCarousel.propTypes = {
   title: PropTypes.string.isRequired,
