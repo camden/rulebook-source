@@ -108,10 +108,12 @@ export const getGithubContent = async ({
 };
 
 export const getAllRulebooks = async ({ redis }): Promise<Object> => {
-  const rulebookData = await getGithubContent({
+  const response = await getGithubContent({
     urlSuffix: '/rulebooks',
-    json: true,
+    json: false,
   });
+
+  const rulebookData = await response.json();
 
   let rulebookNameArray = rulebookData.map(rulebookObj => {
     return rulebookObj.name.split('.')[0];

@@ -35,7 +35,7 @@ const HomeInner = props => {
 };
 
 const Featured = styled.section`
-  margin-bottom: 4rem;
+  margin-top: 4rem;
 `;
 
 HomeInner.propTypes = {
