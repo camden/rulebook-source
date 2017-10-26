@@ -21,6 +21,10 @@ const AnchorLink = styled.span`
   &:hover {
     color: ${props => props.theme.colors.icon.hover};
   }
+
+  @media print {
+    display: none;
+  }
 `;
 
 const underlineStyle = `

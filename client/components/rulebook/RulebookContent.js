@@ -15,6 +15,10 @@ const RulebookBody = styled.div`
     padding: 1rem 3rem 3rem;
     max-width: 50rem;
   }
+
+  @media print {
+    padding: 0;
+  }
 `;
 
 const RulebookContent = ({

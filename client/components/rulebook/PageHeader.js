@@ -28,6 +28,10 @@ const Header = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+
+  @media print {
+    position: relative;
+  }
 `;
 
 const HeaderSection = styled.div`
@@ -46,23 +50,36 @@ const RulebookTitle = styled.span`
   text-overflow: ellipsis;
 `;
 
+const HideOnPrint = styled.div`
+  @media print {
+    display: none;
+  }
+`;
+
 const PageHeader = props => {
   const { rulebookName, onToggleSidebarClick, title, height } = props;
 
   return (
     <Header height={height}>
       <HeaderSection>
-        <Media query={'desktop'}>
-          {isDesktop => (
-            <Icon
-              tabIndex={1}
-              aria-label={'Side menu toggle'}
-              label={isDesktop ? 'Contents' : 'Menu'}
-              onClick={onToggleSidebarClick}
-            >
-              <MenuIcon size={24} />
-            </Icon>
-          )}
+        <Media query={'print'}>
+          {isPrint =>
+            isPrint ? null : (
+              <Media query={'desktop'}>
+                {isDesktop => (
+                  <HideOnPrint>
+                    <Icon
+                      tabIndex={1}
+                      aria-label={'Side menu toggle'}
+                      label={isDesktop ? 'Contents' : 'Menu'}
+                      onClick={onToggleSidebarClick}
+                    >
+                      <MenuIcon size={24} />
+                    </Icon>
+                  </HideOnPrint>
+                )}
+              </Media>
+            )}
         </Media>
         <Media query={'desktop'}>
           {isDesktop => (isDesktop ? <HomeButton /> : null)}

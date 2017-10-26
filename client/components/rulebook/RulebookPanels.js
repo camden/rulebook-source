@@ -10,55 +10,6 @@ import RulebookContent from 'components/rulebook/RulebookContent';
 import Sidebar from 'components/rulebook/Sidebar';
 import PageHeader from 'components/rulebook/PageHeader';
 
-type SidebarValue = {
-  width: number,
-  unit: string,
-};
-
-const sidebarValues = {
-  desktop: {
-    width: 500,
-    unit: 'px',
-  },
-  mobile: {
-    width: 85,
-    unit: 'vw',
-  },
-};
-
-const HEADER_HEIGHT = '5rem';
-const transitionTime = '250ms';
-
-const PageContent = styled.div`
-  margin-top: ${HEADER_HEIGHT};
-  overflow-y: auto;
-  position: relative;
-`;
-
-const Overlay = styled.div`
-  pointer-events: ${props => (props.visible ? 'auto' : 'none')};
-  background-color: ${props =>
-    props.visible ? 'hsla(0, 0%, 0%, 0.1)' : 'transparent'};
-  position: absolute;
-  top: 0;
-  right: 0;
-  left: 0;
-  bottom: 0;
-  transition: background-color ${transitionTime} ease;
-`;
-
-const SidebarWrapper = styled.div`
-  background-color: white;
-  transition: all ${transitionTime} ease;
-  position: fixed;
-  top: ${HEADER_HEIGHT};
-  bottom: 0;
-  left: 0;
-  overflow-y: auto;
-  z-index: 1;
-  -webkit-overflow-scrolling: touch;
-`;
-
 class RulebookPanels extends Component {
   state: {
     sidebarOpen: boolean,
@@ -226,5 +177,58 @@ RulebookPanels.propTypes = {
   }).isRequired,
   not_found: PropTypes.bool,
 };
+
+type SidebarValue = {
+  width: number,
+  unit: string,
+};
+
+const sidebarValues = {
+  desktop: {
+    width: 500,
+    unit: 'px',
+  },
+  mobile: {
+    width: 85,
+    unit: 'vw',
+  },
+};
+
+const HEADER_HEIGHT = '5rem';
+const transitionTime = '250ms';
+
+const PageContent = styled.div`
+  margin-top: ${HEADER_HEIGHT};
+  overflow-y: auto;
+  position: relative;
+
+  @media print {
+    margin-top: 0;
+  }
+`;
+
+const Overlay = styled.div`
+  pointer-events: ${props => (props.visible ? 'auto' : 'none')};
+  background-color: ${props =>
+    props.visible ? 'hsla(0, 0%, 0%, 0.1)' : 'transparent'};
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  transition: background-color ${transitionTime} ease;
+`;
+
+const SidebarWrapper = styled.div`
+  background-color: white;
+  transition: all ${transitionTime} ease;
+  position: fixed;
+  top: ${HEADER_HEIGHT};
+  bottom: 0;
+  left: 0;
+  overflow-y: auto;
+  z-index: 1;
+  -webkit-overflow-scrolling: touch;
+`;
 
 export default RulebookPanels;
