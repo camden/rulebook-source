@@ -28,6 +28,10 @@ export const fetchPageData = async ({ pageName }): Promise<*> => {
   return fetchData({ urlSuffix: `pages/${pageName}` });
 };
 
+export const fetchHomepageData = async (): Promise<*> => {
+  return fetchData({ urlSuffix: `config/homepage.yml` });
+};
+
 export const searchByTitle = async ({
   query,
 }: {

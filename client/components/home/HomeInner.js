@@ -1,54 +1,46 @@
 // @flow
 
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 import Search from 'components/home/Search';
-import RulebookCard from 'components/shared/RulebookCard';
+import RulebookCarousel from 'components/shared/RulebookCarousel';
 
-const SUGGESTION_MARGIN = '0.5rem';
+const HomeInner = props => {
+  const { homepageData, allRulebooks } = props;
 
-const Suggestions = styled.div`
-  margin: 3rem 0 1rem;
-  display: flex;
-  flex-direction: column;
-`;
+  // TODO clean this up
+  const carousels = Object.keys(homepageData).map(categoryName => {
+    const rulebookNames = homepageData[categoryName];
+    const rulebooks = rulebookNames.map(rulebookName => {
+      return allRulebooks.find(rulebook => rulebook.name === rulebookName);
+    });
 
-const SuggestionCategory = styled.h3`
-  align-self: flex-start;
-  margin-left: ${SUGGESTION_MARGIN};
-  margin-bottom: 0.5rem;
-`;
+    return (
+      <RulebookCarousel
+        key={categoryName}
+        title={categoryName}
+        rulebooks={rulebooks}
+      />
+    );
+  });
 
-const SuggestionCards = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-`;
-
-const Suggestion = styled(RulebookCard)`margin: 0.5rem ${SUGGESTION_MARGIN};`;
-
-const suggestions = props => {
   return (
-    <Suggestions>
-      <SuggestionCategory>Featured</SuggestionCategory>
-      <SuggestionCards>
-        <Suggestion title="The Resistance" linkTo="#" />
-        <Suggestion title="One Night Ultimate Werewolf" linkTo="#" />
-        <Suggestion title="Spikeball" linkTo="#" />
-        <Suggestion title="The Resistance" linkTo="#" />
-        <Suggestion title="One Night Ultimate Werewolf" linkTo="#" />
-        <Suggestion title="Spikeball" linkTo="#" />
-      </SuggestionCards>
-    </Suggestions>
+    <div>
+      <Search allRulebooks={allRulebooks} />
+      <Featured>{carousels}</Featured>
+    </div>
   );
 };
 
-const HomeInner = props => {
-  return (
-    <div>
-      <Search {...props} />
-    </div>
-  );
+const Featured = styled.section`
+  margin-bottom: 4rem;
+`;
+
+HomeInner.propTypes = {
+  allRulebooks: PropTypes.array.isRequired,
+  homepageData: PropTypes.object.isRequired,
 };
 
 export default HomeInner;

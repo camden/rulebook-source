@@ -24,6 +24,35 @@ export const getRulebooks = ({ req, res, redis }) => {
   });
 };
 
+// Includes file extension!
+export const getConfig = async ({ req, res, redis }) => {
+  // TODO pull this out into a helper func to reduce duplicated code
+  const configName = req.params.configName;
+
+  const configUrl = `/config/${configName}`;
+
+  let configData = await getFromCache({
+    key: 'config-' + configName,
+    redis,
+  });
+
+  // Nothing was found in the cache for this rulebook
+  if (!configData) {
+    const githubData = await getGithubContent({
+      urlSuffix: configUrl,
+      json: true,
+    });
+
+    const content = githubData.content.replace(/\n/g, '');
+    configData = content;
+    redis.setex('config-' + configName, 3600, JSON.stringify(configData));
+  }
+
+  return res.json({
+    data: configData,
+  });
+};
+
 export const getPage = async ({ req, res, redis }) => {
   const pageName = req.params.pageName;
 

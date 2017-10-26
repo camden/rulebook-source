@@ -1,7 +1,7 @@
 // @flow
 
 import { getAllRulebooks, getRulebookContent, getFromCache } from './utils';
-import { getRulebooks, getPage, searchByTitle } from './api';
+import { getRulebooks, getConfig, getPage, searchByTitle } from './api';
 import { rulebooksRoute } from './constants';
 
 export const addRoutes = ({ router, redis }) => {
@@ -45,6 +45,10 @@ export const addRoutes = ({ router, redis }) => {
 
   router.route('/pages/:pageName').get((req, res) => {
     return getPage({ req, res, redis });
+  });
+
+  router.route('/config/:configName').get((req, res) => {
+    return getConfig({ req, res, redis });
   });
 
   // For now, just search by name

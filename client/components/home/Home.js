@@ -2,6 +2,8 @@
 
 import React, { Component } from 'react';
 import styled, { keyframes } from 'styled-components';
+import { Base64 } from 'js-base64';
+import { safeLoad } from 'js-yaml';
 import { Helmet } from 'react-helmet';
 import { Link as ReactRouterLink, Route, Switch } from 'react-router-dom';
 
@@ -16,7 +18,7 @@ import Link, { NavLink } from 'components/shared/Link';
 import PageNotFound from 'components/home/PageNotFound';
 import ProgressBar from 'components/shared/ProgressBar';
 import HomeInner from 'components/home/HomeInner';
-import { fetchAllRulebooks, fetchPageData } from 'utils';
+import { fetchAllRulebooks, fetchHomepageData, fetchPageData } from 'utils';
 
 export default class Home extends Component {
   state: {
@@ -33,6 +35,7 @@ export default class Home extends Component {
           about: '',
           howToHelp: '',
         },
+        homepageData: {},
         allRulebooks: [],
       },
     };
@@ -45,6 +48,10 @@ export default class Home extends Component {
   async fetchData() {
     const response = await fetchAllRulebooks();
     const allRulebooks = response.data;
+
+    const homepageRes = await fetchHomepageData();
+    const homepageYaml = Base64.decode(homepageRes.data);
+    const homepageData = safeLoad(homepageYaml);
 
     const aboutRes = await fetchPageData({
       pageName: 'about',
@@ -60,6 +67,7 @@ export default class Home extends Component {
       loading: false,
       data: {
         ...this.state.data,
+        homepageData,
         pages: {
           about,
           howToHelp,
@@ -134,7 +142,10 @@ export default class Home extends Component {
                 path="/"
                 exact
                 render={() => (
-                  <HomeInner allRulebooks={this.state.data.allRulebooks} />
+                  <HomeInner
+                    allRulebooks={this.state.data.allRulebooks}
+                    homepageData={this.state.data.homepageData}
+                  />
                 )}
               />
               <Route
