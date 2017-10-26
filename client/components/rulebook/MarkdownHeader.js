@@ -24,11 +24,12 @@ const AnchorLink = styled.span`
 `;
 
 const underlineStyle = `
-    border-bottom: 1px solid #ccc;
+    border-bottom: 1px solid #efefef;
     margin-bottom: 0.5rem;
 `;
 
 const Wrapper = styled.div`
+  margin-top: 1rem;
   padding: 0.75rem 0 0.25rem;
   ${props => (props.underline ? underlineStyle : '')};
 `;
