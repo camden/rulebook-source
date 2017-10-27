@@ -28,6 +28,10 @@ export const getAsset = async ({ req, res, redis }) => {
 
   const assetUrl = `/assets/${assetName}`;
 
+  let status = '200';
+
+  const fileExt = assetName.split('.')[1];
+
   let assetData = await getFromCache({
     key: 'asset-' + assetName,
     redis,
@@ -42,6 +46,7 @@ export const getAsset = async ({ req, res, redis }) => {
       urlSuffix: assetUrl,
       json: false,
     });
+    status = githubData.status;
     buffer = await githubData.buffer();
     assetData = encode(buffer);
 
@@ -55,12 +60,17 @@ export const getAsset = async ({ req, res, redis }) => {
     length = buffer.byteLength;
   }
 
-  res.writeHead(200, {
-    'Content-Type': 'image/png',
-    'Content-Length': length,
-  });
+  if (status === '200') {
+    res.set({
+      'Content-Length': length,
+    });
 
-  res.end(buffer);
+    res.type(fileExt);
+
+    res.status(status).end(buffer);
+  } else {
+    res.status(status).end();
+  }
 };
 
 // Includes file extension!
