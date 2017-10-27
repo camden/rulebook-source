@@ -7,6 +7,8 @@ const REPO_AUTHOR = 'camden';
 const REPO_NAME = 'rulebooks';
 const GITHUB_ROOT = 'https://api.github.com';
 const GITHUB_API_URL = `/repos/${REPO_AUTHOR}/${REPO_NAME}/contents`;
+const GITHUB_MEDIA_URL =
+  'https://media.githubusercontent.com/media/camden/rulebooks/master/';
 
 const getGithubAuthParams = () => {
   const clientId = process.env.GITHUB_CLIENT_ID;
@@ -88,10 +90,15 @@ export const hydrateRulebook = async ({
 };
 
 export const getGithubContent = async ({
+  media,
   urlSuffix,
   json,
 }): Promise<Object> => {
-  const url = GITHUB_ROOT + GITHUB_API_URL + urlSuffix + getGithubAuthParams();
+  let url = GITHUB_ROOT + GITHUB_API_URL + urlSuffix + getGithubAuthParams();
+
+  if (media) {
+    url = GITHUB_MEDIA_URL + urlSuffix + getGithubAuthParams();
+  }
 
   const response = await fetch(url, {
     headers: {

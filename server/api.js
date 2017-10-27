@@ -1,12 +1,10 @@
 // @flow
 
-import { rulebooksRoute } from './constants';
-import {
-  getAllRulebooks,
-  getGithubContent,
-  getFromCache,
-  hydrateRulebook,
-} from './utils';
+import { encode, decode } from 'base64-arraybuffer';
+import { Base64 } from 'js-base64';
+
+import { ASSET_STORAGE_TIME, rulebooksRoute } from './constants';
+import { getAllRulebooks, getGithubContent, getFromCache } from './utils';
 
 export const getRulebooks = ({ req, res, redis }) => {
   getAllRulebooks({ redis }).then(githubResponse => {
@@ -22,6 +20,47 @@ export const getRulebooks = ({ req, res, redis }) => {
       data: githubResponse.rulebooksArray,
     });
   });
+};
+
+// includes file extension
+export const getAsset = async ({ req, res, redis }) => {
+  const assetName = req.params.assetName;
+
+  const assetUrl = `/assets/${assetName}`;
+
+  let assetData = await getFromCache({
+    key: 'asset-' + assetName,
+    redis,
+  });
+
+  let buffer;
+
+  // Nothing was found in the cache for this rulebook
+  if (!assetData) {
+    const githubData = await getGithubContent({
+      media: true,
+      urlSuffix: assetUrl,
+      json: false,
+    });
+    buffer = await githubData.buffer();
+    assetData = encode(buffer);
+
+    redis.setex('asset-' + assetName, ASSET_STORAGE_TIME, assetData);
+  } else {
+    buffer = new Buffer(assetData, 'base64');
+  }
+
+  let length = buffer.length;
+  if (!length) {
+    length = buffer.byteLength;
+  }
+
+  res.writeHead(200, {
+    'Content-Type': 'image/png',
+    'Content-Length': length,
+  });
+
+  res.end(buffer);
 };
 
 // Includes file extension!

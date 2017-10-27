@@ -1,7 +1,13 @@
 // @flow
 
 import { getAllRulebooks, getRulebookContent, getFromCache } from './utils';
-import { getRulebooks, getConfig, getPage, searchByTitle } from './api';
+import {
+  getRulebooks,
+  getAsset,
+  getConfig,
+  getPage,
+  searchByTitle,
+} from './api';
 import { rulebooksRoute } from './constants';
 
 export const addRoutes = ({ router, redis }) => {
@@ -41,6 +47,10 @@ export const addRoutes = ({ router, redis }) => {
 
   router.route(rulebooksRoute).get((req, res) => {
     return getRulebooks({ req, res, redis });
+  });
+
+  router.route('/assets/:assetName').get((req, res) => {
+    return getAsset({ req, res, redis });
   });
 
   router.route('/pages/:pageName').get((req, res) => {

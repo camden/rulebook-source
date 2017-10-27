@@ -45,6 +45,7 @@
     "babel-preset-env": "^1.6.0",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
+    "base64-arraybuffer": "^0.1.5",
     "body-parser": "^1.17.2",
     "clean-webpack-plugin": "^0.1.17",
     "cli-real-favicon": "^0.0.6",
