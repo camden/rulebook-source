@@ -40,6 +40,11 @@ const TD = styled.td`
   border: 1px solid ${props => props.theme.colors.border};
 `;
 
+const Code = styled.code`
+  background-color: ${props => props.theme.colors.border};
+  padding: 0.2rem;
+`;
+
 const highlightWrapper = HighlightedString;
 
 export const compileMarkdown = ({
@@ -127,6 +132,9 @@ export const compileMarkdown = ({
       },
       a(props) {
         return <Link to={props.href} {...props} />;
+      },
+      code({ language, children }) {
+        return <Code>{children}</Code>;
       },
     },
   })(markdown);
