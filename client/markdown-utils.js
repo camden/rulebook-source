@@ -16,6 +16,7 @@ const Wrapper = styled.div`
     display: block;
     background-color: ${props => props.theme.colors.border};
     padding: 0.2rem;
+    overflow-y: auto;
   }
 `;
 
