@@ -5,12 +5,24 @@ import marksy from 'marksy';
 import styled from 'styled-components';
 
 import Link from 'components/shared/Link';
-import HighlightedString from 'components/rulebook/HighlightedString';
 import Highlight from 'components/rulebook/Highlight';
 import MarkdownHeader from 'components/rulebook/MarkdownHeader';
 import MarkdownParagraph from 'components/rulebook/MarkdownParagraph';
 
 import type { Glossary } from 'types';
+
+const Wrapper = styled.div`
+  & [class^='language-'] {
+    display: block;
+    background-color: ${props => props.theme.colors.border};
+    padding: 0.2rem;
+  }
+`;
+
+const Code = styled.code`
+  background-color: ${props => props.theme.colors.border};
+  padding: 0.2rem;
+`;
 
 const Image = styled.img`
   box-sizing: border-box;
@@ -40,13 +52,6 @@ const TD = styled.td`
   border: 1px solid ${props => props.theme.colors.border};
 `;
 
-const Code = styled.code`
-  background-color: ${props => props.theme.colors.border};
-  padding: 0.2rem;
-`;
-
-const highlightWrapper = HighlightedString;
-
 export const compileMarkdown = ({
   markdown,
   glossary,
@@ -54,13 +59,9 @@ export const compileMarkdown = ({
   markdown: string,
   glossary: ?Glossary,
 }) => {
-  return marksy({
-    // Pass in whatever creates elements for your
-    // virtual DOM library. h('h1', {})
+  const compiled = marksy({
     createElement,
 
-    // You can override the default elements with
-    // custom VDOM trees
     elements: {
       h1({ id, children }) {
         return (
@@ -133,9 +134,12 @@ export const compileMarkdown = ({
       a(props) {
         return <Link to={props.href} {...props} />;
       },
-      code({ language, children }) {
+      code({ language, children, code }) {
         return <Code>{children}</Code>;
       },
     },
   })(markdown);
+
+  compiled.tree = <Wrapper>{compiled.tree}</Wrapper>;
+  return compiled;
 };
