@@ -30,5 +30,6 @@ const styling = styleFn => styleFn`
 const Link = styling(styled(ReactRouterLink));
 
 export const NavLink = styling(styled(ReactRouterNavLink));
+export const Anchor = styling(styled.a);
 
 export default Link;

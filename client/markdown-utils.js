@@ -4,7 +4,7 @@ import React, { createElement } from 'react';
 import marksy from 'marksy';
 import styled from 'styled-components';
 
-import Link from 'components/shared/Link';
+import Link, { Anchor } from 'components/shared/Link';
 import Highlight from 'components/rulebook/Highlight';
 import MarkdownHeader from 'components/rulebook/MarkdownHeader';
 import MarkdownParagraph from 'components/rulebook/MarkdownParagraph';
@@ -133,7 +133,16 @@ export const compileMarkdown = ({
         return <TD>{children}</TD>;
       },
       a(props) {
-        return <Link to={props.href} {...props} />;
+        // URL is external
+        if (/^https?:\/\//.test(props.href)) {
+          return (
+            <Anchor href={props.href} target={'_blank'}>
+              {props.children}
+            </Anchor>
+          );
+        } else {
+          return <Link to={props.href} {...props} />;
+        }
       },
       code({ language, children, code }) {
         return <Code>{children}</Code>;
