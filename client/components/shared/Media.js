@@ -7,9 +7,7 @@ import ReactMedia from 'react-media';
 import queries from 'media-queries';
 
 const Media = ({ query, children }) => {
-  return (
-    <ReactMedia query={`(min-width: ${queries[query]})`}>{children}</ReactMedia>
-  );
+  return <ReactMedia query={`(${queries[query]})`}>{children}</ReactMedia>;
 };
 
 Media.propTypes = {

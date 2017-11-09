@@ -9,10 +9,9 @@ import { default as LinkIcon } from 'components/icons/Link';
 import Link from 'components/shared/Link';
 
 const AnchorLink = styled.span`
-  padding-right: 0.5rem;
+  padding-left: 0.25rem;
   transition: all 150ms linear;
   box-sizing: content-box;
-  padding: 0 0.5rem 0 0;
 
   cursor: pointer;
 
@@ -68,7 +67,23 @@ class MarkdownHeader extends Component {
 
     this.state = {
       collapsed: true,
+      anchorShowing: false,
     };
+
+    this.handleMouseEnter = this.handleMouseEnter.bind(this);
+    this.handleMouseLeave = this.handleMouseLeave.bind(this);
+  }
+
+  handleMouseEnter() {
+    this.setState({
+      anchorShowing: true,
+    });
+  }
+
+  handleMouseLeave() {
+    this.setState({
+      anchorShowing: false,
+    });
   }
 
   render() {
@@ -76,16 +91,22 @@ class MarkdownHeader extends Component {
     const id = generateId({ title });
 
     return (
-      <Wrapper underline={this.props.level === 1}>
+      <Wrapper
+        underline={this.props.level === 1}
+        onMouseEnter={this.handleMouseEnter}
+        onMouseLeave={this.handleMouseLeave}
+      >
         <AnchorOffset id={id} />
-        <Link to={`#${id}`}>
-          <AnchorLink>
-            <LinkIcon size={16} />
-          </AnchorLink>
-        </Link>
         <GenericHeader size={levelToSizeMap[this.props.level.toString()]}>
           {this.props.children}
         </GenericHeader>
+        {this.state.anchorShowing ? (
+          <Link to={`#${id}`}>
+            <AnchorLink>
+              <LinkIcon size={16} />
+            </AnchorLink>
+          </Link>
+        ) : null}
       </Wrapper>
     );
   }
