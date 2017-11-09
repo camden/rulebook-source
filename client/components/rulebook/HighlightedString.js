@@ -6,6 +6,7 @@ import styled from 'styled-components';
 
 import 'react-tippy/dist/tippy.css';
 
+import { compileMarkdown } from 'markdown-utils';
 import type { GlossaryItem } from 'types';
 
 const HighlightedWord = styled.span`
@@ -25,7 +26,9 @@ const DefinitionTitle = styled.div`
   font-weight: bold;
   padding-bottom: 0.5rem;
 `;
-const DefinitionBody = styled.div``;
+const DefinitionBody = styled.div`
+  text-align: left;
+`;
 
 const DefinitionPopup = ({
   match,
@@ -34,10 +37,14 @@ const DefinitionPopup = ({
   match: string,
   glossaryItem: GlossaryItem,
 }) => {
+  const markdown = compileMarkdown({
+    markdown: glossaryItem.definition,
+  });
+
   return (
     <Definition>
       <DefinitionTitle>{glossaryItem.name}</DefinitionTitle>
-      <DefinitionBody>{glossaryItem.definition}</DefinitionBody>
+      <DefinitionBody>{markdown.tree}</DefinitionBody>
     </Definition>
   );
 };

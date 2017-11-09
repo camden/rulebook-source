@@ -14,7 +14,8 @@ import type { Glossary } from 'types';
 const Wrapper = styled.div`
   & [class^='language-'] {
     display: block;
-    background-color: ${props => props.theme.colors.border};
+    background-color: ${props =>
+      props.theme.colors ? props.theme.colors.border : '#efefef'};
     padding: 0.2rem;
     overflow-y: auto;
   }
