@@ -2,7 +2,7 @@
   "name": "rulebook",
   "version": "1.0.0",
   "description": "Rulebooks!",
-  "license": "UNLICENSED",
+  "license": "MIT",
   "scripts": {
     "precommit": "lint-staged",
     "flow-check": "flow check --show-all-errors | flow-result-checker",
