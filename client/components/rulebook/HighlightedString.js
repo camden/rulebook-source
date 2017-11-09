@@ -10,12 +10,14 @@ import { compileMarkdown } from 'markdown-utils';
 import type { GlossaryItem } from 'types';
 
 const HighlightedWord = styled.span`
-  font-weight: bold;
-  cursor: pointer;
-  text-decoration: underline;
-  text-decoration-skip: ink;
-  color: ${props => props.theme.colors.primary};
-  cursor: help;
+  @media not print {
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: underline;
+    text-decoration-skip: ink;
+    color: ${props => props.theme.colors.primary};
+    cursor: help;
+  }
 `;
 
 const Definition = styled.div`
