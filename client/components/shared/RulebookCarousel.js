@@ -12,9 +12,12 @@ const RulebookCarousel = props => {
     <Carousel>
       <CarouselTitle>{title}</CarouselTitle>
       <CarouselCards>
-        {rulebooks.map(rulebook => (
-          <CarouselItem key={rulebook.name} rulebook={rulebook} />
-        ))}
+        {rulebooks.map(
+          rulebook =>
+            rulebook ? (
+              <CarouselItem key={rulebook.name} rulebook={rulebook} />
+            ) : null
+        )}
       </CarouselCards>
     </Carousel>
   );
