@@ -44,7 +44,7 @@ const getTags = tags => {
   return (
     <ResultTags>
       {tags.map(tag => {
-        return <Tag key={tag}>{tag.replace('-', ' ')}</Tag>;
+        return <Tag key={tag}>{tag.replace(/-/g, ' ')}</Tag>;
       })}
     </ResultTags>
   );
