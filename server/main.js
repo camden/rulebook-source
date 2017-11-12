@@ -76,8 +76,9 @@ const main = () => {
 
   app.use(
     '/api',
+    cacheClient({ match: '/config', expiryDays: 1 }),
     cacheClient({ match: '/pages', expiryDays: 7 }),
-    cacheClient({ match: '/rulebooks', expiryDays: 1 }),
+    cacheClient({ match: '/rulebooks', expiryDays: 2 }),
     cacheClient({ match: '/assets', expiryDays: 14 }),
     apiRouter
   );
