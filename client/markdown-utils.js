@@ -57,52 +57,58 @@ const TD = styled.td`
 export const compileMarkdown = ({
   markdown,
   glossary,
+  anchorOffset,
 }: {
   markdown: string,
   glossary: ?Glossary,
+  anchorOffset: ?boolean,
 }) => {
+  if (anchorOffset === undefined) {
+    anchorOffset = true;
+  }
+
   const compiled = marksy({
     createElement,
 
     elements: {
       h1({ id, children }) {
         return (
-          <MarkdownHeader id={id} level={1}>
+          <MarkdownHeader id={id} level={1} anchorOffset={anchorOffset}>
             {children[0]}
           </MarkdownHeader>
         );
       },
       h2({ id, children }) {
         return (
-          <MarkdownHeader id={id} level={2}>
+          <MarkdownHeader id={id} level={2} anchorOffset={anchorOffset}>
             {children[0]}
           </MarkdownHeader>
         );
       },
       h3({ id, children }) {
         return (
-          <MarkdownHeader id={id} level={3}>
+          <MarkdownHeader id={id} level={3} anchorOffset={anchorOffset}>
             {children[0]}
           </MarkdownHeader>
         );
       },
       h4({ id, children }) {
         return (
-          <MarkdownHeader id={id} level={4}>
+          <MarkdownHeader id={id} level={4} anchorOffset={anchorOffset}>
             {children[0]}
           </MarkdownHeader>
         );
       },
       h5({ id, children }) {
         return (
-          <MarkdownHeader id={id} level={5}>
+          <MarkdownHeader id={id} level={5} anchorOffset={anchorOffset}>
             {children[0]}
           </MarkdownHeader>
         );
       },
       h6({ id, children }) {
         return (
-          <MarkdownHeader id={id} level={6}>
+          <MarkdownHeader id={id} level={6} anchorOffset={anchorOffset}>
             {children[0]}
           </MarkdownHeader>
         );

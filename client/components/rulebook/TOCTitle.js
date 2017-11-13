@@ -9,9 +9,9 @@ import { generateId } from 'utils';
 import Link from 'components/shared/Link';
 
 const TOCLink = styled(({ bold, level, ...rest }) => <Link {...rest} />)`
-  padding: 0.5rem 0;
+  padding: 0.5rem 3rem;
   padding-left: ${props => props.level}rem;
-  display: block;
+  display: inline-block;
   font-weight: ${props => (props.bold ? 'bolder' : 'normal')};
 
   transition: all 150ms linear;

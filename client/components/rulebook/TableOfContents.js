@@ -80,12 +80,13 @@ const TableOfContents = props => {
 TableOfContents.defaultProps = {
   glossary: [],
   tableOfContents: [],
+  onCloseTableOfContentsClick: () => {},
 };
 
 TableOfContents.propTypes = {
   glossary: PropTypes.array,
-  onCloseTableOfContentsClick: PropTypes.func.isRequired,
-  tableOfContents: PropTypes.array.isRequired,
+  onCloseTableOfContentsClick: PropTypes.func,
+  tableOfContents: PropTypes.array,
 };
 
 export default TableOfContents;

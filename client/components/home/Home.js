@@ -151,12 +151,19 @@ export default class Home extends Component {
               <Route
                 path="/about"
                 exact
-                render={() => <Page data={this.state.data.pages.about} />}
+                render={() => (
+                  <Page title={'About'} data={this.state.data.pages.about} />
+                )}
               />
               <Route
                 path="/how-to-help"
                 exact
-                render={() => <Page data={this.state.data.pages.howToHelp} />}
+                render={() => (
+                  <Page
+                    title={'How to Help'}
+                    data={this.state.data.pages.howToHelp}
+                  />
+                )}
               />
               <Route
                 path="/browse"

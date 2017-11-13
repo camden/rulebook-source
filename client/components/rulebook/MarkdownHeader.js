@@ -8,55 +8,6 @@ import { generateId } from 'utils';
 import { default as LinkIcon } from 'components/icons/Link';
 import Link from 'components/shared/Link';
 
-const AnchorLink = styled.span`
-  padding-left: 0.25rem;
-  transition: all 150ms linear;
-  box-sizing: content-box;
-
-  cursor: pointer;
-
-  color: ${props => props.theme.colors.icon.default};
-
-  &:hover {
-    color: ${props => props.theme.colors.icon.hover};
-  }
-
-  @media print {
-    display: none;
-  }
-`;
-
-const underlineStyle = `
-    border-bottom: 1px solid #efefef;
-    margin-bottom: 0.5rem;
-`;
-
-const Wrapper = styled.div`
-  margin-top: 1rem;
-  padding: 0.75rem 0 0.25rem;
-  ${props => (props.underline ? underlineStyle : '')};
-`;
-
-const GenericHeader = styled.div`
-  font-size: ${props => props.size};
-  font-weight: bold;
-  display: inline;
-`;
-
-const AnchorOffset = styled.div`
-  position: relative;
-  top: -5rem;
-`;
-
-const levelToSizeMap = {
-  '1': '1.8rem',
-  '2': '1.5rem',
-  '3': '1.3rem',
-  '4': '1.1rem',
-  '5': '1rem',
-  '6': '0.8rem',
-};
-
 class MarkdownHeader extends Component {
   state: {
     collapsed: boolean,
@@ -96,7 +47,7 @@ class MarkdownHeader extends Component {
         onMouseEnter={this.handleMouseEnter}
         onMouseLeave={this.handleMouseLeave}
       >
-        <AnchorOffset id={id} />
+        <AnchorOffset id={id} offset={this.props.anchorOffset} />
         <GenericHeader size={levelToSizeMap[this.props.level.toString()]}>
           {this.props.children}
         </GenericHeader>
@@ -116,6 +67,57 @@ MarkdownHeader.propTypes = {
   id: PropTypes.string.isRequired,
   level: PropTypes.number.isRequired,
   children: PropTypes.string.isRequired,
+  anchorOffset: PropTypes.bool.isRequired,
+};
+
+const AnchorLink = styled.span`
+  padding-left: 0.25rem;
+  transition: all 150ms linear;
+  box-sizing: content-box;
+
+  cursor: pointer;
+
+  color: ${props => props.theme.colors.icon.default};
+
+  &:hover {
+    color: ${props => props.theme.colors.icon.hover};
+  }
+
+  @media print {
+    display: none;
+  }
+`;
+
+const underlineStyle = `
+    border-bottom: 1px solid #efefef;
+    margin-bottom: 0.5rem;
+`;
+
+const Wrapper = styled.div`
+  margin-top: 1rem;
+  padding: 0.75rem 0 0.25rem;
+  ${props => (props.underline ? underlineStyle : '')};
+`;
+
+const GenericHeader = styled.div`
+  font-size: ${props => props.size};
+  font-weight: bold;
+  display: inline;
+`;
+
+const AnchorOffset = styled.div.attrs({
+  top: props => (props.offset ? '-5rem' : '0'),
+})`
+  position: relative;
+`;
+
+const levelToSizeMap = {
+  '1': '1.8rem',
+  '2': '1.5rem',
+  '3': '1.3rem',
+  '4': '1.1rem',
+  '5': '1rem',
+  '6': '0.8rem',
 };
 
 export default MarkdownHeader;
