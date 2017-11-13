@@ -8,6 +8,7 @@ const config = {
 
   localSearch: true,
   maxSearchResults: 5,
+  maxTags: 3,
 };
 
 export default config;

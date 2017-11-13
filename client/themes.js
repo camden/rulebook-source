@@ -6,7 +6,7 @@ import Color from 'color';
 export const MainTheme = {};
 
 MainTheme.colors = {
-  primary: 'hsl(340, 70%, 60%)',
+  primary: 'hsl(342, 69%, 50%)',
   black: '#333',
   quote: '#888',
   border: '#efefef',
