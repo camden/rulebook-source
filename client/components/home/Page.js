@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { Base64 } from 'js-base64';
 import { Helmet } from 'react-helmet';
 
+import MarkdownHeader from 'components/rulebook/MarkdownHeader';
 import { compileMarkdown } from 'markdown-utils';
 import TableOfContents from 'components/rulebook/TableOfContents';
 
@@ -31,6 +32,9 @@ class Page extends Component {
 
     return (
       <div>
+        <MarkdownHeader id={'page-table-of-contents'} level={1}>
+          Table of Contents
+        </MarkdownHeader>
         <TableOfContents tableOfContents={markdown.toc} />
         {markdown.tree}
         <Helmet defer={false}>

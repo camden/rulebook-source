@@ -47,7 +47,10 @@ class MarkdownHeader extends Component {
         onMouseEnter={this.handleMouseEnter}
         onMouseLeave={this.handleMouseLeave}
       >
-        <AnchorOffset id={id} offset={this.props.anchorOffset} />
+        <AnchorOffset
+          id={id}
+          offset={this.props.anchorOffset ? '-5rem' : '0'}
+        />
         <GenericHeader size={levelToSizeMap[this.props.level.toString()]}>
           {this.props.children}
         </GenericHeader>
@@ -63,11 +66,15 @@ class MarkdownHeader extends Component {
   }
 }
 
+MarkdownHeader.defaultProps = {
+  anchorOffset: false,
+};
+
 MarkdownHeader.propTypes = {
   id: PropTypes.string.isRequired,
   level: PropTypes.number.isRequired,
   children: PropTypes.string.isRequired,
-  anchorOffset: PropTypes.bool.isRequired,
+  anchorOffset: PropTypes.bool,
 };
 
 const AnchorLink = styled.span`
@@ -106,7 +113,7 @@ const GenericHeader = styled.div`
 `;
 
 const AnchorOffset = styled.div.attrs({
-  top: props => (props.offset ? '-5rem' : '0'),
+  top: props => props.offset,
 })`
   position: relative;
 `;
