@@ -12,7 +12,7 @@
     "start-server": "yarn run build-server && node dist/server/main.js rulebook-server",
     "stop-server": "killall -SIGINT rulebook-server",
     "watch-server": "chokidar 'server/**.js' -c 'yarn run stop-server; yarn run start-server' --initial",
-    "generate-favicon": "mkdir -p tmp/favicons && real-favicon generate client/favicon-description.json tmp/favicon-data.json tmp/favicons && real-favicon inject tmp/favicon-data.json tmp/favicons client/index.html && mv client/index.html client/index.old.html && mv tmp/favicons/index.html client/index.html && mv tmp/favicons client/assets/",
+    "generate-favicon": "mkdir -p tmp/favicons && real-favicon generate client/favicon-description.json tmp/favicon-data.json tmp/favicons && real-favicon inject tmp/favicon-data.json tmp/favicons client/index.html && mv client/index.html client/index.old.html && mv tmp/favicons/index.html client/index.html && rm -rf client/assets/favicons; mv tmp/favicons client/assets/",
     "start": "yarn run generate-favicon && NODE_ENV=production yarn run build-client && yarn run start-server"
   },
   "lint-staged": {
