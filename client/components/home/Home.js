@@ -86,6 +86,7 @@ export default class Home extends Component {
         <meta property="og:url" content={config.homeUrl} />
         <meta property="og:site_name" content={config.homeTitle} />
         <meta name="twitter:card" content="summary" />
+        <meta property="twitter:image" content={config.ogImageUrl} />
         <meta name="twitter:creator" content={'@camdenbickel'} />
         <meta property="twitter:title" content={config.homeTitle} />
         <meta name="twitter:description" content={config.homeDescription} />

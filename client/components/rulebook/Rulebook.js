@@ -165,6 +165,7 @@ export default class Rulebook extends Component {
           <meta property="twitter:card" content={'summary'} />
           <meta name="twitter:creator" content={'@camdenbickel'} />
           <meta property="twitter:title" content={this.ogTitle()} />
+          <meta property="twitter:image" content={config.ogImageUrl} />
           <meta property="twitter:description" content={this.description()} />
           <title>{this.title()}</title>
           <meta name="description" content={this.description()} />
