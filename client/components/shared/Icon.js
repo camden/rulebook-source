@@ -32,11 +32,6 @@ const IconWrapper = styled.div`
   &:hover {
     color: ${props => props.theme.colors.icon.hover};
   }
-
-  &:focus {
-    background-color: ${props => props.theme.colors.icon.focus};
-    outline: none;
-  }
 `;
 
 const Icon = props => {
