@@ -3,7 +3,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import ErrorBoundary from 'react-error-boundary';
 
+import ErrorMessage from 'components/shared/ErrorMessage';
 import Glossary from 'components/rulebook/Glossary';
 import type { Glossary as GlossaryType } from 'types';
 
@@ -29,12 +31,14 @@ const RulebookContent = ({
   glossary: GlossaryType,
 }) => {
   return (
-    <RulebookBody>
-      {markdown}
-      {glossary && glossary.length > 0 ? (
-        <Glossary glossary={glossary} />
-      ) : null}
-    </RulebookBody>
+    <ErrorBoundary FallbackComponent={ErrorMessage}>
+      <RulebookBody>
+        {markdown}
+        {glossary && glossary.length > 0 ? (
+          <Glossary glossary={glossary} />
+        ) : null}
+      </RulebookBody>
+    </ErrorBoundary>
   );
 };
 

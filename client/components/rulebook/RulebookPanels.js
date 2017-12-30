@@ -113,6 +113,26 @@ class RulebookPanels extends Component {
     return markdown;
   }
 
+  innerContent() {
+    return (
+      <PageContent>
+        <Overlay
+          visible={this.state.sidebarOpen}
+          onClick={this.closeSidebar}
+          onWheel={this.closeSidebar}
+        />
+        <RulebookContent
+          style={this.calculateContentStyle()}
+          glossary={
+            this.props.not_found ? null : this.props.data.front_matter.glossary
+          }
+          markdown={this.pageMarkdown()}
+        />
+        <FixedPage fixed={this.state.sidebarOpen} />
+      </PageContent>
+    );
+  }
+
   content(isDesktop: boolean) {
     return (
       <div
@@ -140,23 +160,7 @@ class RulebookPanels extends Component {
             onCloseSidebarClick={this.closeSidebar}
           />
         </SidebarWrapper>
-        <PageContent>
-          <Overlay
-            visible={this.state.sidebarOpen}
-            onClick={this.closeSidebar}
-            onWheel={this.closeSidebar}
-          />
-          <RulebookContent
-            style={this.calculateContentStyle()}
-            glossary={
-              this.props.not_found
-                ? null
-                : this.props.data.front_matter.glossary
-            }
-            markdown={this.pageMarkdown()}
-          />
-          <FixedPage fixed={this.state.sidebarOpen} />
-        </PageContent>
+        {this.innerContent()}
       </div>
     );
   }

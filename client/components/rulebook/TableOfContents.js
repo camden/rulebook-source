@@ -2,7 +2,6 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
 
 import TOCTitle from 'components/rulebook/TOCTitle';
 import type { Glossary as GlossaryType } from 'types';
@@ -37,6 +36,10 @@ const renderChildren = ({
 
 const glossaryItems = (glossary: GlossaryType, onClick: Function) => {
   return glossary.map(entry => {
+    if (!entry) {
+      return null;
+    }
+
     return (
       <TOCTitle
         key={entry.name}

@@ -69,6 +69,7 @@
     "react": "^16.0.0",
     "react-debounce-input": "^3.0.1",
     "react-dom": "^16.0.0",
+    "react-error-boundary": "^1.2.0",
     "react-fastclick": "^3.0.2",
     "react-fixed-page": "camden/react-fixed-page",
     "react-flip-move": "^2.9.17",
