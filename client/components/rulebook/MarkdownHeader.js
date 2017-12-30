@@ -112,9 +112,8 @@ const GenericHeader = styled.div`
   display: inline;
 `;
 
-const AnchorOffset = styled.div.attrs({
-  top: props => props.offset,
-})`
+const AnchorOffset = styled.div`
+  top: ${props => props.offset};
   position: relative;
 `;
 
