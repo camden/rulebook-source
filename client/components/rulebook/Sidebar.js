@@ -7,6 +7,7 @@ import styled from 'styled-components';
 import Media from 'components/shared/Media';
 import EditButton from 'components/buttons/EditButton';
 import HomeButton from 'components/buttons/HomeButton';
+import InfoButton from 'components/buttons/InfoButton';
 import TableOfContents from 'components/rulebook/TableOfContents';
 
 import { editLink } from 'utils';
@@ -39,8 +40,13 @@ const Sidebar = props => {
             <TopMenu>
               <HomeButton />
               <EditButton to={editLink({ rulebookName: props.rulebookName })} />
+              <InfoButton
+                source={props.rulebookData.source}
+                information={props.rulebookData.information}
+              />
             </TopMenu>
-          )}
+          )
+        }
       </Media>
       <TOCWrapper>
         <TableOfContents
@@ -59,6 +65,7 @@ Sidebar.defaultProps = {
 
 Sidebar.propTypes = {
   rulebookName: PropTypes.string.isRequired,
+  rulebookData: PropTypes.object.isRequired,
   glossary: PropTypes.array,
   onCloseSidebarClick: PropTypes.func.isRequired,
   tableOfContents: PropTypes.array.isRequired,

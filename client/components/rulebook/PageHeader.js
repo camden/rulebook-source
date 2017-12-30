@@ -7,6 +7,7 @@ import styled from 'styled-components';
 import Media from 'components/shared/Media';
 import EditButton from 'components/buttons/EditButton';
 import HomeButton from 'components/buttons/HomeButton';
+import InfoButton from 'components/buttons/InfoButton';
 import Icon from 'components/shared/Icon';
 import { default as MenuIcon } from 'components/icons/Menu';
 
@@ -56,8 +57,26 @@ const HideOnPrint = styled.div`
   }
 `;
 
+const rightButtons = ({ rulebookName, rulebookData }) => {
+  return (
+    <div style={{ display: 'flex' }}>
+      <EditButton to={editLink({ rulebookName })} />
+      <InfoButton
+        source={rulebookData.source}
+        information={rulebookData.information}
+      />
+    </div>
+  );
+};
+
 const PageHeader = props => {
-  const { rulebookName, onToggleSidebarClick, title, height } = props;
+  const {
+    rulebookName,
+    onToggleSidebarClick,
+    title,
+    height,
+    rulebookData,
+  } = props;
 
   return (
     <Header height={height}>
@@ -79,7 +98,8 @@ const PageHeader = props => {
                   </HideOnPrint>
                 )}
               </Media>
-            )}
+            )
+          }
         </Media>
         <Media query={'desktop'}>
           {isDesktop => (isDesktop ? <HomeButton /> : null)}
@@ -89,7 +109,8 @@ const PageHeader = props => {
       <HeaderSection justifyContent={'flex-end'}>
         <Media query={'desktop'}>
           {isDesktop =>
-            isDesktop ? <EditButton to={editLink({ rulebookName })} /> : null}
+            isDesktop ? rightButtons({ rulebookName, rulebookData }) : null
+          }
         </Media>
       </HeaderSection>
     </Header>
@@ -104,6 +125,7 @@ PageHeader.defaultProps = {
 
 PageHeader.propTypes = {
   rulebookName: PropTypes.string.isRequired,
+  rulebookData: PropTypes.object.isRequired,
   onToggleSidebarClick: PropTypes.func.isRequired,
   title: PropTypes.string.isRequired,
   height: PropTypes.string.isRequired,

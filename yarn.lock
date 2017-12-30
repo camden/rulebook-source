@@ -4461,7 +4461,7 @@ pluralize@^1.2.1:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/pluralize/-/pluralize-1.2.1.tgz#d1a21483fd22bb41e58a12fa3421823140897c45"
 
-popper.js@^1.11.1:
+popper.js@^1.12.9:
   version "1.13.0"
   resolved "https://registry.yarnpkg.com/popper.js/-/popper.js-1.13.0.tgz#e1e7ff65cc43f7cf9cf16f1510a75e81f84f4565"
 
@@ -5000,11 +5000,11 @@ react-string-replace@^0.4.0:
   dependencies:
     lodash "^4.17.4"
 
-react-tippy@^1.2.1:
+react-tippy@camden/react-tippy:
   version "1.2.2"
-  resolved "https://registry.yarnpkg.com/react-tippy/-/react-tippy-1.2.2.tgz#061467d34d29e7a5a9421822d125c451d6bb5153"
+  resolved "https://codeload.github.com/camden/react-tippy/tar.gz/1966fa8d02ed67e211682d93286d4271fa7f0bd5"
   dependencies:
-    popper.js "^1.11.1"
+    popper.js "^1.12.9"
 
 react@^16.0.0:
   version "16.2.0"

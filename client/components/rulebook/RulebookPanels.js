@@ -144,6 +144,7 @@ class RulebookPanels extends Component {
       >
         <PageHeader
           rulebookName={this.props.rulebookName}
+          rulebookData={this.props.data.front_matter}
           height={HEADER_HEIGHT}
           onToggleSidebarClick={this.handleToggleSidebarClick}
           title={this.pageTitle()}
@@ -151,6 +152,7 @@ class RulebookPanels extends Component {
         <SidebarWrapper style={this.calculateSidebarStyle({ isDesktop })}>
           <Sidebar
             rulebookName={this.props.rulebookName}
+            rulebookData={this.props.data.front_matter}
             glossary={
               this.props.not_found
                 ? null
