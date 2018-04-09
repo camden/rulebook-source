@@ -56,7 +56,7 @@ const webpackConfig = {
       },
       // Load files for the favicons
       {
-        test: /\.jpe?g$|\.ico$|\.png$|\.svg$|\.xml$/,
+        test: /\.jpe?g$|\.ico$|\.png$|\.svg$|\.xml$|\.webmanifest$/,
         include: path.join(__dirname, 'client/assets/favicons'),
         use: {
           loader: 'file-loader',
