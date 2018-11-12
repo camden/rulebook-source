@@ -49,11 +49,19 @@ export const getRulebookContent = async ({
       rulebookName +
       '.md' +
       getGithubAuthParams();
-    const response = await fetch(url, {
-      headers: {
-        'User-Agent': REPO_AUTHOR + '/' + REPO_NAME,
-      },
-    });
+
+    let response;
+
+    try {
+      response = await fetch(url, {
+        headers: {
+          'User-Agent': REPO_AUTHOR + '/' + REPO_NAME,
+        },
+      });
+    } catch (e) {
+      console.warn(e);
+      return null;
+    }
 
     status = response.status;
     rulebookData = await response.json();
@@ -76,6 +84,10 @@ export const hydrateRulebook = async ({
     rulebookName,
     redis,
   });
+
+  if (!rulebookData) {
+    return null;
+  }
 
   const rulebookContent = Base64.decode(rulebookData.encodedContent);
   const rulebookAttributes = frontMatter(rulebookContent).attributes;
@@ -131,7 +143,9 @@ export const getAllRulebooks = async ({ redis }): Promise<Object> => {
   for (let i = 0; i < rulebookNameArray.length; i++) {
     const rulebookName = rulebookNameArray[i];
     const rulebook = await hydrateRulebook({ rulebookName, redis });
-    rulebooksArray.push(rulebook);
+    if (rulebook) {
+      rulebooksArray.push(rulebook);
+    }
   }
 
   return {

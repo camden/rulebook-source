@@ -19,6 +19,13 @@ export const addRoutes = ({ router, redis }) => {
     const rulebookName = req.params.rulebookName;
 
     getRulebookContent({ rulebookName, redis }).then(markdownResponse => {
+      if (!markdownResponse) {
+        return res.status(500).json({
+          message:
+            'There was an error fetching the rulebook. Please try again later.',
+        });
+      }
+
       if (markdownResponse.status === 404) {
         return res.status(markdownResponse.status).json({
           message: `Rulebook ${rulebookName} not found.`,
